@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Matiere {
 
@@ -44,6 +45,22 @@ public class Matiere {
         return this.exercices.get(n);
     }
 
+    // Retourne un arrayList des niveaux proposés dans la matière
+    public ArrayList<Niveau> getNiveaux()
+    {
+        if(this.exercices.keySet().size() == 0)
+        {
+            return null;
+        }
+        ArrayList<Niveau> n = new ArrayList<>();
+
+        for(Niveau niv : this.exercices.keySet())
+        {
+            n.add(niv);
+        }
+        return n;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
@@ -65,14 +82,14 @@ public class Matiere {
     // La matière n'a pas forcément des exercices dans tous les niveaux. Cette méthode se charge de l'ajout du niveau s'il n'existe pas
     public void addExercice(Exercice e)
     {
-        if(this.exercices.get(e.getNiveau()) != null)
-        {
-            this.exercices.get(e.getNiveau()).add(e);
-        }
-        else
-        {
-            this.exercices.put(e.getNiveau(), new ArrayList<>());
-            this.exercices.get(e.getNiveau()).add(e);
+        if(!(this.exercices.get(e.getNiveau()) != null && this.exercices.get(e.getNiveau()).contains(e))) { // Cette condition s'assure que l'exercice n'est pas déjà inséré
+            if (this.exercices.get(e.getNiveau()) != null) {
+                this.exercices.get(e.getNiveau()).add(e);
+            } else {
+                this.exercices.put(e.getNiveau(), new ArrayList<>());
+                this.exercices.get(e.getNiveau()).add(e);
+            }
+            e.setMatiere(this);
         }
     }
 

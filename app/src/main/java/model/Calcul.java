@@ -12,9 +12,9 @@ public class Calcul extends Exercice{
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public Calcul(String titre, Niveau niveau, Matiere matiere, ArrayList<LigneCalcul> lignes)
+    public Calcul(String titre, Niveau niveau, ArrayList<LigneCalcul> lignes)
     {
-        super(titre, niveau, matiere);
+        super(titre, niveau);
         this.lignes = lignes;
     }
 
@@ -40,18 +40,22 @@ public class Calcul extends Exercice{
     // Retourne le nombre d'erreurs (si 0 est retourné, alors c'est un sans faute)
     public int resultat(ArrayList<Double> reponses)
     {
-        Iterator it = this.lignes.iterator();
         int erreur = 0;
 
-        for(double rep : reponses)
+        Iterator it = reponses.iterator();
+        for(LigneCalcul l : this.lignes)
         {
             if(it.hasNext())
             {
-                LigneCalcul l = (LigneCalcul)it.next();
-                if(rep == l.getSolution())
+                Double rep = (Double)it.next();
+                if(rep != l.getSolution())
                 {
                     erreur++;
                 }
+            }
+            else
+            {
+                erreur++;
             }
         }
         return erreur;

@@ -49,13 +49,18 @@ public class Utilisateur {
         return avatar;
     }
 
+    public HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> getExercicesResolus()
+    {
+        return this.exercicesResolus;
+    }
+
     public ArrayList<Exercice> getExercicesResolus(Niveau n, Matiere m)
     {
-        if(this.exercicesResolus.get(n) == null)
+        if(this.exercicesResolus.get(m) == null)
         {
             return null;
         }
-        return this.exercicesResolus.get(n).get(m);
+        return this.exercicesResolus.get(m).get(n);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -82,22 +87,21 @@ public class Utilisateur {
     // Cette méthode se charge de l'ajout s'il n'existe pas
     public void addExerciceResolu(Exercice e)
     {
-        if(this.exercicesResolus.get(e.getMatiere()) != null)
-        {
-            if(this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()) != null)
-            {
+        // Cette (grosse) condition s'assure que l'exercice n'a pas déjà été inséré
+        if(!(this.exercicesResolus.get(e.getMatiere()) != null && this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()) != null && this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).contains(e))) {
+            if (this.exercicesResolus.get(e.getMatiere()) != null) {
+                if (this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()) != null) {
+                    this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+                } else {
+                    this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
+                    this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+                }
+            } else {
+                this.exercicesResolus.put(e.getMatiere(), new HashMap<>());
+                this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
                 this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
             }
-            else
-            {
-                this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
-            }
-        }
-        else
-        {
-            this.exercicesResolus.put(e.getMatiere(), new HashMap<>());
-            this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
-            this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+            e.addVainqueur(this);
         }
     }
 
