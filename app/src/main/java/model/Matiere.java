@@ -82,16 +82,15 @@ public class Matiere {
     // La matière n'a pas forcément des exercices dans tous les niveaux. Cette méthode se charge de l'ajout du niveau s'il n'existe pas
     public void addExercice(Exercice e)
     {
-        if(this.exercices.get(e.getNiveau()) != null)
-        {
-            this.exercices.get(e.getNiveau()).add(e);
+        if(!(this.exercices.get(e.getNiveau()) != null && this.exercices.get(e.getNiveau()).contains(e))) { // Cette condition s'assure que l'exercice n'est pas déjà inséré
+            if (this.exercices.get(e.getNiveau()) != null) {
+                this.exercices.get(e.getNiveau()).add(e);
+            } else {
+                this.exercices.put(e.getNiveau(), new ArrayList<>());
+                this.exercices.get(e.getNiveau()).add(e);
+            }
+            e.setMatiere(this);
         }
-        else
-        {
-            this.exercices.put(e.getNiveau(), new ArrayList<>());
-            this.exercices.get(e.getNiveau()).add(e);
-        }
-        e.setMatiere(this);
     }
 
 
