@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">Scolastic</string>
+    <string
+        name="client_inscription"
+        >Inscription</string>
+    <string
+        name="client_main_h2"
+        >Espace Elèves</string>
+    <string
+        name="connect_join"
+        >Rejoindre</string>
+    <string
+        name="connect_already_sign"
+        >Déjà inscrit \?</string>
+    <string
+        name="connect_fname"
+        >Prénom</string>
+    <string
+        name="connect_name"
+        >Nom</string>
+    <string
+        name="connect_inscription"
+        >@string/client_inscription</string>
+    <string
+        name="profil_level"
+        >Niveau Terminé</string>
+    <string
+        name="profile_hours"
+        >Heures</string>
+    <string
+        name="profile_desincription"
+        >Se désincrire</string>
+    <string
+        name="main_main_h2"
+        >Page Principale</string>
+    <string
+        name="main_hint"
+        >Choisis ton activité !</string>
+    <string
+        name="main_french"
+        >Francais</string>
+    <string
+        name="main_math"
+        >Math</string>
+    <string
+        name="main_history"
+        >Histoire</string>
 </resources>
