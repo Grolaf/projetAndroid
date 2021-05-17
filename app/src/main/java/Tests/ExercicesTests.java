@@ -1,4 +1,4 @@
-package com.example.scolastic;
+package Tests;
 
 import java.util.ArrayList;
 
@@ -6,19 +6,25 @@ import model.*;
 
 public class ExercicesTests {
 
-    /////////////////////////////////////////////////////////////////
-    // Tests Ligne de calcul
+    public ExercicesTests()
+    {
+        testLigneCalcul();
+        testCalcul();
+    }
 
-    public static void main() {
+    public static final void testLigneCalcul() {
 
         LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
         assert(l1.getEnonce() == "3 + 2 = ");
         assert (l1.getSolution() == 5);
         assert (l1.getSolution() == 5.000);
 
-        /////////////////////////////////////////////////////////////////
-        // Tests Calcul
 
+    }
+
+    public static final void testCalcul()
+    {
+        LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
         LigneCalcul l2 = new LigneCalcul("4 x 2 = ", 8);
         LigneCalcul l3 = new LigneCalcul("4 / 2 = ", 2);
 
@@ -33,15 +39,29 @@ public class ExercicesTests {
         assert(c.isWinner(u) == false);
         assert(c.getLignes() == e);
         assert(c.getMatiere().getNom() == "Maths");
-        assert(c.getMatiere() == null);
+        assert(c.getVainqueurs().size() == 0);
 
         ArrayList<Double> answ = new ArrayList<>();
         answ.add(5.0);
         answ.add(8.0);
-        &answ.add()
+        answ.add(2.0);
 
-        
+        assert(c.resultat(answ) == 0);
+        answ = new ArrayList<>();
+        answ.add(5.0);
+        answ.add(8.0);
+        answ.add(3.0); // erreur
 
+        assert(c.resultat(answ) == 1);
+        answ.remove(0);
+        assert(c.resultat(answ) == 3);
+        answ.add(2.0);
+        assert(c.resultat(answ) == 2);
+    }
+
+    public static final void testMatiere()
+    {
+        Matiere m = new Matiere();
 
     }
 }
