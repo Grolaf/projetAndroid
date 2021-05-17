@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Matiere {
 
@@ -44,6 +45,22 @@ public class Matiere {
         return this.exercices.get(n);
     }
 
+    // Retourne un arrayList des niveaux proposés dans la matière
+    public ArrayList<Niveau> getNiveaux()
+    {
+        if(this.exercices.keySet().size() == 0)
+        {
+            return null;
+        }
+        ArrayList<Niveau> n = new ArrayList<>();
+
+        for(Niveau niv : this.exercices.keySet())
+        {
+            n.add(niv);
+        }
+        return n;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
@@ -74,6 +91,7 @@ public class Matiere {
             this.exercices.put(e.getNiveau(), new ArrayList<>());
             this.exercices.get(e.getNiveau()).add(e);
         }
+        e.setMatiere(this);
     }
 
 

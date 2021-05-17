@@ -14,11 +14,10 @@ public abstract class Exercice {
     ///////////////////////////////////////////////////////////////////////////
     // Constructor
 
-    public Exercice(String titre, Niveau niveau, Matiere matiere)
+    public Exercice(String titre, Niveau niveau)
     {
         this.titre = titre;
         this.niveau = niveau;
-        this.matiere = matiere;
         this.vainqueurs = new ArrayList<>();
     }
 

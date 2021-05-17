@@ -12,9 +12,9 @@ public class Calcul extends Exercice{
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public Calcul(String titre, Niveau niveau, Matiere matiere, ArrayList<LigneCalcul> lignes)
+    public Calcul(String titre, Niveau niveau, ArrayList<LigneCalcul> lignes)
     {
-        super(titre, niveau, matiere);
+        super(titre, niveau);
         this.lignes = lignes;
     }
 

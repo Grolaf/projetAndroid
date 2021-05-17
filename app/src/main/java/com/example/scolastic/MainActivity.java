@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-import Tests.ExercicesTests;
+import tests.ExercicesTests;
 
 
 public class MainActivity extends AppCompatActivity {
