@@ -9,4 +9,5 @@
     <color name="yellow">#FFE600</color>
     <color name="main_text">#FD74A2</color>
     <color name="splash">#18507B</color>
+    <color name="white">#fff</color>
 </resources>
