@@ -2,41 +2,39 @@ package com.example.scolastic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.os.Handler;
+import android.view.WindowManager;
 
+public class  MainActivity extends AppCompatActivity {
 
-import java.util.ArrayList;
+    // Timeout :
 
-import adapters.LigneCalculAdapter;
-import model.Calcul;
-import model.LigneCalcul;
-import model.Niveau;
-import tests.ExercicesTests;
+    private static int SPLASH_TIME_OUT = 3000;
 
+    // Animation : Bonus will come
 
-public class MainActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ExercicesTests e = new ExercicesTests();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.listView);
 
-    }
+        // Animation : -----
 
-    public void toCalculer(View v)
-    {
-        Intent it = new Intent(this, ExerciceCalculActivity.class);
-        startActivity(it);
+
+        // Splash Screen : Affichage Deuxiéme Page
+
+        new Handler().postDelayed( new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, secondActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },SPLASH_TIME_OUT);
     }
 }
