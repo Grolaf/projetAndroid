@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class MatieresAdapter extends ArrayAdapter<Matiere> {
 
     public MatieresAdapter(@NonNull Context context, int resource, @NonNull List<Matiere> objects) {
         super(context, resource, objects);
+        this.context = context;
+        this.ressource = resource;
     }
 
     @NonNull
@@ -44,7 +47,7 @@ public class MatieresAdapter extends ArrayAdapter<Matiere> {
         e.setText(nom);
 
         ImageView iView = (ImageView) convertView.findViewById(R.id.imageMatiere);
-        iView.setImageURI(Uri.parse("~/Images/ecosia.jpeg"));
+        iView.setImageResource(R.drawable.math);
 
         LinearLayout matiereSelectionnee = (LinearLayout) convertView.findViewById(R.id.matiere);
         matiereSelectionnee.setId(position);

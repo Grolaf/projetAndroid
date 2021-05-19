@@ -10,7 +10,8 @@
         android:id="@+id/matiere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
 
     <ImageView
         android:id="@+id/imageMatiere"
@@ -23,6 +24,7 @@
         android:id="@+id/nomMatiere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         />
 
     </LinearLayout>
