@@ -93,6 +93,7 @@ public class ExercicesTests {
 
         m.addExercice(c2);
         assert(m.getNiveaux().size() == 2);
+        System.out.println(m.getNiveaux());
         assert(m.getNiveaux().get(1) == Niveau.DIFFICILE);
         assert(m.getExercices(Niveau.DIFFICILE).get(0) == c2);
         assert(m.getExercices(Niveau.DIFFICILE).size() == 1);
