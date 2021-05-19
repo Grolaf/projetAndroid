@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/background"
     android:weightSum="7"
-    tools:context=".connect_page">
+    tools:context=".secondActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
