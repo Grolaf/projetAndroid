@@ -11,28 +11,28 @@
     tools:context=".connect_page">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="3">
-
-
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="189dp"
-                android:layout_height="351dp"
-                android:src="@drawable/logored"/>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="189dp"
+                    android:layout_height="351dp"
+                    android:src="@drawable/logored"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:gravity="right|center">
+                android:gravity="right|center">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -41,9 +41,9 @@
 
                 </ImageView>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +117,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/ic_gradient_bt"
             android:text="@string/connect_join"
+            app:backgroundTint="@color/material_on_primary_disabled"
+            app:backgroundTintMode="multiply"></Button>
 
 
     </LinearLayout>
@@ -125,8 +128,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_gravity="bottom"
+       android:layout_weight="0.8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp"
+            android:text="@string/connect_already_sign"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/main_text"
+            android:textSize="16sp" />
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.2">
+
+
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+
+        android:src="@drawable/bas_connect">
+
+    </ImageView>
 
 
 
