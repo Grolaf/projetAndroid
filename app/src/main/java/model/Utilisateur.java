@@ -6,26 +6,26 @@ import java.util.HashMap;
 
 public class Utilisateur {
 
-    private String login;
-    private String password;
+    private String prenom;
+    private String nom;
     private String avatar;
     private HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
 
     ///////////////////////////////////////////////////////////////////////////
     // Constructors
 
-    public Utilisateur(String login, String password, String avatar)
+    public Utilisateur(String prenom, String nom, String avatar)
     {
-        this.login = login;
-        this.password = password;
+        this.prenom = prenom;
+        this.nom = nom;
         this.avatar = avatar;
         this.exercicesResolus = new HashMap<>();
     }
 
     public Utilisateur(String login, String password, String avatar, HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
     {
-        this.login = login;
-        this.password = password;
+        this.prenom = login;
+        this.nom = password;
 
         this.avatar = avatar;
         this.exercicesResolus = exercicesResolus;
@@ -34,14 +34,14 @@ public class Utilisateur {
     ///////////////////////////////////////////////////////////////////////////
     // Getters
 
-    public String getLogin()
+    public String getPrenom()
     {
-        return login;
+        return prenom;
     }
 
-    public String getPassword()
+    public String getNom()
     {
-        return password;
+        return nom;
     }
 
     public String getAvatar()
@@ -66,13 +66,13 @@ public class Utilisateur {
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
-    public void setLogin(String login)
+    public void setPrenom(String prenom)
     {
-        this.login = login;
+        this.prenom = prenom;
     }
-    public void setPassword(String password)
+    public void setNom(String nom)
     {
-        this.password = password;
+        this.nom = nom;
     }
     public void setAvatar(String avatar)
     {

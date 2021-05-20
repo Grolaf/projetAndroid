@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".secondActivity"></activity>
+        <activity android:name=".InscriptionActivity"></activity>
         <activity android:name=".MenuMatieresActivity"></activity>
         <activity android:name="exercices.ExerciceCalculActivity"></activity>
         <activity android:name="exercices.ErreurActivity"></activity>

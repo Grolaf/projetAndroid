@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.WindowManager;
 
+import tests.ExercicesTests;
+
 public class  MainActivity extends AppCompatActivity {
 
     // Timeout :
@@ -24,6 +26,8 @@ public class  MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        ExercicesTests tests = new ExercicesTests();
+
         // Animation : -----
 
         // Splash Screen : Affichage Deuxiéme Page
@@ -32,8 +36,8 @@ public class  MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(MainActivity.this, MenuMatieresActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         },SPLASH_TIME_OUT);
     }
