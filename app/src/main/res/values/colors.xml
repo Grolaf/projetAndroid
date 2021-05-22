@@ -10,4 +10,6 @@
     <color name="main_text">#FD74A2</color>
     <color name="splash">#18507B</color>
     <color name="white">#fff</color>
+    <color name="card">#2B2723</color>
+    <color name="cardBack">#5C1A0D0D</color>
 </resources>
