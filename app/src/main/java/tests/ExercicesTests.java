@@ -136,9 +136,9 @@ public class ExercicesTests {
     {
         Utilisateur u = new Utilisateur("CompteA", "pwdA", "");
 
-        assert(u.getLogin() == "CompteA");
+        assert(u.getPrenom() == "CompteA");
         assert(u.getAvatar() == "");
-        assert(u.getPassword() == "pwdA");
+        assert(u.getNom() == "pwdA");
         assert(u.getExercicesResolus().size() == 0);
 
         LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);

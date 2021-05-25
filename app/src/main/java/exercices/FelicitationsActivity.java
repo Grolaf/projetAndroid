@@ -1,4 +1,4 @@
-package com.example.scolastic;
+package exercices;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.scolastic.MainActivity;
+import com.example.scolastic.R;
 
 public class FelicitationsActivity extends AppCompatActivity {
 

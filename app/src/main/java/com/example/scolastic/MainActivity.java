@@ -2,41 +2,43 @@ package com.example.scolastic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.WindowManager;
 
-
-import java.util.ArrayList;
-
-import adapters.LigneCalculAdapter;
-import model.Calcul;
-import model.LigneCalcul;
-import model.Niveau;
 import tests.ExercicesTests;
 
+public class  MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
+    // Timeout :
+
+    private static int SPLASH_TIME_OUT = 3000;
+
+    // Animation : Bonus will come
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ExercicesTests e = new ExercicesTests();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.listView);
 
-    }
+        ExercicesTests tests = new ExercicesTests();
 
-    public void toCalculer(View v)
-    {
-        Intent it = new Intent(this, ExerciceCalculActivity.class);
-        startActivity(it);
+        // Animation : -----
+
+        // Splash Screen : Affichage Deuxiéme Page
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, MenuMatieresActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },SPLASH_TIME_OUT);
     }
 }
