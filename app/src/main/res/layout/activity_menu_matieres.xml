@@ -12,17 +12,46 @@
     >
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="466dp"
-        android:layout_height="267dp"
-        android:layout_marginTop="4dp"
-        android:rotationX="6"
-        android:scaleType="centerCrop"
-        android:src="@drawable/backpr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/profile_color"
+        android:padding="20dp"
 
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-2dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="203dp"
+            android:layout_height="47dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/main_main_h2"
+            android:textColor="@color/white"
+            android:textSize="21dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="203dp"
+            android:layout_height="47dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/main_hint"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
 
     <GridView
         android:id="@+id/gridMatieres"

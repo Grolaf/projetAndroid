@@ -23,9 +23,9 @@ public class MenuMatieresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_matieres);
 
         Matiere maths = new Matiere("Maths", "");
-        Matiere français = new Matiere("Français", "");
+        Matiere français = new Matiere("Français", "@drawable/book_icon_transparent_9");
         Matiere anglais = new Matiere("Anglais", "");
-        Matiere histoire = new Matiere("Histoire", "");
+        Matiere histoire = new Matiere("History", "");
         Matiere cultureG = new Matiere("Culture G", "");
 
         ArrayList<Matiere> listeMatieres = new ArrayList<>();
