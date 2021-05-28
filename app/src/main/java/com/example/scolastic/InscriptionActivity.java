@@ -72,6 +72,8 @@ public class InscriptionActivity extends AppCompatActivity {
 
                 // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
                 setResult(RESULT_OK);
+                Intent intent = new Intent(InscriptionActivity.this, activty_profile_page.class);
+                startActivity(intent);
                 finish();
                 Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
             }
