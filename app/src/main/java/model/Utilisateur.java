@@ -1,14 +1,21 @@
 package model;
 
-import java.lang.reflect.Array;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.TypeConverters;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Entity(primaryKeys = {"prenom", "nom"})
 public class Utilisateur {
 
-    private String prenom;
-    private String nom;
+    @NonNull private String prenom;
+    @NonNull private String nom;
     private String avatar;
+
+    @Ignore
     private HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
 
     ///////////////////////////////////////////////////////////////////////////
@@ -22,6 +29,7 @@ public class Utilisateur {
         this.exercicesResolus = new HashMap<>();
     }
 
+    @Ignore
     public Utilisateur(String login, String password, String avatar, HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
     {
         this.prenom = login;

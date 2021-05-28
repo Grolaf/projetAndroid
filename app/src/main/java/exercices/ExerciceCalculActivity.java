@@ -21,6 +21,7 @@ import tests.ExercicesTests;
 public class ExerciceCalculActivity extends AppCompatActivity {
 
     private Calcul c;
+    private LigneCalculAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,16 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         Calcul c = new Calcul("Additions", Niveau.FACILE, l);
         this.c = c;
 
-        listView.setAdapter(new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes()));
+        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes());
+        listView.setAdapter(adapter);
     }
 
     public void calculer(View v)
     {
                                                                 // Récupération des réponses
         ArrayList<Double> answers = new ArrayList<>();
-        for(int i = 0; i < c.getLignes().size(); i++)
+
+        for(int i = 0; i < this.adapter.getCount(); i++)
         {
             EditText e = (EditText) findViewById(i);
 

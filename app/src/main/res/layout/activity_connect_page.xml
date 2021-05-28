@@ -123,7 +123,7 @@
             android:text="@string/connect_join"
             app:backgroundTint="@color/material_on_primary_disabled"
             app:backgroundTintMode="multiply"
-            android:onClick="rejoindre"></Button>
+            android:onClick="saveUser"/>
 
 
     </LinearLayout>
