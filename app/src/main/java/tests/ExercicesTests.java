@@ -93,6 +93,7 @@ public class ExercicesTests {
 
         m.addExercice(c2);
         assert(m.getNiveaux().size() == 2);
+        System.out.println(m.getNiveaux());
         assert(m.getNiveaux().get(1) == Niveau.DIFFICILE);
         assert(m.getExercices(Niveau.DIFFICILE).get(0) == c2);
         assert(m.getExercices(Niveau.DIFFICILE).size() == 1);
@@ -135,9 +136,9 @@ public class ExercicesTests {
     {
         Utilisateur u = new Utilisateur("CompteA", "pwdA", "");
 
-        assert(u.getLogin() == "CompteA");
+        assert(u.getPrenom() == "CompteA");
         assert(u.getAvatar() == "");
-        assert(u.getPassword() == "pwdA");
+        assert(u.getNom() == "pwdA");
         assert(u.getExercicesResolus().size() == 0);
 
         LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);

@@ -1,15 +1,30 @@
 package model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import java.util.ArrayList;
 
+import model.Converters.NiveauConverter;
+
+@Entity
 public abstract class Exercice {
 
-    protected static int count;
-    protected int id;
-    protected String titre;
-    protected Niveau niveau;
-    protected Matiere matiere;
-    protected ArrayList<Utilisateur> vainqueurs;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull public int id;
+    public String titre;
+    @TypeConverters(NiveauConverter.class)
+    public Niveau niveau;
+    public String nomMatiere;
+    @Ignore
+    public Matiere matiere;
+    public String nomPrenomVainqueur;
+    @Ignore
+    public ArrayList<Utilisateur> vainqueurs;
 
     ///////////////////////////////////////////////////////////////////////////
     // Constructor

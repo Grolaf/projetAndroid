@@ -1,17 +1,27 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+@Entity
 public class Matiere {
 
-    private String nom;
+    @PrimaryKey(autoGenerate = false)
+    @NonNull private String nom;
     private String image;
+    @Ignore
     private HashMap<Niveau, ArrayList<Exercice>> exercices;
 
     ///////////////////////////////////////////////////////////////////////////
     // Constructors
+
 
     public Matiere(String nom, String image)
     {
@@ -19,7 +29,7 @@ public class Matiere {
         this.image = image;
         this.exercices = new HashMap<>();
     }
-
+    @Ignore
     public Matiere(String nom, String image, HashMap<Niveau, ArrayList<Exercice>> exercices)
     {
         this.nom = nom;
@@ -40,6 +50,11 @@ public class Matiere {
         return this.image;
     }
 
+    public HashMap<Niveau, ArrayList<Exercice>> getExercices()
+    {
+        return this.exercices;
+    }
+
     public ArrayList<Exercice> getExercices(Niveau n)
     {
         return this.exercices.get(n);
@@ -58,6 +73,7 @@ public class Matiere {
         {
             n.add(niv);
         }
+        Collections.sort(n);
         return n;
     }
 

@@ -1,8 +1,15 @@
 package model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class LigneCalcul {
 
-    private String enonce;
+    @PrimaryKey(autoGenerate = true)
+    private int ligneId;
+    @NonNull private String enonce;
     private double solution;
 
     //////////////////////////////////////////////////////////////////////////
@@ -16,6 +23,7 @@ public class LigneCalcul {
     ///////////////////////////////////////////////////////////////////////////
     // Getters
 
+    public int getLigneId() {return this.ligneId;}
     public String getEnonce()
     {
         return this.enonce;
@@ -28,6 +36,7 @@ public class LigneCalcul {
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
+    public void setLigneId(int ligneId) { this.ligneId = ligneId;}
     public void setEnonce(String enonce)
     {
         this.enonce = enonce;

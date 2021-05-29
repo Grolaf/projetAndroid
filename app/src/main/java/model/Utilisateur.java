@@ -1,31 +1,39 @@
 package model;
 
-import java.lang.reflect.Array;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.TypeConverters;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Entity(primaryKeys = {"prenom", "nom"})
 public class Utilisateur {
 
-    private String login;
-    private String password;
+    @NonNull private String prenom;
+    @NonNull private String nom;
     private String avatar;
+
+    @Ignore
     private HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
 
     ///////////////////////////////////////////////////////////////////////////
     // Constructors
 
-    public Utilisateur(String login, String password, String avatar)
+    public Utilisateur(String prenom, String nom, String avatar)
     {
-        this.login = login;
-        this.password = password;
+        this.prenom = prenom;
+        this.nom = nom;
         this.avatar = avatar;
         this.exercicesResolus = new HashMap<>();
     }
 
+    @Ignore
     public Utilisateur(String login, String password, String avatar, HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
     {
-        this.login = login;
-        this.password = password;
+        this.prenom = login;
+        this.nom = password;
 
         this.avatar = avatar;
         this.exercicesResolus = exercicesResolus;
@@ -34,14 +42,14 @@ public class Utilisateur {
     ///////////////////////////////////////////////////////////////////////////
     // Getters
 
-    public String getLogin()
+    public String getPrenom()
     {
-        return login;
+        return prenom;
     }
 
-    public String getPassword()
+    public String getNom()
     {
-        return password;
+        return nom;
     }
 
     public String getAvatar()
@@ -66,13 +74,13 @@ public class Utilisateur {
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
-    public void setLogin(String login)
+    public void setPrenom(String prenom)
     {
-        this.login = login;
+        this.prenom = prenom;
     }
-    public void setPassword(String password)
+    public void setNom(String nom)
     {
-        this.password = password;
+        this.nom = nom;
     }
     public void setAvatar(String avatar)
     {
