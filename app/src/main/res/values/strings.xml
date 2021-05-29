@@ -16,4 +16,11 @@
     <string name="main_math">Math</string>
     <string name="main_history">Histoire</string>
     <string name="splash_down">Studio Blue</string>
+    <string name="felicitations">Felicitations !</string>
+    <string name="felicitation_texte">Et un exercice réussi de plus !</string>
+    <string name="felicitation_btn1">Retour menu</string>
+    <string name="felicitation_btn2">Tableau de scores</string>
+    <string name="error_corriger">Corriger</string>
+    <string name="error_return">Revenir au menu</string>
+    <string name="error_main">Il y a des erreurs...</string>
 </resources>

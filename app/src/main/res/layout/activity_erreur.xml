@@ -1,46 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     android:id="@+id/layoutMain"
     >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Il y a des erreurs..."
-        android:textStyle="bold"
-        android:textSize="40dp"
-        android:gravity="center"
-        />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="157dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+
+        android:layout_marginTop="68dp"
+        android:src="@drawable/errora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nombre_erreurs"/>
+        android:layout_width="381dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginBottom="424dp"
+        android:gravity="center"
+        android:text="@string/error_main"
+        android:textSize="40dp"
+        android:textColor="@color/profile_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
+
     <Button
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="Corriger"
-        android:onClick="correction"
         android:layout_gravity="center"
-        />
+
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_gradient_bt"
+        android:onClick="correction"
+        android:text="@string/error_corriger"
+        app:backgroundTint="@color/main_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="170dp"
-    android:layout_height="wrap_content"
-    android:text="Revenir au menu"
-    android:onClick="menu"
-    android:layout_gravity="center"
-    />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_gradient_bt"
+        android:onClick="menu"
+        android:text="@string/error_return"
+        app:backgroundTint="@color/main_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
