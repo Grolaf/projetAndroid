@@ -35,7 +35,7 @@ public class  MainActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, MenuMatieresActivity.class);
+                Intent intent = new Intent(MainActivity.this, InscriptionActivity.class);
                 startActivity(intent);
                 finish();
             }

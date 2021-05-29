@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Scolastic">
+        <activity android:name=".PageProfilActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InscriptionActivity"></activity>
-        <activity android:name=".MenuMatieresActivity"></activity>
-        <activity android:name="exercices.ExerciceCalculActivity"></activity>
-        <activity android:name="exercices.ErreurActivity"></activity>
-        <activity android:name="exercices.FelicitationsActivity"></activity>
+        <activity android:name=".InscriptionActivity" />
+        <activity android:name=".MenuMatieresActivity" />
+        <activity android:name="exercices.ExerciceCalculActivity" />
+        <activity android:name="exercices.ErreurActivity" />
+        <activity android:name="exercices.FelicitationsActivity" />
     </application>
 
 </manifest>

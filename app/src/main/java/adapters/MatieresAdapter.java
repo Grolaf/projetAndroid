@@ -49,9 +49,6 @@ public class MatieresAdapter extends ArrayAdapter<Matiere> {
         ImageView iView = (ImageView) convertView.findViewById(R.id.imageMatiere);
         iView.setImageResource(R.drawable.math);
 
-        LinearLayout matiereSelectionnee = (LinearLayout) convertView.findViewById(R.id.matiere);
-        matiereSelectionnee.setId(position);
-
         return convertView;
     }
 }
