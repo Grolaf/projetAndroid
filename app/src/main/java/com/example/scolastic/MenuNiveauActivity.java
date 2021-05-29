@@ -1,15 +1,20 @@
 package com.example.scolastic;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import adapters.NiveauAdapter;
@@ -23,6 +28,7 @@ public class MenuNiveauActivity extends AppCompatActivity {
 
     private DatabaseClient mDb;
     private NiveauAdapter adapter;
+    private String nomMatiere;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,12 +36,13 @@ public class MenuNiveauActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_niveau);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
+        nomMatiere = getIntent().getStringExtra(NOM_MATIERE);
 
         // Récupérer les vues
         ListView lV = (ListView) findViewById(R.id.listView);
 
         // Lier l'adapter au gridView
-        adapter = new NiveauAdapter(this, R.layout.matiere_adapter_view, new ArrayList<Niveau>());
+        adapter = new NiveauAdapter(this, R.layout.niveau_adapter_view, new ArrayList<Niveau>());
         lV.setAdapter(adapter);
     }
 
@@ -46,9 +53,18 @@ public class MenuNiveauActivity extends AppCompatActivity {
 
             @Override
             protected List<Niveau> doInBackground(Void... voids) {
-                List<Niveau> niveauxList = mDb.getAppDatabase()
+                List<String> valeurNiveaux = mDb.getAppDatabase()
                         .matiereDAO()
-                        .getAll();
+                        .getNiveaux(nomMatiere);
+                List<Niveau> niveauxList = new ArrayList<Niveau>();
+
+                for(String s : valeurNiveaux)
+                {
+                    niveauxList.add(Niveau.valueOf(s));
+                }
+
+                // Tri des niveaux pour l'affichage dans l'ordre
+                Collections.sort(niveauxList);
                 return niveauxList;
             }
 
@@ -68,5 +84,24 @@ public class MenuNiveauActivity extends AppCompatActivity {
 
         GetNiveaux gt = new GetNiveaux();
         gt.execute();
+    }
+
+    public void choixNiveau(View view)
+    {
+        /*
+        Intent it = new Intent(this, MenuNiveauActivity.class);
+        TextView t = view.findViewById(R.id.nomMatiere);
+        it.putExtra(MenuNiveauActivity.NOM_MATIERE, t.getText());
+        startActivity(it);
+
+         */
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Mise à jour des matieres
+        getNiveaux();
     }
 }

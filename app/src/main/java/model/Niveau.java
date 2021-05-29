@@ -28,5 +28,4 @@ public enum Niveau implements Comparable<Niveau>{
         return this.valeur;
     }
 
-
 }

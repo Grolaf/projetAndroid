@@ -20,8 +20,8 @@ public interface MatiereDAO {
     @Query("SELECT * FROM matiere")
     List<Matiere> getAll();
 
-    @Query("SELECT distinct(niveau) FROM matiere")
-    List<Niveau> getNiveaux();
+    @Query("SELECT distinct(niveau) FROM matiere m, calcul c WHERE m.nom = :nomMatiere AND m.nom = c.nomMatiere")
+    List<String> getNiveaux(String nomMatiere);
 
     @Insert
     void insert(Matiere matiere);
