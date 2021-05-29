@@ -19,8 +19,8 @@ public class ExercicesTests {
 
     public static final void testLigneCalcul() {
 
-        LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
-        assert(l1.getEnonce() == "3 + 2 = ");
+        LigneCalcul l1 = new LigneCalcul(3, "+", 2);
+        assert(l1.getEnonce().equals("3 + 2 = "));
         assert (l1.getSolution() == 5);
         assert (l1.getSolution() == 5.000);
     }
@@ -30,9 +30,9 @@ public class ExercicesTests {
 
     public static final void testCalcul()
     {
-        LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
-        LigneCalcul l2 = new LigneCalcul("4 x 2 = ", 8);
-        LigneCalcul l3 = new LigneCalcul("4 / 2 = ", 2);
+        LigneCalcul l1 = new LigneCalcul(3, "+", 2);
+        LigneCalcul l2 = new LigneCalcul(4, "*", 2);
+        LigneCalcul l3 = new LigneCalcul(4, "/", 2);
 
         ArrayList<LigneCalcul> e = new ArrayList<>();
         e.add(l1);
@@ -77,7 +77,7 @@ public class ExercicesTests {
         assert(m.getExercices(Niveau.MOYEN) == null);
         assert(m.getExercices(Niveau.DIFFICILE) == null);
 
-        LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
+        LigneCalcul l1 = new LigneCalcul(3, "+", 2);
         ArrayList<LigneCalcul> e = new ArrayList<>();
         e.add(l1);
         Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,e);
@@ -141,7 +141,7 @@ public class ExercicesTests {
         assert(u.getNom() == "pwdA");
         assert(u.getExercicesResolus().size() == 0);
 
-        LigneCalcul l1 = new LigneCalcul("3 + 2 = ", 5);
+        LigneCalcul l1 = new LigneCalcul(3, "+", 2);
         ArrayList<LigneCalcul> e = new ArrayList<>();
         e.add(l1);
         Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,e);

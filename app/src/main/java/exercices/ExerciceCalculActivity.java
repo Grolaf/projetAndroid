@@ -31,9 +31,10 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercice_calcul);
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        LigneCalcul l1 = new LigneCalcul("3 + 3", 6);
-        LigneCalcul l2 = new LigneCalcul("3 + 2", 5);
-        LigneCalcul l3 = new LigneCalcul("3 + 1", 4);
+        LigneCalcul l1 = new LigneCalcul(3, "+" ,3);
+        LigneCalcul l2 = new LigneCalcul(3, "+" ,2);
+        LigneCalcul l3 = new LigneCalcul(3, "+" ,1);
+
 
 
         ArrayList<LigneCalcul> l = new ArrayList<>();

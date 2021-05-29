@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_margin="20dp"
-
-
         android:background="@color/cardBack"
         android:orientation="vertical"
-        android:layout_marginLeft="30dp">
+        android:layout_marginLeft="30dp"
+        android:onClick="choixMatiere">
+
 
         <ImageView
             android:id="@+id/imageMatiere"
@@ -25,8 +25,6 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:onClick="menu"
-
             android:padding="20dp"
             app:tint="#4DCFC3" />
 
@@ -42,4 +40,5 @@
 
 
         </LinearLayout>
+</LinearLayout>
 

@@ -14,7 +14,7 @@ import model.Converters.NiveauConverter;
 @Entity
 public abstract class Exercice {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     @NonNull public int id;
     public String titre;
     @TypeConverters(NiveauConverter.class)
