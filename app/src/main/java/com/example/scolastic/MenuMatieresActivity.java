@@ -23,10 +23,10 @@ public class MenuMatieresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_matieres);
 
         Matiere maths = new Matiere("Maths", "");
-        Matiere français = new Matiere("français", "");
-        Matiere anglais = new Matiere("anglais", "");
-        Matiere histoire = new Matiere("histoire", "");
-        Matiere cultureG = new Matiere("culture G", "");
+        Matiere français = new Matiere("Français", "");
+        Matiere anglais = new Matiere("Anglais", "");
+        Matiere histoire = new Matiere("Histoire", "");
+        Matiere cultureG = new Matiere("Culture G", "");
 
         ArrayList<Matiere> listeMatieres = new ArrayList<>();
         listeMatieres.add(maths);
@@ -34,6 +34,7 @@ public class MenuMatieresActivity extends AppCompatActivity {
         listeMatieres.add(anglais);
         listeMatieres.add(histoire);
         listeMatieres.add(cultureG);
+
 
         GridView gL = (GridView) findViewById(R.id.gridMatieres);
         gL.setAdapter(new MatieresAdapter(this, R.layout.matiere_adapter_view, listeMatieres));

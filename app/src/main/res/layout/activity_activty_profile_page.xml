@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".PageProfilActivity">
+    tools:context=".activty_profile_page">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
-            />
+            android:src="@drawable/identiy" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginRight="31dp"
                     android:src="@drawable/icontime"
-                    app:tint="@color/white"></ImageView>
+                    android:tint="@color/white"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,8 +148,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/profile_desincription"
-            android:background="@color/profile_color"/>
+            android:background="@color/profile_color"
+            android:text="@string/profile_desincription"></Button>
 
     </LinearLayout>
 </LinearLayout>
