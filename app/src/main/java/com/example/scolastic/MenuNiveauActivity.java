@@ -3,89 +3,98 @@ package com.example.scolastic;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.LayoutInflater;
+import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridLayout;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-import adapters.MatieresAdapter;
+import adapters.NiveauAdapter;
 import database.DatabaseClient;
 import model.Matiere;
-import model.Utilisateur;
+import model.Niveau;
 
-public class MenuMatieresActivity extends AppCompatActivity {
+public class MenuNiveauActivity extends AppCompatActivity {
+
+    public static final String NOM_MATIERE = "nom_matiere";
 
     private DatabaseClient mDb;
-    private MatieresAdapter adapter;
+    private NiveauAdapter adapter;
+    private String nomMatiere;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_matieres);
+        setContentView(R.layout.activity_menu_niveau);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
+        nomMatiere = getIntent().getStringExtra(NOM_MATIERE);
 
         // Récupérer les vues
-        GridView gL = (GridView) findViewById(R.id.gridMatieres);
+        ListView lV = (ListView) findViewById(R.id.listView);
 
         // Lier l'adapter au gridView
-        adapter = new MatieresAdapter(this, R.layout.matiere_adapter_view, new ArrayList<Matiere>());
-        gL.setAdapter(adapter);
-
+        adapter = new NiveauAdapter(this, R.layout.niveau_adapter_view, new ArrayList<Niveau>());
+        lV.setAdapter(adapter);
     }
 
-    private void getMatieres() {
+    private void getNiveaux() {
         ///////////////////////
         // Classe asynchrone permettant de récupérer des taches et de mettre à jour le listView de l'activité
-        class GetMatieres extends AsyncTask<Void, Void, List<Matiere>> {
+        class GetNiveaux extends AsyncTask<Void, Void, List<Niveau>> {
 
             @Override
-            protected List<Matiere> doInBackground(Void... voids) {
-                List<Matiere> matieresList = mDb.getAppDatabase()
+            protected List<Niveau> doInBackground(Void... voids) {
+                List<String> valeurNiveaux = mDb.getAppDatabase()
                         .matiereDAO()
-                        .getAll();
-                return matieresList;
+                        .getNiveaux(nomMatiere);
+                List<Niveau> niveauxList = new ArrayList<Niveau>();
+
+                for(String s : valeurNiveaux)
+                {
+                    niveauxList.add(Niveau.valueOf(s));
+                }
+
+                // Tri des niveaux pour l'affichage dans l'ordre
+                Collections.sort(niveauxList);
+                return niveauxList;
             }
 
             @Override
-            protected void onPostExecute(List<Matiere> matieresList) {
-                super.onPostExecute(matieresList);
+            protected void onPostExecute(List<Niveau> niveauxList) {
+                super.onPostExecute(niveauxList);
 
 
                 // Mettre à jour l'adapter avec la liste de matieres
                 adapter.clear();
-                adapter.addAll(matieresList);
+                adapter.addAll(niveauxList);
 
                 // Now, notify the adapter of the change in source
                 adapter.notifyDataSetChanged();
             }
         }
 
-        GetMatieres gt = new GetMatieres();
+        GetNiveaux gt = new GetNiveaux();
         gt.execute();
     }
 
-    public void choixMatiere(View view)
+    public void choixNiveau(View view)
     {
+        /*
         Intent it = new Intent(this, MenuNiveauActivity.class);
         TextView t = view.findViewById(R.id.nomMatiere);
         it.putExtra(MenuNiveauActivity.NOM_MATIERE, t.getText());
         startActivity(it);
+
+         */
     }
 
     @Override
@@ -93,9 +102,6 @@ public class MenuMatieresActivity extends AppCompatActivity {
         super.onStart();
 
         // Mise à jour des matieres
-        getMatieres();
+        getNiveaux();
     }
-
-
-
 }

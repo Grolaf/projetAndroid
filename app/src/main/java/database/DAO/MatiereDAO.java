@@ -10,6 +10,7 @@ import androidx.room.Update;
 import java.util.List;
 
 import model.Matiere;
+import model.Niveau;
 import model.referencesClass.MatiereAndCalcul;
 import model.referencesClass.MatiereAndExercice;
 
@@ -18,6 +19,9 @@ public interface MatiereDAO {
 
     @Query("SELECT * FROM matiere")
     List<Matiere> getAll();
+
+    @Query("SELECT distinct(niveau) FROM matiere m, calcul c WHERE m.nom = :nomMatiere AND m.nom = c.nomMatiere")
+    List<String> getNiveaux(String nomMatiere);
 
     @Insert
     void insert(Matiere matiere);

@@ -2,48 +2,81 @@ package model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class LigneCalcul {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     private int ligneId;
-    @NonNull private String enonce;
-    private double solution;
+     private int operande1;
+     private String operator;
+     private int operande2;
+    public int calculID;
+
 
     //////////////////////////////////////////////////////////////////////////
 
-    public LigneCalcul(String enonce, double solution)
+    public LigneCalcul(int operande1, String operator, int operande2)
     {
-        this.enonce = enonce;
-        this.solution = solution;
+        this.operande1 = operande1;
+        this.operande2 = operande2;
+        this.operator = operator;
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
 
     public int getLigneId() {return this.ligneId;}
+    public int getOperande1()
+    {
+        return this.operande1;
+    }
+    public int getOperande2()
+    {
+        return this.operande1;
+    }
+    public String getOperator()
+    {
+        return this.operator;
+    }
     public String getEnonce()
     {
-        return this.enonce;
+        return Integer.toString(this.operande1) + " " + this.operator + " " + Integer.toString(this.operande2)  + " = ";
     }
     public double getSolution()
     {
-        return this.solution;
+        switch(this.operator)
+        {
+            case "+":
+                return this.operande1 + this.operande2;
+            case "-":
+                return this.operande1 - this.operande2;
+            case "/":
+                return this.operande1 / this.operande2;
+            case "*":
+                return this.operande1 * this.operande2;
+            default:
+                return 0;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
     public void setLigneId(int ligneId) { this.ligneId = ligneId;}
-    public void setEnonce(String enonce)
+    public void setOperande1(int op)
     {
-        this.enonce = enonce;
+        this.operande1 = op;
     }
-    public void setSolution(double solution)
+    public void setOperande2(int op)
     {
-        this.solution = solution;
+        this.operande2 = op;
+    }
+    public void setOperator(String op)
+    {
+        this.operator = op;
     }
 
     ///////////////////////////////////////////////////////////////////////////
