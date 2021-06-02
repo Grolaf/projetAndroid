@@ -21,6 +21,7 @@ import tests.ExercicesTests;
 public class ExerciceCalculActivity extends AppCompatActivity {
 
     private Calcul c;
+    private LigneCalculAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,10 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercice_calcul);
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        LigneCalcul l1 = new LigneCalcul("3 + 3", 6);
-        LigneCalcul l2 = new LigneCalcul("3 + 2", 5);
-        LigneCalcul l3 = new LigneCalcul("3 + 1", 4);
+        LigneCalcul l1 = new LigneCalcul(3, "+" ,3);
+        LigneCalcul l2 = new LigneCalcul(3, "+" ,2);
+        LigneCalcul l3 = new LigneCalcul(3, "+" ,1);
+
 
 
         ArrayList<LigneCalcul> l = new ArrayList<>();
@@ -43,14 +45,16 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         Calcul c = new Calcul("Additions", Niveau.FACILE, l);
         this.c = c;
 
-        listView.setAdapter(new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes()));
+        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes());
+        listView.setAdapter(adapter);
     }
 
     public void calculer(View v)
     {
                                                                 // Récupération des réponses
         ArrayList<Double> answers = new ArrayList<>();
-        for(int i = 0; i < c.getLignes().size(); i++)
+
+        for(int i = 0; i < this.adapter.getCount(); i++)
         {
             EditText e = (EditText) findViewById(i);
 

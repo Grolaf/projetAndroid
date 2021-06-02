@@ -1,16 +1,25 @@
 package model;
 
-import androidx.core.content.res.TypedArrayUtils;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+@Entity
 public class Calcul extends Exercice{
 
+    @Ignore
     private ArrayList<LigneCalcul> lignes;
 
     ///////////////////////////////////////////////////////////////////////////
+
+    public Calcul(String titre, Niveau niveau)
+    {
+        super(titre, niveau);
+    }
 
     public Calcul(String titre, Niveau niveau, ArrayList<LigneCalcul> lignes)
     {
