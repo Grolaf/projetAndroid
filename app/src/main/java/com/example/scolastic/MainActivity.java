@@ -6,18 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import tests.ExercicesTests;
 
 public class  MainActivity extends AppCompatActivity {
 
-    // Timeout :
+
 
     private static int SPLASH_TIME_OUT = 3000;
-
-    // Animation : Bonus will come
-
+    Button start_btn;
 
 
     @Override
@@ -28,17 +28,25 @@ public class  MainActivity extends AppCompatActivity {
 
         ExercicesTests tests = new ExercicesTests();
 
-        // Animation : -----
+        start_btn = findViewById(R.id.start_btn);
 
-        // Splash Screen : Affichage Deuxiéme Page
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+        start_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(), InscriptionActivity.class));
+            }
+        });
+
+       /* new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(MainActivity.this, InscriptionActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },SPLASH_TIME_OUT);
+        },SPLASH_TIME_OUT); */
     }
 }

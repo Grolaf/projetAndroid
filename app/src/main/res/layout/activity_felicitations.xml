@@ -7,27 +7,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/layoutMain"
-    android:background="@color/background"
+    android:background="@drawable/ic_main_bwm"
     >
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="403dp"
-        android:layout_height="228dp"
+        android:layout_width="385dp"
+        android:layout_height="123dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic__0_85253"
 
-        android:src="@drawable/happy"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"></ImageView>
 
     <TextView
-        android:layout_width="217dp"
-        android:layout_height="50dp"
+        android:layout_width="266dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="248dp"
+        android:fontFamily="@font/roboto_medium"
         android:rotationX="23"
         android:text="@string/felicitations"
         android:textColor="@color/profile_color"
