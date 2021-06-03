@@ -15,10 +15,10 @@ import model.referencesClass.UtilisateurWithExercice;
 @Dao
 public interface UtilisateurDAO {
 
-    @Query("SELECT * FROM utilisateur")
+    @Query("SELECT * FROM utilisateur;")
         List<Utilisateur> getAll();
 
-    @Query("SELECT * FROM utilisateur WHERE prenom = :prenom AND nom = :nom")
+    @Query("SELECT * FROM utilisateur WHERE prenom = :prenom AND nom = :nom;")
         Utilisateur getUtilisateur(String prenom, String nom);
 
     @Insert

@@ -17,7 +17,7 @@ import model.Converters.NiveauConverter;
 @Entity
 public class Exercice {
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     @NonNull public int exerciceId;
     public String titre;
     @TypeConverters(NiveauConverter.class)
@@ -31,10 +31,21 @@ public class Exercice {
     ///////////////////////////////////////////////////////////////////////////
     // Constructor
 
-    public Exercice(String titre, Niveau niveau)
+    public Exercice(String titre, Niveau niveau, String nomMatiere)
     {
         this.titre = titre;
         this.niveau = niveau;
+        this.nomMatiere = matiere.getNom();
+        this.vainqueurs = new ArrayList<>();
+    }
+
+    @Ignore
+    public Exercice(String titre, Niveau niveau, Matiere matiere)
+    {
+        this.titre = titre;
+        this.niveau = niveau;
+        this.matiere = matiere;
+        this.nomMatiere = matiere.getNom();
         this.vainqueurs = new ArrayList<>();
     }
 

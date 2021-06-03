@@ -25,7 +25,7 @@ public class ErreurActivity extends AppCompatActivity {
         setContentView(R.layout.activity_erreur);
         TextView tV = (TextView) findViewById(R.id.nombre_erreurs);
 
-        tV.setText("Vous avez fait " + erreurs + " erreurs.");
+        tV.setText("Il y a " + erreurs + " erreurs.");
 
     }
 

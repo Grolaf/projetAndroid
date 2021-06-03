@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import adapters.LigneCalculAdapter;
 import model.Calcul;
 import model.LigneCalcul;
+import model.Matiere;
 import model.Niveau;
 import tests.ExercicesTests;
 
@@ -35,6 +36,7 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         LigneCalcul l2 = new LigneCalcul(3, "+" ,2);
         LigneCalcul l3 = new LigneCalcul(3, "+" ,1);
 
+        Matiere maths = new Matiere("Mathes", "");
 
 
         ArrayList<LigneCalcul> l = new ArrayList<>();
@@ -42,7 +44,7 @@ public class ExerciceCalculActivity extends AppCompatActivity {
         l.add(l2);
         l.add(l3);
 
-        Calcul c = new Calcul("Additions", Niveau.FACILE, l);
+        Calcul c = new Calcul("Additions", Niveau.FACILE, maths,  l);
         this.c = c;
 
         this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes());

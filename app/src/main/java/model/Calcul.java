@@ -16,14 +16,21 @@ public class Calcul extends Exercice{
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public Calcul(String titre, Niveau niveau)
+    public Calcul(String titre, Niveau niveau, String nomMatiere)
     {
-        super(titre, niveau);
+        super(titre, niveau, nomMatiere);
     }
 
-    public Calcul(String titre, Niveau niveau, ArrayList<LigneCalcul> lignes)
+    @Ignore
+    public Calcul(String titre, Niveau niveau, Matiere matiere)
     {
-        super(titre, niveau);
+        super(titre, niveau, matiere);
+    }
+
+    @Ignore
+    public Calcul(String titre, Niveau niveau, Matiere matiere,  ArrayList<LigneCalcul> lignes)
+    {
+        super(titre, niveau, matiere);
         this.lignes = lignes;
     }
 

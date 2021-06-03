@@ -39,7 +39,9 @@ public class ExercicesTests {
         e.add(l2);
         e.add(l3);
 
-        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE, e);
+        Matiere maths = new Matiere("Maths", "");
+
+        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE, maths, e);
         Utilisateur u = new Utilisateur("u", "", "");
 
         assert(c.isWinner(u) == false);
@@ -77,10 +79,11 @@ public class ExercicesTests {
         assert(m.getExercices(Niveau.MOYEN) == null);
         assert(m.getExercices(Niveau.DIFFICILE) == null);
 
+        Matiere maths = new Matiere("Maths", "");
         LigneCalcul l1 = new LigneCalcul(3, "+", 2);
         ArrayList<LigneCalcul> e = new ArrayList<>();
         e.add(l1);
-        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,e);
+        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,maths, e);
 
         m.addExercice(c);
 
@@ -89,7 +92,7 @@ public class ExercicesTests {
         assert(m.getExercices(Niveau.FACILE).get(0) == c);
         assert(c.getMatiere() == m);
 
-        Calcul c2 = new Calcul("Calculs basiques", Niveau.DIFFICILE, e);
+        Calcul c2 = new Calcul("Calculs basiques", Niveau.DIFFICILE,maths, e);
 
         m.addExercice(c2);
         assert(m.getNiveaux().size() == 2);
@@ -135,7 +138,7 @@ public class ExercicesTests {
     public static final void testUtilistaeur()
     {
         Utilisateur u = new Utilisateur("CompteA", "pwdA", "");
-
+        Matiere maths = new Matiere("Maths", "");
         assert(u.getPrenom() == "CompteA");
         assert(u.getAvatar() == "");
         assert(u.getNom() == "pwdA");
@@ -144,7 +147,7 @@ public class ExercicesTests {
         LigneCalcul l1 = new LigneCalcul(3, "+", 2);
         ArrayList<LigneCalcul> e = new ArrayList<>();
         e.add(l1);
-        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,e);
+        Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,maths, e);
         Matiere m = new Matiere("Mathématiques", "");
 
         m.addExercice(c);
@@ -156,7 +159,7 @@ public class ExercicesTests {
         assert(c.getVainqueurs().size() == 1);
         assert(c.getVainqueurs().contains(u));
 
-        Calcul c2 = new Calcul("Calculs basiques", Niveau.DIFFICILE, e);
+        Calcul c2 = new Calcul("Calculs basiques", Niveau.DIFFICILE, maths, e);
         m.addExercice(c2);
 
         u.addExerciceResolu(c2);
@@ -169,7 +172,7 @@ public class ExercicesTests {
         assert(c2.getVainqueurs().size() == 1);
         assert(c2.getVainqueurs().contains(u));
 
-        Calcul c3 = new Calcul("Calculs v3", Niveau.DIFFICILE, e);
+        Calcul c3 = new Calcul("Calculs v3", Niveau.DIFFICILE,maths,  e);
         m.addExercice(c3);
 
         u.addExerciceResolu(c3);
