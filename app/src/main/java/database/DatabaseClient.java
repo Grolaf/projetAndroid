@@ -80,7 +80,7 @@ public class DatabaseClient {
             // Niveau Facile
             for(int i = 1; i <= 10; i++)
             {
-                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.FACILE) +", \"Maths\", \"\" );");
+                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.FACILE) +", \"Maths\");");
                 for(int j = 1; j <= 3; j++)
                 {
                     db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(10) + 1)  + ", \"+\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
@@ -90,7 +90,7 @@ public class DatabaseClient {
             // Niveau Moyen
             for(int i = 11; i <= 20; i++)
             {
-                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.MOYEN) +", \"Maths\", \"\" );");
+                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.MOYEN) +", \"Maths\");");
                 for(int j = 1; j <= 3; j++)
                 {
                     switch(rand.nextInt(3) + 1)
@@ -112,7 +112,7 @@ public class DatabaseClient {
             // Niveau Difficile
             for(int i = 21; i <= 30; i++)
             {
-                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.DIFFICILE) +", \"Maths\", \"\" );");
+                db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.DIFFICILE) +", \"Maths\");");
                 for(int j = 1; j <= 3; j++)
                 {
                     switch(rand.nextInt(4) + 1)

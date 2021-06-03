@@ -3,18 +3,20 @@ package model;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@Entity(primaryKeys = {"prenom", "nom"})
+@Entity
 public class Utilisateur {
 
+    @PrimaryKey(autoGenerate = true)
+    private int utilisateurID;
     @NonNull private String prenom;
     @NonNull private String nom;
     private String avatar;
-
     @Ignore
     private HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
 
@@ -41,6 +43,11 @@ public class Utilisateur {
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
+
+    public int getUtilisateurID()
+    {
+        return this.utilisateurID;
+    }
 
     public String getPrenom()
     {
@@ -74,6 +81,10 @@ public class Utilisateur {
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
+    public void setUtilisateurID(int id)
+    {
+        this.utilisateurID = id;
+    }
     public void setPrenom(String prenom)
     {
         this.prenom = prenom;
