@@ -126,5 +126,9 @@ public class Utilisateur {
 
     ///////////////////////////////////////////////////////////////////////////
     // Methods
+
+    public boolean equals(Utilisateur other){
+        return this.prenom.equals(other.prenom) && this.nom.equals(other.nom) && this.avatar.equals(other.avatar);
+    }
 }
 

@@ -72,12 +72,12 @@ public class DataBaseTests {
         utilisateurDAO.insert(a);
         utilisateurDAO.insert(b);
 
-        Utilisateur aDB = utilisateurDAO.getUtilisateur("testPrenom", "testnom");
+        Utilisateur aDB = utilisateurDAO.getUtilisateur("testprenom", "testnom");
         assert (aDB.equals(a));
         assert(aDB.getAvatar().equals(""));
         assert(aDB.getNom().equals("testnom"));
         assert(aDB.getPrenom().equals("testprenom"));
-        Utilisateur bDB = utilisateurDAO.getUtilisateur("testPrenom2", "testnom2");
+        Utilisateur bDB = utilisateurDAO.getUtilisateur("testprenom2", "testnom2");
         assert (bDB.equals(b));
         assert(bDB.getAvatar().equals(""));
         assert(bDB.getNom().equals("testnom2"));
@@ -90,7 +90,7 @@ public class DataBaseTests {
             utilisateurDAO.insert(a);
         }catch(Exception e){}
 
-        aDB = utilisateurDAO.getUtilisateur("testPrenom", "testnom");
+        aDB = utilisateurDAO.getUtilisateur("testprenom", "testnom");
         assert (aDB.equals(a));
     }
 
