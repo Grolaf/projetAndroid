@@ -4,17 +4,15 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
 
 import model.Calcul;
-import model.referencesClass.MatiereAndExercice;
-import model.referencesClass.UtilisateurAndExercice;
+import model.Exercice;
 
 @Dao
-public interface CalculDAO {
+public interface CalculDAO{
 
     @Query("SELECT * FROM calcul")
     List<Calcul> getAll();

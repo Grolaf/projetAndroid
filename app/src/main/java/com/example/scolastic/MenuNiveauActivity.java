@@ -21,10 +21,12 @@ import adapters.NiveauAdapter;
 import database.DatabaseClient;
 import model.Matiere;
 import model.Niveau;
+import model.Utilisateur;
 
 public class MenuNiveauActivity extends AppCompatActivity {
 
     public static final String NOM_MATIERE = "nom_matiere";
+    public static final String UTILISATEUR = "utilisateur";
 
     private DatabaseClient mDb;
     private NiveauAdapter adapter;
@@ -89,9 +91,8 @@ public class MenuNiveauActivity extends AppCompatActivity {
     public void choixNiveau(View view)
     {
         /*
-        Intent it = new Intent(this, MenuNiveauActivity.class);
-        TextView t = view.findViewById(R.id.nomMatiere);
-        it.putExtra(MenuNiveauActivity.NOM_MATIERE, t.getText());
+        Intent it = new Intent(this, ExerciceActivity.class);
+        it.putExtra(ExerciceActivity.NOM_MATIERE, nomMatiere);
         startActivity(it);
 
          */

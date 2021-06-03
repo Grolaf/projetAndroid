@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class LigneCalcul {
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     private int ligneId;
      private int operande1;
      private String operator;
