@@ -112,26 +112,27 @@
         android:background="@drawable/ic_btn_sp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/connect_join"
-        android:textColor="@color/card"
+        android:textColor="@color/background"
         android:textSize="16sp"
         android:onClick="saveUser"
-        app:backgroundTint="#FFFFFF"
+        app:backgroundTint="@null"
         android:layout_marginLeft="27dp" />
 
     <Button
         android:id="@+id/connect_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-48dp"
         android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="-48dp"
         android:background="@drawable/ic_btn_sp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/connect_already_sign"
-        android:textColor="@color/card"
-        android:textSize="16sp"
         android:onClick="seConnecter"
-        app:backgroundTint="#FFFFFF"
-        android:layout_marginLeft="150dp" />
+        android:text="@string/connect_already_sign"
+        android:textColor="@color/background"
+        app:backgroundTint="@null"
+        android:textSize="16sp"
+       />
 
     <ImageView
         android:id="@+id/connect_thing2"

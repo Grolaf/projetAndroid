@@ -46,6 +46,7 @@
     <string name="error_corriger">Corriger</string>
     <string name="error_return">Revenir au menu</string>
     <string name="error_main">Il y a des erreurs...</string>
+    <string name="error_mxm">Essaye encore !</string>
 
     <string name="listview_valider">Valider</string>
 </resources>

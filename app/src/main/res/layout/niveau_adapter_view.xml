@@ -21,6 +21,10 @@
         android:textSize="24dp"
         app:backgroundTint="#FFFFFF"
         app:iconTint="#1976D2" />
+    
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"></Space>
 
     </LinearLayout>
 
