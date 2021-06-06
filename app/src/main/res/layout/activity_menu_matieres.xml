@@ -64,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <GridView
         android:id="@+id/gridMatieres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
 
-    </ScrollView>
+    </GridView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
