@@ -11,10 +11,15 @@ import java.util.Iterator;
 @Entity
 public class Calcul extends Exercice{
 
-    @Embedded
+    @Ignore
     private ArrayList<LigneCalcul> lignes;
 
     ///////////////////////////////////////////////////////////////////////////
+
+    public Calcul(String titre, Niveau niveau)
+    {
+        super(titre, niveau);
+    }
 
     public Calcul(String titre, Niveau niveau, ArrayList<LigneCalcul> lignes)
     {

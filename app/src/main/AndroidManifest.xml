@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".InscriptionActivity" />
         <activity android:name=".MenuMatieresActivity" />
+        <activity android:name=".MenuNiveauActivity" />
         <activity android:name="exercices.ExerciceCalculActivity" />
         <activity android:name="exercices.ErreurActivity" />
         <activity android:name="exercices.FelicitationsActivity" />

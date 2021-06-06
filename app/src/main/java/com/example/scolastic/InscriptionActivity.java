@@ -52,7 +52,7 @@ public class InscriptionActivity extends AppCompatActivity {
         /**
          * Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
          */
-        class SaveTask extends AsyncTask<Void, Void, Utilisateur> {
+        class SaveUser extends AsyncTask<Void, Void, Utilisateur> {
 
             @Override
             protected Utilisateur doInBackground(Void... voids) {
@@ -72,16 +72,14 @@ public class InscriptionActivity extends AppCompatActivity {
 
                 // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
                 setResult(RESULT_OK);
-                Intent intent = new Intent(InscriptionActivity.this, PageProfilActivity.class);
+                Intent intent = new Intent(InscriptionActivity.this, MenuMatieresActivity.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
             }
         }
 
-        //////////////////////////
-        // IMPORTANT bien penser à executer la demande asynchrone
-        SaveTask st = new SaveTask();
+        SaveUser st = new SaveUser();
         st.execute();
     }
 

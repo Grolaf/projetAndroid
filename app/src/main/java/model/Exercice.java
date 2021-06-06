@@ -11,18 +11,20 @@ import java.util.ArrayList;
 
 import model.Converters.NiveauConverter;
 
-@Entity
-public abstract class Exercice {
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull public int id;
+
+// Cette classe devrait être abstraite, Room n'est pas d'accord. On se plie aux règles de la machine...
+@Entity
+public class Exercice {
+
+    @PrimaryKey(autoGenerate = false)
+    @NonNull public int exerciceId;
     public String titre;
     @TypeConverters(NiveauConverter.class)
     public Niveau niveau;
     public String nomMatiere;
     @Ignore
     public Matiere matiere;
-    public String nomPrenomVainqueur;
     @Ignore
     public ArrayList<Utilisateur> vainqueurs;
 
@@ -44,9 +46,9 @@ public abstract class Exercice {
         return this.titre;
     }
 
-    public int getId()
+    public int getExerciceId()
     {
-        return this.id;
+        return this.exerciceId;
     }
 
     public Niveau getNiveau()
@@ -66,6 +68,10 @@ public abstract class Exercice {
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
+    public void setExerciceId(int id)
+    {
+        this.exerciceId = id;
+    }
     public void setTitre(String titre)
     {
         this.titre = titre;
