@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-
         android:fontFamily="@font/roboto_medium"
         android:onClick="choixNiveau"
         android:padding="10dp"

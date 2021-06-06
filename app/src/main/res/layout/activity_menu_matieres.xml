@@ -64,23 +64,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <GridView
-        android:id="@+id/gridMatieres"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="600dp"
         android:layout_margin="10dp"
-
-
         android:layout_marginTop="325dp"
         android:layout_marginBottom="450dp"
-        android:numColumns="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.631"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
 
-    </GridView>
+        <GridView
+            android:id="@+id/gridMatieres"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2"/>
+
+    </ScrollView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

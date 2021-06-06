@@ -30,22 +30,25 @@ import model.Utilisateur;
 
 public class MenuMatieresActivity extends AppCompatActivity {
 
+    public static final String UTILISATEUR = "utilisateur";
     private DatabaseClient mDb;
     private MatieresAdapter adapter;
+    private Utilisateur utilisateur;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_matieres);
 
-        mDb = DatabaseClient.getInstance(getApplicationContext());
+        this.mDb = DatabaseClient.getInstance(getApplicationContext());
+        this.utilisateur = getIntent().getParcelableExtra(UTILISATEUR);
 
         // Récupérer les vues
         GridView gL = (GridView) findViewById(R.id.gridMatieres);
 
         // Lier l'adapter au gridView
-        adapter = new MatieresAdapter(this, R.layout.matiere_adapter_view, new ArrayList<Matiere>());
-        gL.setAdapter(adapter);
+        this.adapter = new MatieresAdapter(this, R.layout.matiere_adapter_view, new ArrayList<>());
+        gL.setAdapter(this.adapter);
 
     }
 
@@ -84,6 +87,7 @@ public class MenuMatieresActivity extends AppCompatActivity {
     {
         Intent it = new Intent(this, MenuNiveauActivity.class);
         TextView t = view.findViewById(R.id.nomMatiere);
+        it.putExtra(MenuNiveauActivity.UTILISATEUR, this.utilisateur);
         it.putExtra(MenuNiveauActivity.NOM_MATIERE, t.getText());
         startActivity(it);
     }

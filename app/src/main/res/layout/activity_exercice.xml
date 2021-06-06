@@ -19,7 +19,7 @@
         android:text="@string/listview_valider"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:onClick="calculer"
+        android:onClick="valider"
         />
 
 

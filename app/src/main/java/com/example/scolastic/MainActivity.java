@@ -2,14 +2,14 @@ package com.example.scolastic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-
+import tests.DataBaseTests;
 import tests.ExercicesTests;
 
 public class  MainActivity extends AppCompatActivity {
@@ -26,12 +26,14 @@ public class  MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        ExercicesTests tests = new ExercicesTests();
+        /*
+        executeTests(this);
+
+        ///// A decommenter pour executer les tests !
+         */
+
 
         start_btn = findViewById(R.id.start_btn);
-
-
-
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,5 +50,26 @@ public class  MainActivity extends AppCompatActivity {
                 finish();
             }
         },SPLASH_TIME_OUT); */
+    }
+
+    private void executeTests(Context context)
+    {
+        class Tests extends AsyncTask<Void, Void, Void>
+        {
+            @Override
+            protected Void doInBackground(Void... voids)
+            {
+                if(android.os.Debug.isDebuggerConnected())
+                    android.os.Debug.waitForDebugger();
+
+                ExercicesTests tests = new ExercicesTests();
+                DataBaseTests testsDB = new DataBaseTests(context);
+
+                return null;
+            }
+        }
+
+        Tests t = new Tests();
+        t.execute();
     }
 }

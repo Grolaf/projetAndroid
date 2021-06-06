@@ -10,14 +10,19 @@ import androidx.room.Update;
 import java.util.List;
 
 import model.Utilisateur;
-import model.referencesClass.UtilisateurAndCalcul;
 import model.referencesClass.UtilisateurAndExercice;
 
 @Dao
 public interface UtilisateurDAO {
 
-    @Query("SELECT * FROM utilisateur")
+    @Query("SELECT utilisateurID FROM utilisateur WHERE nom = :nom AND prenom = :prenom")
+    int getUtilisateurID(String prenom, String nom);
+
+    @Query("SELECT * FROM utilisateur;")
         List<Utilisateur> getAll();
+
+    @Query("SELECT * FROM utilisateur WHERE prenom = :prenom AND nom = :nom;")
+        Utilisateur getUtilisateur(String prenom, String nom);
 
     @Insert
     void insert(Utilisateur utilisateur);
@@ -31,7 +36,5 @@ public interface UtilisateurDAO {
     @Update
     void update(Utilisateur utilisateur);
 
-    @Transaction
-    @Query("SELECT * FROM utilisateur")
-    public List<UtilisateurAndCalcul> getUtilisateurAndCalcul();
+
 }

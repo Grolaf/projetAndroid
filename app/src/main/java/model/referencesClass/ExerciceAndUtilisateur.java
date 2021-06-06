@@ -9,14 +9,14 @@ import java.util.List;
 import model.Exercice;
 import model.Utilisateur;
 
-public class UtilisateurAndExercice {
+public class ExerciceAndUtilisateur {
 
     @Embedded(prefix = "for_legacy_of_relation_class_")
-    public Utilisateur utilisateur;
+    public Exercice exercice;
     @Relation(
-            parentColumn = "utilisateurID",
-            entityColumn = "exerciceId",
+            parentColumn = "exerciceId",
+            entityColumn = "utilisateurID",
             associateBy = @Junction(UtilisateurExerciceCrossReference.class)
     )
-    public List<Exercice> exercices;
+    public List<Utilisateur> utilisateurs;
 }

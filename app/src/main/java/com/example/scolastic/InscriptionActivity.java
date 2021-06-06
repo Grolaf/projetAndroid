@@ -24,28 +24,28 @@ public class InscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_connect_page);
-        editTextprenom = findViewById(R.id.prenom);
-        editTextnom = findViewById(R.id.nom);
-        mDb = DatabaseClient.getInstance(getApplicationContext());
+        setContentView(R.layout.activity_inscription);
+        this.editTextprenom = findViewById(R.id.prenom);
+        this.editTextnom = findViewById(R.id.nom);
+        this.mDb = DatabaseClient.getInstance(getApplicationContext());
     }
 
     public void saveUser(View v) {
 
         // Récupérer les informations contenues dans les vues
-        final String prenom = editTextprenom.getText().toString().trim();
-        final String nom = editTextnom.getText().toString().trim();
+        final String prenom = this.editTextprenom.getText().toString().trim();
+        final String nom = this.editTextnom.getText().toString().trim();
 
         // Vérifier les informations fournies par l'utilisateur
         if (prenom.isEmpty()) {
-            editTextprenom.setError("Il faut entrer ton prénom");
-            editTextprenom.requestFocus();
+            this.editTextprenom.setError("Il faut entrer ton prénom");
+            this.editTextprenom.requestFocus();
             return;
         }
 
         if (nom.isEmpty()) {
-            editTextnom.setError("Il faut entrer ton nom");
-            editTextnom.requestFocus();
+            this.editTextnom.setError("Il faut entrer ton nom");
+            this.editTextnom.requestFocus();
             return;
         }
 
@@ -73,6 +73,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
                 setResult(RESULT_OK);
                 Intent intent = new Intent(InscriptionActivity.this, MenuMatieresActivity.class);
+                intent.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
                 startActivity(intent);
                 finish();
                 Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();

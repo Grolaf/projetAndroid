@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="90dp"
-            android:background="@drawable/splash_btn_real"
+            android:background="@drawable/ic_slashmain_bw"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/splash_btn"
             android:textColor="@color/background"

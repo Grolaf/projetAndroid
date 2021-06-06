@@ -6,17 +6,17 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-import model.Exercice;
+import model.Calcul;
 import model.Utilisateur;
 
-public class UtilisateurAndExercice {
+public class CalculAndUtilisateur extends ExerciceAndUtilisateur {
 
-    @Embedded(prefix = "for_legacy_of_relation_class_")
-    public Utilisateur utilisateur;
+    @Embedded
+    public Calcul calcul;
     @Relation(
-            parentColumn = "utilisateurID",
-            entityColumn = "exerciceId",
+            parentColumn = "exerciceId",
+            entityColumn = "utilisateurID",
             associateBy = @Junction(UtilisateurExerciceCrossReference.class)
     )
-    public List<Exercice> exercices;
+    public List<Utilisateur> utilisateurs;
 }

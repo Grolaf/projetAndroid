@@ -1,22 +1,31 @@
 package model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.TypeConverters;
+import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@Entity(primaryKeys = {"prenom", "nom"})
-public class Utilisateur {
+import database.DAO.ExerciceDAO;
+import database.DAO.MatiereDAO;
+import database.DAO.UtilisateurExerciceCrossRefDAO;
+import model.referencesClass.UtilisateurAndExercice;
 
+@Entity
+public class Utilisateur implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int utilisateurID;
     @NonNull private String prenom;
     @NonNull private String nom;
     private String avatar;
-
     @Ignore
-    private HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
+    private HashMap<String, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus;
 
     ///////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -30,7 +39,7 @@ public class Utilisateur {
     }
 
     @Ignore
-    public Utilisateur(String login, String password, String avatar, HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
+    public Utilisateur(String login, String password, String avatar, HashMap<String, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
     {
         this.prenom = login;
         this.nom = password;
@@ -41,6 +50,31 @@ public class Utilisateur {
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
+
+    protected Utilisateur(Parcel in) {
+        utilisateurID = in.readInt();
+        prenom = in.readString();
+        nom = in.readString();
+        avatar = in.readString();
+        exercicesResolus = in.readHashMap(HashMap.class.getClassLoader());
+    }
+
+    public static final Creator<Utilisateur> CREATOR = new Creator<Utilisateur>() {
+        @Override
+        public Utilisateur createFromParcel(Parcel in) {
+            return new Utilisateur(in);
+        }
+
+        @Override
+        public Utilisateur[] newArray(int size) {
+            return new Utilisateur[size];
+        }
+    };
+
+    public int getUtilisateurID()
+    {
+        return this.utilisateurID;
+    }
 
     public String getPrenom()
     {
@@ -57,23 +91,27 @@ public class Utilisateur {
         return avatar;
     }
 
-    public HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> getExercicesResolus()
+    public HashMap<String, HashMap<Niveau, ArrayList<Exercice>>> getExercicesResolus()
     {
         return this.exercicesResolus;
     }
 
     public ArrayList<Exercice> getExercicesResolus(Niveau n, Matiere m)
     {
-        if(this.exercicesResolus.get(m) == null)
+        if(this.exercicesResolus.get(m.getNom()) == null)
         {
             return null;
         }
-        return this.exercicesResolus.get(m).get(n);
+        return this.exercicesResolus.get(m.getNom()).get(n);
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Setters
 
+    public void setUtilisateurID(int id)
+    {
+        this.utilisateurID = id;
+    }
     public void setPrenom(String prenom)
     {
         this.prenom = prenom;
@@ -86,7 +124,7 @@ public class Utilisateur {
     {
         this.avatar = avatar;
     }
-    public void setExercicesResolus(HashMap<Matiere, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
+    public void setExercicesResolus(HashMap<String, HashMap<Niveau, ArrayList<Exercice>>> exercicesResolus)
     {
         this.exercicesResolus = exercicesResolus;
     }
@@ -96,24 +134,59 @@ public class Utilisateur {
     public void addExerciceResolu(Exercice e)
     {
         // Cette (grosse) condition s'assure que l'exercice n'a pas déjà été inséré
-        if(!(this.exercicesResolus.get(e.getMatiere()) != null && this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()) != null && this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).contains(e))) {
-            if (this.exercicesResolus.get(e.getMatiere()) != null) {
-                if (this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()) != null) {
-                    this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+        if(!(this.exercicesResolus.get(e.getMatiere().getNom()) != null && this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()) != null && this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()).contains(e))) {
+            if (this.exercicesResolus.get(e.getMatiere().getNom()) != null) {
+                if (this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()) != null) {
+                    this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()).add(e);
                 } else {
-                    this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
-                    this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+                    this.exercicesResolus.get(e.getMatiere().getNom()).put(e.getNiveau(), new ArrayList<>());
+                    this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()).add(e);
                 }
             } else {
-                this.exercicesResolus.put(e.getMatiere(), new HashMap<>());
-                this.exercicesResolus.get(e.getMatiere()).put(e.getNiveau(), new ArrayList<>());
-                this.exercicesResolus.get(e.getMatiere()).get(e.getNiveau()).add(e);
+                this.exercicesResolus.put(e.getMatiere().getNom(), new HashMap<>());
+                this.exercicesResolus.get(e.getMatiere().getNom()).put(e.getNiveau(), new ArrayList<>());
+                this.exercicesResolus.get(e.getMatiere().getNom()).get(e.getNiveau()).add(e);
             }
-            e.addVainqueur(this);
+            if(!e.getVainqueurs().contains(this))
+            {
+                e.addVainqueur(this);
+            }
         }
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Methods
+
+    public boolean equals(Utilisateur other){
+        return this.prenom.equals(other.prenom) && this.nom.equals(other.nom) && this.avatar.equals(other.avatar);
+    }
+
+    public void getElementsFromDataBase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    {
+        UtilisateurAndExercice exercices = utilisateurExerciceCrossRefDAO.getUtilisateurWithExercice(this.nom, this.prenom);
+
+        if(exercices != null) {
+            ArrayList<Exercice> exercicesResolus = (ArrayList) exercices.exercices;
+
+            for (Exercice e : exercicesResolus) {
+                e.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
+                addExerciceResolu(e);
+            }
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(utilisateurID);
+        dest.writeString(prenom);
+        dest.writeString(nom);
+        dest.writeString(avatar);
+        dest.writeMap(exercicesResolus);
+    }
 }
 

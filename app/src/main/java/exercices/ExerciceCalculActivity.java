@@ -1,57 +1,41 @@
 package exercices;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.scolastic.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adapters.LigneCalculAdapter;
 import model.Calcul;
 import model.LigneCalcul;
-import model.Niveau;
-import tests.ExercicesTests;
+import model.Matiere;
 
-public class ExerciceCalculActivity extends AppCompatActivity {
+public class ExerciceCalculActivity extends ExerciceActivity{
 
-    private Calcul c;
-    private LigneCalculAdapter adapter;
+    protected Calcul calcul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ExercicesTests e = new ExercicesTests();
-        setContentView(R.layout.activity_exercice_calcul);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        this.calcul = getIntent().getParcelableExtra(EXERCICE_A_FAIRE);
 
-        LigneCalcul l1 = new LigneCalcul(3, "+" ,3);
-        LigneCalcul l2 = new LigneCalcul(3, "+" ,2);
-        LigneCalcul l3 = new LigneCalcul(3, "+" ,1);
-
-
-
-        ArrayList<LigneCalcul> l = new ArrayList<>();
-        l.add(l1);
-        l.add(l2);
-        l.add(l3);
-
-        Calcul c = new Calcul("Additions", Niveau.FACILE, l);
-        this.c = c;
-
-        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes());
-        listView.setAdapter(adapter);
+        ListView lV = (ListView) findViewById(R.id.listView);
+        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, this.calcul.getLignes());
+        lV.setAdapter(adapter);
     }
 
-    public void calculer(View v)
+
+    public void valider(View v)
     {
-                                                                // Récupération des réponses
+        // Récupération des réponses
         ArrayList<Double> answers = new ArrayList<>();
 
         for(int i = 0; i < this.adapter.getCount(); i++)
@@ -64,10 +48,13 @@ public class ExerciceCalculActivity extends AppCompatActivity {
                 answers.add(-1.0);
             }
         }
-                                                                // Evaluation des erreurs et redirection
-        int erreurs = c.resultat(answers);
+        // Evaluation des erreurs et redirection
+        int erreurs = this.calcul.resultat(answers);
         if(erreurs == 0)
         {
+            reussirExercice(calcul);
+            mDb.getAppDatabase().exerciceDAO().update(calcul);
+            mDb.getAppDatabase().utilisateurDAO().update(utilisateur);
             Intent it = new Intent(this, FelicitationsActivity.class);
             startActivity(it);
         }

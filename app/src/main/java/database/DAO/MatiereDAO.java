@@ -7,35 +7,60 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Exercice;
 import model.Matiere;
-import model.Niveau;
+import model.Utilisateur;
 import model.referencesClass.MatiereAndCalcul;
 import model.referencesClass.MatiereAndExercice;
 
 @Dao
-public interface MatiereDAO {
+public abstract class MatiereDAO {
 
     @Query("SELECT * FROM matiere")
-    List<Matiere> getAll();
+    public abstract List<Matiere> getAll();
+
+    @Query("SELECT * FROM matiere WHERE nom = :nom")
+    public abstract Matiere getMatiereWithID(String nom);
 
     @Query("SELECT distinct(niveau) FROM matiere m, calcul c WHERE m.nom = :nomMatiere AND m.nom = c.nomMatiere")
-    List<String> getNiveaux(String nomMatiere);
+    public abstract List<String> getNiveaux(String nomMatiere);
 
     @Insert
-    void insert(Matiere matiere);
+    public abstract void insert(Matiere matiere);
 
     @Insert
-    long[] insertAll(Matiere... matiere);
+    public abstract long[] insertAll(Matiere... matiere);
 
     @Delete
-    void delete(Matiere matiere);
+    public abstract void delete(Matiere matiere);
 
     @Update
-    void update(Matiere matiere);
+    public abstract void update(Matiere matiere);
+
+
+    // Doit être changé à chaque ajout d'une nouvelle classe fille
+    @Transaction
+    public MatiereAndExercice getExerciceAndMatiere(String nomMatiere) {
+
+        MatiereAndExercice retour = new MatiereAndExercice();
+        retour.exercices = new ArrayList<>();
+
+        MatiereAndCalcul calculs = getCalculAndMatiere(nomMatiere);
+        if(calculs != null) {
+            retour.exercices.addAll(calculs.calculs);
+        }
+
+        return retour;
+    }
+
+    // Partie Calculs //
 
     @Transaction
-    @Query("SELECT * FROM matiere")
-    public List<MatiereAndCalcul> getMatiereAndCalcul();
+    @Query("SELECT * FROM matiere WHERE nom = :nomMatiere")
+    abstract MatiereAndCalcul getCalculAndMatiere(String nomMatiere);
+
 }
