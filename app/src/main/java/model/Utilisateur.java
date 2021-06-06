@@ -56,6 +56,7 @@ public class Utilisateur implements Parcelable {
         prenom = in.readString();
         nom = in.readString();
         avatar = in.readString();
+        exercicesResolus = in.readHashMap(HashMap.class.getClassLoader());
     }
 
     public static final Creator<Utilisateur> CREATOR = new Creator<Utilisateur>() {
@@ -185,6 +186,7 @@ public class Utilisateur implements Parcelable {
         dest.writeString(prenom);
         dest.writeString(nom);
         dest.writeString(avatar);
+        dest.writeMap(exercicesResolus);
     }
 }
 

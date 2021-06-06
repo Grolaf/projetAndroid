@@ -1,6 +1,9 @@
 
 package model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -18,7 +21,7 @@ import model.referencesClass.MatiereAndExercice;
 import model.referencesClass.UtilisateurExerciceCrossReference;
 
 @Entity
-public class Matiere {
+public class Matiere implements Parcelable {
 
     @PrimaryKey(autoGenerate = false)
     @NonNull private String nom;
@@ -46,6 +49,24 @@ public class Matiere {
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
+
+    protected Matiere(Parcel in) {
+        nom = in.readString();
+        image = in.readString();
+        exercices = in.readHashMap(HashMap.class.getClassLoader());
+    }
+
+    public static final Creator<Matiere> CREATOR = new Creator<Matiere>() {
+        @Override
+        public Matiere createFromParcel(Parcel in) {
+            return new Matiere(in);
+        }
+
+        @Override
+        public Matiere[] newArray(int size) {
+            return new Matiere[size];
+        }
+    };
 
     public String getNom()
     {
@@ -171,5 +192,17 @@ public class Matiere {
                 this.addExercice(e);
             }
         }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nom);
+        dest.writeString(image);
+        dest.writeMap(exercices);
     }
 }

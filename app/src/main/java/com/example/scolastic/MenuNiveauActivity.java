@@ -45,16 +45,16 @@ public class MenuNiveauActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_niveau);
 
-        mDb = DatabaseClient.getInstance(getApplicationContext());
-        nomMatiere = getIntent().getStringExtra(NOM_MATIERE);
-        utilisateur = getIntent().getParcelableExtra(UTILISATEUR);
+        this.mDb = DatabaseClient.getInstance(getApplicationContext());
+        this.nomMatiere = getIntent().getStringExtra(NOM_MATIERE);
+        this.utilisateur = getIntent().getParcelableExtra(UTILISATEUR);
 
         // Récupérer les vues
         ListView lV = (ListView) findViewById(R.id.listView);
 
         // Lier l'adapter au gridView
-        adapter = new NiveauAdapter(this, R.layout.niveau_adapter_view, new ArrayList<Niveau>());
-        lV.setAdapter(adapter);
+        this.adapter = new NiveauAdapter(this, R.layout.niveau_adapter_view, new ArrayList<Niveau>());
+        lV.setAdapter(this.adapter);
     }
 
     private void getMatiereAndNiveaux() {

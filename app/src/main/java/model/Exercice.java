@@ -72,6 +72,7 @@ public class Exercice implements Parcelable {
         titre = in.readString();
         nomMatiere = in.readString();
         vainqueurs = in.createTypedArrayList(Utilisateur.CREATOR);
+        matiere = in.readParcelable(Matiere.class.getClassLoader());
     }
 
     public static final Creator<Exercice> CREATOR = new Creator<Exercice>() {
@@ -190,6 +191,7 @@ public class Exercice implements Parcelable {
         dest.writeString(titre);
         dest.writeString(nomMatiere);
         dest.writeTypedList(vainqueurs);
+        dest.writeParcelable(matiere, PARCELABLE_WRITE_RETURN_VALUE);
     }
 }
 

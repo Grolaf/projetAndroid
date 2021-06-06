@@ -53,6 +53,8 @@ public class ExerciceCalculActivity extends ExerciceActivity{
         if(erreurs == 0)
         {
             reussirExercice(calcul);
+            mDb.getAppDatabase().exerciceDAO().update(calcul);
+            mDb.getAppDatabase().utilisateurDAO().update(utilisateur);
             Intent it = new Intent(this, FelicitationsActivity.class);
             startActivity(it);
         }
