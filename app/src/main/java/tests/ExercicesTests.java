@@ -85,43 +85,39 @@ public class ExercicesTests {
         e.add(l1);
         Calcul c = new Calcul("Calculs basiques", Niveau.FACILE,maths, e);
 
-        m.addExercice(c);
-
-        assert(m.getNiveaux().get(0) == Niveau.FACILE);
-        assert(m.getExercices(Niveau.FACILE).size() == 1);
-        assert(m.getExercices(Niveau.FACILE).get(0) == c);
-        assert(c.getMatiere() == m);
+        assert(c.getMatiere() == maths);
+        assert(maths.getNiveaux().get(0) == Niveau.FACILE);
+        assert(maths.getExercices(Niveau.FACILE).size() == 1);
+        assert(maths.getExercices(Niveau.FACILE).get(0) == c);
 
         Calcul c2 = new Calcul("Calculs basiques", Niveau.DIFFICILE,maths, e);
 
-        m.addExercice(c2);
-        assert(m.getNiveaux().size() == 2);
+        assert(maths.getNiveaux().size() == 2);
         System.out.println(m.getNiveaux());
-        assert(m.getNiveaux().get(1) == Niveau.DIFFICILE);
-        assert(m.getExercices(Niveau.DIFFICILE).get(0) == c2);
-        assert(m.getExercices(Niveau.DIFFICILE).size() == 1);
-        assert(m.getExercices(Niveau.FACILE).get(0) == c);
-        assert(m.getExercices(Niveau.FACILE).size() == 1);
-        assert(c2.getMatiere() == m);
+        assert(maths.getNiveaux().get(1) == Niveau.DIFFICILE);
+        assert(maths.getExercices(Niveau.DIFFICILE).get(0) == c2);
+        assert(maths.getExercices(Niveau.DIFFICILE).size() == 1);
+        assert(maths.getExercices(Niveau.FACILE).get(0) == c);
+        assert(maths.getExercices(Niveau.FACILE).size() == 1);
 
 
         // Redite du dessus (pour éviter les doublons)
-        m.addExercice(c2);
-        assert(m.getNiveaux().size() == 2);
-        assert(m.getNiveaux().get(1) == Niveau.DIFFICILE);
-        assert(m.getExercices(Niveau.DIFFICILE).get(0) == c2);
-        assert(m.getExercices(Niveau.DIFFICILE).size() == 1);
-        assert(m.getExercices(Niveau.FACILE).get(0) == c);
-        assert(m.getExercices(Niveau.FACILE).size() == 1);
-        assert(c2.getMatiere() == m);
+        maths.addExercice(c2);
+        assert(maths.getNiveaux().size() == 2);
+        assert(maths.getNiveaux().get(1) == Niveau.DIFFICILE);
+        assert(maths.getExercices(Niveau.DIFFICILE).get(0) == c2);
+        assert(maths.getExercices(Niveau.DIFFICILE).size() == 1);
+        assert(maths.getExercices(Niveau.FACILE).get(0) == c);
+        assert(maths.getExercices(Niveau.FACILE).size() == 1);
+        assert(c2.getMatiere() == maths);
 
 
         // Récupération de tous les exercices de m
         ArrayList<Exercice> ex = new ArrayList<>();
 
-        for(Niveau niv  : m.getNiveaux())
+        for(Niveau niv  : maths.getNiveaux())
         {
-            for(Exercice exe : m.getExercices(niv))
+            for(Exercice exe : maths.getExercices(niv))
             {
                 ex.add(exe);
             }

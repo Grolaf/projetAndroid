@@ -1,7 +1,6 @@
 package model;
 
 import androidx.annotation.NonNull;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -9,8 +8,12 @@ import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 
+import database.DAO.ExerciceDAO;
+import database.DAO.MatiereDAO;
+import database.DAO.UtilisateurExerciceCrossRefDAO;
 import model.Converters.NiveauConverter;
-
+import model.referencesClass.ExerciceAndUtilisateur;
+import model.referencesClass.MatiereAndExercice;
 
 
 // Cette classe devrait être abstraite, Room n'est pas d'accord. On se plie aux règles de la machine...
@@ -35,7 +38,8 @@ public class Exercice {
     {
         this.titre = titre;
         this.niveau = niveau;
-        this.nomMatiere = matiere.getNom();
+        this.vainqueurs = new ArrayList<>();
+        this.nomMatiere = nomMatiere;
         this.vainqueurs = new ArrayList<>();
     }
 
@@ -44,8 +48,16 @@ public class Exercice {
     {
         this.titre = titre;
         this.niveau = niveau;
+        matiere.addExercice(this);
         this.matiere = matiere;
-        this.nomMatiere = matiere.getNom();
+        if(matiere == null)
+        {
+            this.nomMatiere = "";
+        }
+        else
+        {
+            this.nomMatiere = matiere.getNom();
+        }
         this.vainqueurs = new ArrayList<>();
     }
 
@@ -70,6 +82,11 @@ public class Exercice {
     public Matiere getMatiere()
     {
         return this.matiere;
+    }
+
+    public String getNomMatiere()
+    {
+        return this.nomMatiere;
     }
 
     public ArrayList<Utilisateur> getVainqueurs()
@@ -98,9 +115,18 @@ public class Exercice {
         this.matiere = m;
     }
 
+    public void setNomMatiere(String nomMatiere)
+    {
+        this.nomMatiere = nomMatiere;
+    }
+
     public void addVainqueur(Utilisateur u)
     {
-        this.vainqueurs.add(u);
+        if(!this.vainqueurs.contains(u))
+        {
+            this.vainqueurs.add(u);
+        }
+        u.addExerciceResolu(this);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -108,7 +134,27 @@ public class Exercice {
 
     public boolean isWinner(Utilisateur u)
     {
-        return this.vainqueurs.contains(u);
+        for(Utilisateur vainqueur: this.vainqueurs)
+        {
+            if(vainqueur.equals(u))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean equals(Exercice other)
+    {
+        return this.titre.equals(other.titre);
+    }
+
+    public void getElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    {
+        this.matiere = matiereDAO.getMatiereWithID(this.nomMatiere);
+
+        ExerciceAndUtilisateur utilisateurs = utilisateurExerciceCrossRefDAO.getExerciceWithUtilisateur(this.exerciceId);
+        if(utilisateurs != null) {
+            this.vainqueurs = (ArrayList) utilisateurs.utilisateurs;
+        }
     }
 }
 

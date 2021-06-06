@@ -1,12 +1,15 @@
 package model;
 
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import database.DAO.ExerciceDAO;
+import database.DAO.MatiereDAO;
+import database.DAO.UtilisateurExerciceCrossRefDAO;
+import model.referencesClass.CalculAndLigneCalcul;
 
 @Entity
 public class Calcul extends Exercice{
@@ -19,13 +22,16 @@ public class Calcul extends Exercice{
     public Calcul(String titre, Niveau niveau, String nomMatiere)
     {
         super(titre, niveau, nomMatiere);
+        this.lignes = new ArrayList<>();
     }
 
     @Ignore
     public Calcul(String titre, Niveau niveau, Matiere matiere)
     {
         super(titre, niveau, matiere);
+        this.lignes = new ArrayList<>();
     }
+
 
     @Ignore
     public Calcul(String titre, Niveau niveau, Matiere matiere,  ArrayList<LigneCalcul> lignes)
@@ -76,6 +82,22 @@ public class Calcul extends Exercice{
         }
         return erreur;
     }
+
+    @Override
+    public void getElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    {
+        // Récupération des vainqueurss
+        super.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
+
+        CalculAndLigneCalcul lignes = exerciceDAO.getCalculAndLigneCalcul(this.exerciceId);
+
+        if(lignes != null) {
+            this.lignes = (ArrayList) lignes.lignes;
+        }
+
+    }
+
+
 
 }
 

@@ -98,6 +98,11 @@ public class MenuNiveauActivity extends AppCompatActivity {
          */
     }
 
+    public void retour(View view)
+    {
+        finish();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

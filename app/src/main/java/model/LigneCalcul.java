@@ -13,7 +13,7 @@ public class LigneCalcul {
      private int operande1;
      private String operator;
      private int operande2;
-    public int calculID;
+    public int exerciceId;
 
 
     //////////////////////////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ public class LigneCalcul {
     }
     public int getOperande2()
     {
-        return this.operande1;
+        return this.operande2;
     }
     public String getOperator()
     {
@@ -61,6 +61,10 @@ public class LigneCalcul {
                 return 0;
         }
     }
+    public int getExerciceId()
+    {
+        return this.exerciceId;
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Setters
@@ -78,7 +82,16 @@ public class LigneCalcul {
     {
         this.operator = op;
     }
+    public void setExerciceId(int exerciceId)
+    {
+        this.exerciceId = exerciceId;
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Methods
+
+    public boolean equals(LigneCalcul other)
+    {
+        return this.operande1 == other.operande1 && this.operande2 == other.operande2 && this.operator.equals(other.operator);
+    }
 }

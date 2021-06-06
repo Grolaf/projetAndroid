@@ -26,7 +26,11 @@ public class  MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        /*
         executeTests(this);
+
+        ///// A decommenter pour executer les tests !
+         */
 
 
         start_btn = findViewById(R.id.start_btn);

@@ -9,9 +9,10 @@ import java.util.List;
 import model.Exercice;
 import model.Utilisateur;
 
-public class UtilisateurWithExercice {
+public class UtilisateurAndExercice {
 
-    @Embedded public Utilisateur utilisateur;
+    @Embedded(prefix = "for_legacy_of_relation_class_")
+    public Utilisateur utilisateur;
     @Relation(
             parentColumn = "utilisateurID",
             entityColumn = "exerciceId",

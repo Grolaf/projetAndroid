@@ -44,7 +44,7 @@ public class MenuMatieresActivity extends AppCompatActivity {
         GridView gL = (GridView) findViewById(R.id.gridMatieres);
 
         // Lier l'adapter au gridView
-        adapter = new MatieresAdapter(this, R.layout.matiere_adapter_view, new ArrayList<Matiere>());
+        adapter = new MatieresAdapter(this, R.layout.matiere_adapter_view, new ArrayList<>());
         gL.setAdapter(adapter);
 
     }

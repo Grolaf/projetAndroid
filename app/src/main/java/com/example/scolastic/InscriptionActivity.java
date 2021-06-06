@@ -24,7 +24,7 @@ public class InscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_connect_page);
+        setContentView(R.layout.activity_inscription);
         editTextprenom = findViewById(R.id.prenom);
         editTextnom = findViewById(R.id.nom);
         mDb = DatabaseClient.getInstance(getApplicationContext());

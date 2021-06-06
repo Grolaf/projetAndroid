@@ -28,4 +28,9 @@ public enum Niveau implements Comparable<Niveau>{
         return this.valeur;
     }
 
+    public boolean equals(Niveau other)
+    {
+        return this.valeur == other.valeur;
+    }
+
 }

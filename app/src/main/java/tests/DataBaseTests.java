@@ -3,28 +3,31 @@ package tests;
 
 import android.content.Context;
 
-import androidx.annotation.ArrayRes;
-
 import java.util.ArrayList;
-import database.DAO.CalculDAO;
+
+import database.DAO.ExerciceDAO;
 import database.DAO.LigneCalculDAO;
 import database.DAO.MatiereDAO;
 import database.DAO.UtilisateurDAO;
+import database.DAO.UtilisateurExerciceCrossRefDAO;
 import database.DatabaseClient;
 import model.Calcul;
+import model.Exercice;
 import model.LigneCalcul;
 import model.Matiere;
 import model.Niveau;
 import model.Utilisateur;
 import model.referencesClass.CalculAndLigneCalcul;
+import model.referencesClass.UtilisateurExerciceCrossReference;
 
 public class DataBaseTests {
 
     private DatabaseClient db;
     private UtilisateurDAO utilisateurDAO;
     private MatiereDAO matiereDao;
-    private CalculDAO calculDAO;
+    private ExerciceDAO exerciceDAO;
     private LigneCalculDAO ligneCalculDAO;
+    private UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO;
 
     public DataBaseTests (Context context){
 
@@ -37,18 +40,21 @@ public class DataBaseTests {
 
         utilisateurDAO = this.db.getAppDatabase().utilisateurDAO();
         matiereDao = this.db.getAppDatabase().matiereDAO();
-        calculDAO = this.db.getAppDatabase().calculDAO();
+        exerciceDAO = this.db.getAppDatabase().exerciceDAO();
         ligneCalculDAO = this.db.getAppDatabase().ligneCalculDao();
+        utilisateurExerciceCrossRefDAO = this.db.getAppDatabase().utilisateurExerciceCrossRefDAO();
 
         testUtilisateur();
         testMatiere();
         testLigneCalcul();
         testCalcul();
         testCalculEtLigneCalcul();
+        testMatiereEtCalcul();
+        testCalculsEtUtilisateur();
+
 
         try {
             db.getAppDatabase().clearAllTables();
-
         }catch(Exception e ){}
 
     }
@@ -115,7 +121,6 @@ public class DataBaseTests {
 
         Matiere bDb = matiereDao.getMatiereWithID("Français");
         assert(bDb.equals(b));
-        assert(bDb.equals(a));
         assert(bDb.getNom().equals("Français"));
         assert(bDb.getExercices().size() == 0);
         assert(bDb.getImage().equals(""));
@@ -146,10 +151,10 @@ public class DataBaseTests {
         assert(aDb.equals(a));
         assert(aDb.getEnonce().equals("3 + 2 = "));
         assert(aDb.getSolution() == 5);
-        LigneCalcul b2Db = lignes.get(1);
-        assert(b2Db.equals(b));
-        assert(aDb.getEnonce().equals("5 * 5 = "));
-        assert(aDb.getSolution() == 25);
+        LigneCalcul bDb = lignes.get(1);
+        assert(bDb.equals(b));
+        assert(bDb.getEnonce().equals("5 * 5 = "));
+        assert(bDb.getSolution() == 25);
     }
 
     private final void testCalcul()
@@ -167,31 +172,30 @@ public class DataBaseTests {
         Calcul a = new Calcul("Calcul1", Niveau.FACILE, maths);
         Calcul b = new Calcul("Calcul2", Niveau.DIFFICILE, maths);
 
-        calculDAO = this.db.getAppDatabase().calculDAO();
-        calculDAO.insert(a);
-        calculDAO.insert(b);
+        exerciceDAO.insert(a);
+        exerciceDAO.insert(b);
 
-        ArrayList<Calcul> calculs = (ArrayList)calculDAO.getAll();
-        Calcul aDb = calculs.get(0);
+        ArrayList<Exercice> calculs = (ArrayList)exerciceDAO.getAllCalculs();
+        Calcul aDb = (Calcul)calculs.get(0);
         assert(aDb.equals(a));
         assert(aDb.getTitre().equals("Calcul1"));
-        assert(aDb.getMatiere().equals(maths));
+        assert(aDb.getNomMatiere().equals(maths.getNom()));
         assert(aDb.getLignes().size() == 0);
         assert(aDb.getVainqueurs().size() == 0);
 
-        Calcul bDb = calculs.get(1);
+        Calcul bDb = (Calcul)calculs.get(1);
         assert(bDb.equals(b));
         assert(bDb.getTitre().equals("Calcul2"));
-        assert(bDb.getMatiere().equals(maths));
+        assert(bDb.getNomMatiere().equals(maths.getNom()));
         assert(bDb.getLignes().size() == 0);
         assert(bDb.getVainqueurs().size() == 0);
 
 
         try {
-            calculDAO.insert(aDb);
+            exerciceDAO.insert(aDb);
         }catch(Exception e){}
 
-        ArrayList<Calcul> c = (ArrayList)calculDAO.getAll();
+        ArrayList<Calcul> c = (ArrayList)exerciceDAO.getAllCalculs();
         assert(c.size() == 2);
         assert(aDb.equals(a));
     }
@@ -228,16 +232,19 @@ public class DataBaseTests {
         b.setLignes(lignesB);
 
         //////
+        exerciceDAO.insert(a);
+        int idCalcul1 = exerciceDAO.maxId();
+        la.setExerciceId(idCalcul1);
+        lb.setExerciceId(idCalcul1 + 1);
+        exerciceDAO.insert(b);
         ligneCalculDAO.insert(la);
         ligneCalculDAO.insert(lb);
-        calculDAO.insert(a);
-        calculDAO.insert(b);
 
 
         ///// Premier calcul //////////
-        ArrayList<Calcul> calculs = (ArrayList)calculDAO.getAll();
+        ArrayList<Calcul> calculs = (ArrayList)exerciceDAO.getAllCalculs();
         Calcul aDb = calculs.get(0);
-        CalculAndLigneCalcul cAndL = calculDAO.getCalculAndLigneCalcul(aDb.exerciceId);
+        CalculAndLigneCalcul cAndL = exerciceDAO.getCalculAndLigneCalcul(aDb.exerciceId);
 
         ArrayList<LigneCalcul> lignes = new ArrayList<>();
         lignes.addAll(cAndL.lignes);
@@ -247,11 +254,11 @@ public class DataBaseTests {
 
         LigneCalcul laDb = ligneCalculDAO.getLigneCalculByID(lignes.get(0).getLigneId());
 
-        assert(laDb.calculID == aDb.exerciceId);
+        assert(laDb.exerciceId == aDb.exerciceId);
 
         ///// Second calcul //////////
-        Calcul bDb = calculs.get(0);
-        cAndL = calculDAO.getCalculAndLigneCalcul(bDb.exerciceId);
+        Calcul bDb = calculs.get(1);
+        cAndL = exerciceDAO.getCalculAndLigneCalcul(bDb.exerciceId);
 
         lignes = new ArrayList<>();
         lignes.addAll(cAndL.lignes);
@@ -261,13 +268,123 @@ public class DataBaseTests {
 
         LigneCalcul lBDb = ligneCalculDAO.getLigneCalculByID(lignes.get(0).getLigneId());
 
-        assert(lBDb.calculID == bDb.exerciceId);
+        assert(lBDb.exerciceId == bDb.exerciceId);
     }
 
+    public void testMatiereEtCalcul()
+    {
+        try {
+            db.getAppDatabase().clearAllTables();
+
+        }catch(Exception e ){}
+
+        Matiere maths = new Matiere("Maths", "");
+        Matiere francais = new Matiere("Français", "");
+
+        Calcul a = new Calcul("Calcul1", Niveau.FACILE, maths);
+        Calcul b = new Calcul("Calcul2", Niveau.DIFFICILE, francais);
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+        matiereDao.insert(maths);
+        matiereDao.insert(francais);
+        exerciceDAO.insert(a);
+        exerciceDAO.insert(b);
 
-    // Tests complets du modèle avec la BDD
+        Matiere mathsDB = matiereDao.getMatiereWithID("Maths");
+        Matiere francaisDB = matiereDao.getMatiereWithID("Français");
+
+        mathsDB.getElementsFromDataBase(matiereDao);
+        francaisDB.getElementsFromDataBase(matiereDao);
+
+        assert(mathsDB.getExercices().size() == 1);
+        assert(mathsDB.getExercices(Niveau.FACILE).size() == 1);
+        assert(mathsDB.getExercices(Niveau.FACILE).get(0).equals(a));
+
+        assert(francaisDB.getExercices().size() == 1);
+        assert(francaisDB.getExercices(Niveau.DIFFICILE).size() == 1);
+        assert(francaisDB.getExercices(Niveau.DIFFICILE).get(0).equals(b));
+
+        mathsDB.getExercices(Niveau.FACILE).get(0).getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        francaisDB.getExercices(Niveau.DIFFICILE).get(0).getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+
+        assert(mathsDB.getExercices(Niveau.FACILE).get(0).getNomMatiere().equals("Maths"));
+        assert(mathsDB.getExercices(Niveau.FACILE).get(0).getTitre().equals("Calcul1"));
+        assert(mathsDB.getExercices(Niveau.FACILE).get(0).getNiveau().equals(Niveau.FACILE));
+        Calcul calcul = (Calcul)mathsDB.getExercices(Niveau.FACILE).get(0);
+        assert(calcul.getLignes().size() == 0);
+
+        assert(francaisDB.getExercices(Niveau.DIFFICILE).get(0).getNomMatiere().equals("Français"));
+        assert(francaisDB.getExercices(Niveau.DIFFICILE).get(0).getTitre().equals("Calcul2"));
+        assert(francaisDB.getExercices(Niveau.DIFFICILE).get(0).getNiveau().equals(Niveau.DIFFICILE));
+        calcul = (Calcul)francaisDB.getExercices(Niveau.DIFFICILE).get(0);
+        assert(calcul.getLignes().size() == 0);
+    }
+
+    public void testCalculsEtUtilisateur()
+    {
+        try {
+            db.getAppDatabase().clearAllTables();
+
+        }catch(Exception e ){}
+
+        Matiere maths = new Matiere("Maths", "");
+
+        Calcul a = new Calcul("Calcul1", Niveau.FACILE, maths);
+        Calcul b = new Calcul("Calcul2", Niveau.DIFFICILE, maths);
+
+        Utilisateur u1 = new Utilisateur("test1", "test1", "");
+        Utilisateur u2 = new Utilisateur("test2", "test2", "");
+
+        matiereDao.insert(maths);
+        exerciceDAO.insert(a);
+        exerciceDAO.insert(b);
+        utilisateurDAO.insert(u1);
+        utilisateurDAO.insert(u2);
+
+        ArrayList<Calcul> calculs = (ArrayList)exerciceDAO.getAllCalculs();
+        Calcul aDb = calculs.get(0);
+        aDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        aDb.addVainqueur(u1);
+        UtilisateurExerciceCrossReference ref = new UtilisateurExerciceCrossReference(utilisateurDAO.getUtilisateurID(u1.getPrenom(), u1.getNom()), aDb.exerciceId);
+        utilisateurExerciceCrossRefDAO.insert(ref);
+        exerciceDAO.update(aDb);
+        utilisateurDAO.update(u1);
+
+        Calcul bDb = calculs.get(1);
+        bDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        bDb.addVainqueur(u2);
+        ref = new UtilisateurExerciceCrossReference(utilisateurDAO.getUtilisateurID(u2.getPrenom(), u2.getNom()), bDb.exerciceId);
+        utilisateurExerciceCrossRefDAO.insert(ref);
+        exerciceDAO.update(bDb);
+        utilisateurDAO.update(u2);
+
+        /////  Partie Calcul -> Utilisateur /////
+
+        calculs = (ArrayList)exerciceDAO.getAllCalculs();
+        aDb = calculs.get(0);
+        aDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+
+        assert(aDb.isWinner(u1));
+        assert(!aDb.isWinner(u2));
+
+        bDb = calculs.get(1);
+        bDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+
+        assert(bDb.isWinner(u2));
+        assert(!bDb.isWinner(u1));
+
+        /////  Partie Utilisateur -> Calcul /////
+
+        u1 = utilisateurDAO.getUtilisateur("test1", "test1");
+        u2 = utilisateurDAO.getUtilisateur("test2", "test2");
+
+        u1.getElementsFromDataBase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        u2.getElementsFromDataBase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+
+        assert(u1.getExercicesResolus().size() == 1);
+        assert(u1.getExercicesResolus(Niveau.FACILE, maths).get(0).equals(a));
+
+        assert(u2.getExercicesResolus().size() == 1);
+        assert(u2.getExercicesResolus(Niveau.DIFFICILE, maths).get(0).equals(b));
+    }
 }

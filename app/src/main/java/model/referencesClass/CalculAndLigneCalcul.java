@@ -13,7 +13,7 @@ public class CalculAndLigneCalcul {
     @Embedded public Calcul calcul;
     @Relation(
             parentColumn = "exerciceId",
-            entityColumn = "calculID"
+            entityColumn = "exerciceId"
     )
     public List<LigneCalcul> lignes;
 }

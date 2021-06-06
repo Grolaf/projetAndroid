@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import database.DAO.MatiereDAO;
+import model.referencesClass.MatiereAndExercice;
 
 @Entity
 public class Matiere {
@@ -105,7 +107,9 @@ public class Matiere {
                 this.exercices.put(e.getNiveau(), new ArrayList<>());
                 this.exercices.get(e.getNiveau()).add(e);
             }
-            e.setMatiere(this);
+            if(e.getMatiere() != this) {
+                e.setMatiere(this);
+            }
         }
     }
 
@@ -113,4 +117,21 @@ public class Matiere {
     ///////////////////////////////////////////////////////////////////////////
     // Methods
 
+    public boolean equals(Matiere other)
+    {
+        return this.nom.equals(other.nom);
+    }
+
+    public void getElementsFromDataBase(MatiereDAO matiereDAO)
+    {
+        MatiereAndExercice matiereExercices = matiereDAO.getExerciceAndMatiere(this.nom);
+
+        if(matiereExercices != null) {
+            ArrayList<Exercice> exercices = (ArrayList) matiereExercices.exercices;
+
+            for (Exercice e : exercices) {
+                this.addExercice(e);
+            }
+        }
+    }
 }

@@ -9,7 +9,6 @@ import model.Calcul;
 import model.Exercice;
 import model.Matiere;
 
-
 public class MatiereAndCalcul extends MatiereAndExercice{
 
     @Embedded

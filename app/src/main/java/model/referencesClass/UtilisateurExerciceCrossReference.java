@@ -10,4 +10,10 @@ public class UtilisateurExerciceCrossReference {
     public int utilisateurID;
     @NonNull
     public int exerciceId;
+
+    public UtilisateurExerciceCrossReference(int utilisateurID, int exerciceId)
+    {
+        this.utilisateurID = utilisateurID;
+        this.exerciceId = exerciceId;
+    }
 }
