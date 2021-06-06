@@ -1,5 +1,8 @@
 package model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 
@@ -12,7 +15,7 @@ import database.DAO.UtilisateurExerciceCrossRefDAO;
 import model.referencesClass.CalculAndLigneCalcul;
 
 @Entity
-public class Calcul extends Exercice{
+public class Calcul extends Exercice implements Parcelable {
 
     @Ignore
     private ArrayList<LigneCalcul> lignes;
@@ -95,6 +98,32 @@ public class Calcul extends Exercice{
             this.lignes = (ArrayList) lignes.lignes;
         }
 
+    }
+
+    protected Calcul(Parcel in) {
+        super(in);
+        lignes = in.createTypedArrayList(LigneCalcul.CREATOR);
+    }
+
+    public static final Creator<Calcul> CREATOR = new Creator<Calcul>() {
+        @Override
+        public Calcul createFromParcel(Parcel in) {
+            return new Calcul(in);
+        }
+
+        @Override
+        public Calcul[] newArray(int size) {
+            return new Calcul[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(exerciceId);
+        dest.writeString(titre);
+        dest.writeString(nomMatiere);
+        dest.writeTypedList(vainqueurs);
+        dest.writeTypedList(lignes);
     }
 
 

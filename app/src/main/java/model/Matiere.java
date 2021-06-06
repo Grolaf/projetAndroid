@@ -1,3 +1,4 @@
+
 package model;
 
 import androidx.annotation.NonNull;
@@ -8,9 +9,13 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
+import database.DAO.ExerciceDAO;
 import database.DAO.MatiereDAO;
+import database.DAO.UtilisateurExerciceCrossRefDAO;
 import model.referencesClass.MatiereAndExercice;
+import model.referencesClass.UtilisateurExerciceCrossReference;
 
 @Entity
 public class Matiere {
@@ -62,9 +67,41 @@ public class Matiere {
         return this.exercices.get(n);
     }
 
+    public Exercice getRandomExercice(Niveau n)
+    {
+        Random random = new Random();
+        int nbrRandom = random.nextInt(this.exercices.size());
+        return this.exercices.get(n).get(nbrRandom);
+    }
+
+    public Exercice getRandomExercice(Niveau n, Utilisateur u)
+    {
+        ArrayList<Exercice> exercicesDispo = this.exercices.get(n);
+
+        for(Exercice e : exercicesDispo)
+        {
+            if(e.isWinner(u))
+            {
+                exercicesDispo.remove(e);
+            }
+        }
+
+        // Si l'utilisateur a terminé tous les exercices du niveau, on lui en remet un qu'il a déjà réussi
+        if(exercicesDispo.size() == 0)
+            return getRandomExercice(n);
+
+
+        Random random = new Random();
+        int nbrRandom = random.nextInt(exercicesDispo.size());
+
+        return exercicesDispo.get(nbrRandom);
+    }
+
     // Retourne un arrayList des niveaux proposés dans la matière
     public ArrayList<Niveau> getNiveaux()
     {
+        boolean accompli = false;
+
         if(this.exercices.keySet().size() == 0)
         {
             return null;
@@ -73,7 +110,7 @@ public class Matiere {
 
         for(Niveau niv : this.exercices.keySet())
         {
-            n.add(niv);
+              n.add(niv);
         }
         Collections.sort(n);
         return n;
@@ -122,7 +159,7 @@ public class Matiere {
         return this.nom.equals(other.nom);
     }
 
-    public void getElementsFromDataBase(MatiereDAO matiereDAO)
+    public void getElementsFromDataBase(MatiereDAO matiereDAO, UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO)
     {
         MatiereAndExercice matiereExercices = matiereDAO.getExerciceAndMatiere(this.nom);
 
@@ -130,6 +167,7 @@ public class Matiere {
             ArrayList<Exercice> exercices = (ArrayList) matiereExercices.exercices;
 
             for (Exercice e : exercices) {
+                e.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
                 this.addExercice(e);
             }
         }

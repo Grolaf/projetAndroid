@@ -1,5 +1,8 @@
 package model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -14,7 +17,7 @@ import database.DAO.UtilisateurExerciceCrossRefDAO;
 import model.referencesClass.UtilisateurAndExercice;
 
 @Entity
-public class Utilisateur {
+public class Utilisateur implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int utilisateurID;
@@ -47,6 +50,25 @@ public class Utilisateur {
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
+
+    protected Utilisateur(Parcel in) {
+        utilisateurID = in.readInt();
+        prenom = in.readString();
+        nom = in.readString();
+        avatar = in.readString();
+    }
+
+    public static final Creator<Utilisateur> CREATOR = new Creator<Utilisateur>() {
+        @Override
+        public Utilisateur createFromParcel(Parcel in) {
+            return new Utilisateur(in);
+        }
+
+        @Override
+        public Utilisateur[] newArray(int size) {
+            return new Utilisateur[size];
+        }
+    };
 
     public int getUtilisateurID()
     {
@@ -150,6 +172,19 @@ public class Utilisateur {
                 addExerciceResolu(e);
             }
         }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(utilisateurID);
+        dest.writeString(prenom);
+        dest.writeString(nom);
+        dest.writeString(avatar);
     }
 }
 

@@ -1,5 +1,8 @@
 package model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -18,7 +21,7 @@ import model.referencesClass.MatiereAndExercice;
 
 // Cette classe devrait être abstraite, Room n'est pas d'accord. On se plie aux règles de la machine...
 @Entity
-public class Exercice {
+public class Exercice implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull public int exerciceId;
@@ -63,6 +66,25 @@ public class Exercice {
 
     ///////////////////////////////////////////////////////////////////////////
     // Getters
+
+    protected Exercice(Parcel in) {
+        exerciceId = in.readInt();
+        titre = in.readString();
+        nomMatiere = in.readString();
+        vainqueurs = in.createTypedArrayList(Utilisateur.CREATOR);
+    }
+
+    public static final Creator<Exercice> CREATOR = new Creator<Exercice>() {
+        @Override
+        public Exercice createFromParcel(Parcel in) {
+            return new Exercice(in);
+        }
+
+        @Override
+        public Exercice[] newArray(int size) {
+            return new Exercice[size];
+        }
+    };
 
     public String getTitre()
     {
@@ -155,6 +177,19 @@ public class Exercice {
         if(utilisateurs != null) {
             this.vainqueurs = (ArrayList) utilisateurs.utilisateurs;
         }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(exerciceId);
+        dest.writeString(titre);
+        dest.writeString(nomMatiere);
+        dest.writeTypedList(vainqueurs);
     }
 }
 

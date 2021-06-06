@@ -293,8 +293,8 @@ public class DataBaseTests {
         Matiere mathsDB = matiereDao.getMatiereWithID("Maths");
         Matiere francaisDB = matiereDao.getMatiereWithID("Français");
 
-        mathsDB.getElementsFromDataBase(matiereDao);
-        francaisDB.getElementsFromDataBase(matiereDao);
+        mathsDB.getElementsFromDataBase(matiereDao, utilisateurExerciceCrossRefDAO, exerciceDAO);
+        francaisDB.getElementsFromDataBase(matiereDao, utilisateurExerciceCrossRefDAO, exerciceDAO);
 
         assert(mathsDB.getExercices().size() == 1);
         assert(mathsDB.getExercices(Niveau.FACILE).size() == 1);

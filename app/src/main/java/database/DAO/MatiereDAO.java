@@ -7,10 +7,13 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Exercice;
 import model.Matiere;
+import model.Utilisateur;
 import model.referencesClass.MatiereAndCalcul;
 import model.referencesClass.MatiereAndExercice;
 
@@ -54,7 +57,10 @@ public abstract class MatiereDAO {
         return retour;
     }
 
+    // Partie Calculs //
+
     @Transaction
     @Query("SELECT * FROM matiere WHERE nom = :nomMatiere")
     abstract MatiereAndCalcul getCalculAndMatiere(String nomMatiere);
+
 }
