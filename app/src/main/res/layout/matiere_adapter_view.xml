@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
 
     >
@@ -11,29 +11,27 @@
     <LinearLayout
         android:id="@+id/matiere"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:layout_margin="20dp"
-
-
         android:background="@color/cardBack"
         android:orientation="vertical"
-        android:layout_marginLeft="30dp">
+        android:layout_marginLeft="30dp"
+        android:onClick="choixMatiere">
+
 
         <ImageView
             android:id="@+id/imageMatiere"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:onClick="menu"
-
             android:padding="20dp"
             app:tint="#4DCFC3" />
 
         <TextView
             android:id="@+id/nomMatiere"
             android:layout_width="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="-10dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:fontFamily="@font/roboto_medium"
@@ -42,5 +40,5 @@
 
 
         </LinearLayout>
-
 </LinearLayout>
+

@@ -24,40 +24,47 @@ public class InscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_connect_page);
-        editTextprenom = findViewById(R.id.prenom);
-        editTextnom = findViewById(R.id.nom);
-        mDb = DatabaseClient.getInstance(getApplicationContext());
+        setContentView(R.layout.activity_inscription);
+        this.editTextprenom = findViewById(R.id.prenom);
+        this.editTextnom = findViewById(R.id.nom);
+        this.mDb = DatabaseClient.getInstance(getApplicationContext());
     }
 
     public void saveUser(View v) {
 
         // Récupérer les informations contenues dans les vues
-        final String prenom = editTextprenom.getText().toString().trim();
-        final String nom = editTextnom.getText().toString().trim();
+        final String prenom = this.editTextprenom.getText().toString().trim();
+        final String nom = this.editTextnom.getText().toString().trim();
 
         // Vérifier les informations fournies par l'utilisateur
         if (prenom.isEmpty()) {
-            editTextprenom.setError("Il faut entrer ton prénom");
-            editTextprenom.requestFocus();
+            this.editTextprenom.setError("Il faut entrer ton prénom");
+            this.editTextprenom.requestFocus();
             return;
         }
 
         if (nom.isEmpty()) {
-            editTextnom.setError("Il faut entrer ton nom");
-            editTextnom.requestFocus();
+            this.editTextnom.setError("Il faut entrer ton nom");
+            this.editTextnom.requestFocus();
             return;
         }
 
         /**
          * Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
          */
-        class SaveTask extends AsyncTask<Void, Void, Utilisateur> {
+        class SaveUser extends AsyncTask<Void, Void, Utilisateur> {
 
             @Override
             protected Utilisateur doInBackground(Void... voids) {
 
-                Utilisateur utilisateur = new Utilisateur(prenom, nom, "@drawable/user");
+                Utilisateur utilisateur = mDb.getAppDatabase().utilisateurDAO().getUtilisateur(prenom, nom);
+
+                if(utilisateur != null)
+                {
+                    return null;
+                }
+
+                utilisateur = new Utilisateur(prenom, nom, "@drawable/user");
 
                 mDb.getAppDatabase()
                         .utilisateurDAO()
@@ -70,24 +77,30 @@ public class InscriptionActivity extends AppCompatActivity {
             protected void onPostExecute(Utilisateur utilisateur) {
                 super.onPostExecute(utilisateur);
 
-                // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
-                setResult(RESULT_OK);
-                Intent intent = new Intent(InscriptionActivity.this, PageProfilActivity.class);
-                startActivity(intent);
-                finish();
-                Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
+                if(utilisateur == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Un utilisateur porte déjà ces identifiants...", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
+                    setResult(RESULT_OK);
+                    Intent intent = new Intent(InscriptionActivity.this, MenuMatieresActivity.class);
+                    intent.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
+                    startActivity(intent);
+                    finish();
+                    Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
+                }
             }
         }
 
-        //////////////////////////
-        // IMPORTANT bien penser à executer la demande asynchrone
-        SaveTask st = new SaveTask();
+        SaveUser st = new SaveUser();
         st.execute();
     }
 
     public void seConnecter(View v)
     {
-        Intent intent = new Intent(InscriptionActivity.this, PageProfilActivity.class);
+        Intent intent = new Intent(InscriptionActivity.this, ListElevesActivity.class);
         startActivity(intent);
         finish();
     }

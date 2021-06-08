@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey;
 
 public enum Niveau implements Comparable<Niveau>{
 
-    FACILE("facile", 1),
-    MOYEN("moyen", 2),
-    DIFFICILE("difficile", 3);
+    FACILE("FACILE", 1),
+    MOYEN("MOYEN", 2),
+    DIFFICILE("DIFFICILE", 3);
 
     private final int valeur;
     private final String nom;
@@ -28,5 +28,9 @@ public enum Niveau implements Comparable<Niveau>{
         return this.valeur;
     }
 
+    public boolean equals(Niveau other)
+    {
+        return this.valeur == other.valeur;
+    }
 
 }

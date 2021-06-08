@@ -1,19 +1,52 @@
 <resources>
+
     <string name="app_name">Scolastic</string>
-    <string name="client_inscription">Inscription</string>
-    <string name="client_main_h2">Espace Elèves</string>
+
+    <string name="splash_h6">Bienvenue à Scolastic </string>
+    <string name="splash_h2">Appuyez sur COMMENCER pour continuer</string>
+    <string name="splash_btn">COMMENCER</string>
+
+    <string name="connect_h4">NOUVEAU ?</string>
+    <string name="connect_h2">INSCRIT TOI !</string>
     <string name="connect_join">Rejoinre</string>
-    <string name="connect_already_sign">Déjà inscrit \?</string>
+    <string name="connect_already_sign">Déjà inscrit ?</string>
     <string name="connect_fname">Prénom</string>
     <string name="connect_name">Nom</string>
-    <string name="connect_inscription">@string/client_inscription</string>
+    <string name="connect_inscription">Inscription :</string>
+
+    <string name="level_top">Difficultés</string>
+    <string name="level_hint">Choisis ton niveau !</string>
+
+
+
+    <string name="client_inscription">Inscription</string>
+    <string name="client_main_h2">Espace Elèves</string>
+
+
+    <string name="profile_top">Profile</string>
+    <string name="profile_info">Info utilisateur</string>
     <string name="profil_level">Niveau Terminé</string>
     <string name="profile_hours">Heures</string>
     <string name="profile_desincription">Se désincrire</string>
+
     <string name="main_main_h2">Page Principale</string>
     <string name="main_hint">Choisis ton activité !</string>
     <string name="main_french">Francais</string>
     <string name="main_math">Math</string>
+    <string name="main_top">Matiéres</string>
     <string name="main_history">Histoire</string>
+
     <string name="splash_down">Studio Blue</string>
+
+    <string name="felicitations">Felicitations !</string>
+    <string name="felicitation_texte">Et un exercice réussi de plus !</string>
+    <string name="felicitation_btn1">Retour menu</string>
+    <string name="felicitation_btn2">Tableau de scores</string>
+
+    <string name="error_corriger">Corriger</string>
+    <string name="error_return">Revenir au menu</string>
+    <string name="error_main">Il y a des erreurs...</string>
+    <string name="error_mxm">Essaye encore !</string>
+
+    <string name="listview_valider">Valider</string>
 </resources>

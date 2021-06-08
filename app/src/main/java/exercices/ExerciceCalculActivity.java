@@ -1,56 +1,80 @@
 package exercices;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scolastic.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adapters.LigneCalculAdapter;
 import model.Calcul;
+import model.Exercice;
 import model.LigneCalcul;
-import model.Niveau;
-import tests.ExercicesTests;
+import model.Matiere;
+import model.referencesClass.CalculAndLigneCalcul;
+import model.referencesClass.UtilisateurExerciceCrossReference;
 
-public class ExerciceCalculActivity extends AppCompatActivity {
+public class ExerciceCalculActivity extends ExerciceActivity{
 
-    private Calcul c;
-    private LigneCalculAdapter adapter;
+
+    protected Calcul calcul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ExercicesTests e = new ExercicesTests();
-        setContentView(R.layout.activity_exercice_calcul);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        this.calcul = getIntent().getParcelableExtra(EXERCICE_A_FAIRE);
 
-        LigneCalcul l1 = new LigneCalcul("3 + 3", 6);
-        LigneCalcul l2 = new LigneCalcul("3 + 2", 5);
-        LigneCalcul l3 = new LigneCalcul("3 + 1", 4);
-
-
-        ArrayList<LigneCalcul> l = new ArrayList<>();
-        l.add(l1);
-        l.add(l2);
-        l.add(l3);
-
-        Calcul c = new Calcul("Additions", Niveau.FACILE, l);
-        this.c = c;
-
-        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, c.getLignes());
-        listView.setAdapter(adapter);
+        ListView lV = (ListView) findViewById(R.id.listView);
+        this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, new ArrayList<>());
+        lV.setAdapter(adapter);
+        fetchLignes();
     }
 
-    public void calculer(View v)
+    private void fetchLignes()
     {
-                                                                // Récupération des réponses
+        class FetchLignes extends AsyncTask<Void, Void, ArrayList<LigneCalcul>> {
+
+            @Override
+            protected ArrayList<LigneCalcul> doInBackground(Void... voids) {
+
+                CalculAndLigneCalcul calculAndLignes = mDb.getAppDatabase().exerciceDAO().getCalculAndLigneCalcul(calcul.getExerciceId());
+
+
+                return (ArrayList)calculAndLignes.lignes;
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<LigneCalcul> lignes) {
+                super.onPostExecute(lignes);
+
+
+                // Mettre à jour l'adapter avec la liste de matieres
+                adapter.clear();
+                adapter.addAll(lignes);
+
+                // Now, notify the adapter of the change in source
+                adapter.notifyDataSetChanged();
+                calcul.setLignes(lignes);
+            }
+
+        }
+
+        FetchLignes fetch = new FetchLignes();
+        fetch.execute();
+    }
+
+
+    public void valider(View v)
+    {
+        // Récupération des réponses
         ArrayList<Double> answers = new ArrayList<>();
 
         for(int i = 0; i < this.adapter.getCount(); i++)
@@ -63,10 +87,11 @@ public class ExerciceCalculActivity extends AppCompatActivity {
                 answers.add(-1.0);
             }
         }
-                                                                // Evaluation des erreurs et redirection
-        int erreurs = c.resultat(answers);
+        // Evaluation des erreurs et redirection
+        int erreurs = this.calcul.resultat(answers);
         if(erreurs == 0)
         {
+            reussirExercice(calcul);
             Intent it = new Intent(this, FelicitationsActivity.class);
             startActivity(it);
         }

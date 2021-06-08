@@ -1,113 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/background"
+    android:background="@drawable/ic_slashmain_bw"
     android:orientation="vertical"
-
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <View
-            android:id="@+id/splash_first_line"
-            android:layout_width="20dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/ic_white1" />
-
-        <View
-            android:id="@+id/splash_second_line"
-            android:layout_width="20dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/splash_first_line"
-            android:background="@drawable/ic_rose1" />
-
-        <View
-            android:id="@+id/splash_third_line"
-            android:layout_width="20dp"
-            android:layout_height="230dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/splash_second_line"
-            android:background="@drawable/ic_white2" />
-
-        <View
-            android:id="@+id/splash_quatro_line"
-            android:layout_width="20dp"
-            android:layout_height="170dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/splash_third_line"
-            android:background="@drawable/ic_rose2" />
-
-        <View
-            android:id="@+id/splash_cinqo_line"
-            android:layout_width="20dp"
-            android:layout_height="190dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/splash_quatro_line"
-            android:background="@drawable/ic_blue1" />
-
-        <View
-            android:id="@+id/splash_six_line"
-            android:layout_width="20dp"
-            android:layout_height="130dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/splash_cinqo_line"
-            android:background="@drawable/ic_white_end" />
-
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_weight="0">
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        >
-
-
-    </RelativeLayout>
+        android:gravity="center"
+        android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
-        android:src="@drawable/logosplash"
+        android:id="@+id/sp_logo"
+        android:layout_width="198dp"
+        android:layout_height="350dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:gravity="center"
 
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="0">
+        android:src="@drawable/logored" />
 
         <TextView
+            android:id="@+id/sp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="0dp"
-            android:text="@string/splash_down"
-            android:fontFamily="@font/roboto_light"
-            android:textColor="@color/main_text"
-            android:textSize="16sp" />
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/splash_h6"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/sp_tv1"
+            android:layout_width="411dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/splash_h2"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/ic_slashmain_bw"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/splash_btn"
+            android:textColor="@color/background"
+            android:textSize="16sp"
+            android:elevation="100dp"
+            android:shadowColor="@color/white"
+
+            app:backgroundTint="@null"
+
+            />
+
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

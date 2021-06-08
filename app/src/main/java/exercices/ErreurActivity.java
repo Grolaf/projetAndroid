@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scolastic.MainActivity;
+import com.example.scolastic.MenuMatieresActivity;
 import com.example.scolastic.R;
 
 public class ErreurActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class ErreurActivity extends AppCompatActivity {
         setContentView(R.layout.activity_erreur);
         TextView tV = (TextView) findViewById(R.id.nombre_erreurs);
 
-        tV.setText("Vous avez fait " + erreurs + " erreurs.");
+        tV.setText("Il y a " + erreurs + " erreurs.");
 
     }
 
@@ -36,7 +37,7 @@ public class ErreurActivity extends AppCompatActivity {
 
     public void menu(View v)
     {
-        Intent it = new Intent(this, MainActivity.class);
+        Intent it = new Intent(this, MenuMatieresActivity.class);
         it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(it);
     }

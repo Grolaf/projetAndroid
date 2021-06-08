@@ -16,6 +16,9 @@ public interface LigneCalculDAO {
     @Query("SELECT * FROM lignecalcul")
     List<LigneCalcul> getAll();
 
+    @Query("SELECT * FROM lignecalcul WHERE ligneId = :id")
+    LigneCalcul getLigneCalculByID(int id);
+
     @Insert
     void insert(LigneCalcul ligneCalcul);
 
