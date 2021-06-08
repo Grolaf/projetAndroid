@@ -18,7 +18,6 @@
     <string name="level_hint">Choisis ton niveau !</string>
 
 
-
     <string name="client_inscription">Inscription</string>
     <string name="client_main_h2">Espace Elèves</string>
 
@@ -49,4 +48,6 @@
     <string name="error_mxm">Essaye encore !</string>
 
     <string name="listview_valider">Valider</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
