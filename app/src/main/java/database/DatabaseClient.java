@@ -75,7 +75,7 @@ public class DatabaseClient {
 
             NiveauConverter nv = new NiveauConverter();
             Random rand = new Random();
-            int idExercice = 1;
+            int idLigne = 1;
 
             // Niveau Facile
             for(int i = 1; i <= 10; i++)
@@ -83,7 +83,7 @@ public class DatabaseClient {
                 db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.FACILE) +", \"Maths\");");
                 for(int j = 1; j <= 3; j++)
                 {
-                    db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(10) + 1)  + ", \"+\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
+                    db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(10) + 1)  + ", \"+\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
                 }
             }
 
@@ -96,13 +96,13 @@ public class DatabaseClient {
                     switch(rand.nextInt(3) + 1)
                     {
                         case 1:
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(100) + 1)  + ", \"+\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(100) + 1)  + ", \"+\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
                             break;
                         case 2:
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(100) + 1)  + ", \"-\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(100) + 1)  + ", \"-\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
                             break;
                         case 3 :
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(10) + 1)  + ", \"*\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(10) + 1)  + ", \"*\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
                             break;
                     }
 
@@ -118,16 +118,16 @@ public class DatabaseClient {
                     switch(rand.nextInt(4) + 1)
                     {
                         case 1:
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(1000) + 1)  + ", \"+\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(1000) + 1)  + ", \"+\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
                             break;
                         case 2:
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(1000) + 1)  + ", \"-\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(1000) + 1)  + ", \"-\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
                             break;
                         case 3 :
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(100) + 1)  + ", \"*\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(100) + 1)  + ", \"*\", " + (rand.nextInt(100) + 1)  +", " + i + ");");
                             break;
                         case 4 :
-                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idExercice++ + ", " +(rand.nextInt(100) + 1)  + ", \"/\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
+                            db.execSQL("INSERT INTO lignecalcul VALUES(" + idLigne++ + ", " +(rand.nextInt(100) + 1)  + ", \"/\", " + (rand.nextInt(10) + 1)  +", " + i + ");");
                             break;
                     }
 
@@ -136,6 +136,37 @@ public class DatabaseClient {
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // QCM + LigneQCM
+            idLigne = 0;
+
+            db.execSQL("INSERT INTO qcm VALUES(" + 1 + ", \"Questions de calculs\", " + nv.fromNiveauToJson(Niveau.MOYEN) +", \"Maths\");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"100 : 10 = ?\", \" 1000\", \" 100\", \" 10\", null,\"B\", " + 1 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Je pars de chez moi à 9 h 00 je mets 15 mn pour aller à l'école, à quelle heure je serais arrivé ?\", \" 8 h 45\", \" 9 h 00\", \" 9 h 15\", null, \"C\", " + 1 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Wilfried avait 100 bonbons . Il en donne 70. Combien a-t-il de bonbons maintenant ?\", \" 170\", \" 30\", \" 17\",null, \"B\", " + 1 + ");");
+
+            db.execSQL("INSERT INTO qcm VALUES(" + 2 + ", \"Questions de calculs\", " + nv.fromNiveauToJson(Niveau.MOYEN) +", \"Maths\");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Eric avait 99 crayons . Il en gagne 49. Combien a-t-il de crayons maintenant ?\", \" 148\", \" 138\", \" 128\",null, \"A\", " + 2 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Arthur avait 50 crayons . Il en perd 5. Combien a-t-il de crayons maintenant ?\", \" 55\", \" 50\", \" 45\", null,\"B\", " + 2 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Sébastien avait 85 petites voitures . On lui en donne 45. Combien a-t-il de petites voitures maintenant ?\", \" 45\", \" 85\", \" 130\",null, \"C\", " + 2+ ");");
+
+
+            db.execSQL("INSERT INTO qcm VALUES(" + 3 + ", \"Questions de cours\", " + nv.fromNiveauToJson(Niveau.DIFFICILE) +", \"Maths\");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Lorsqu'il est écrit, lequel de ces nombres est mal orthographié ?\", \" Soixante-dix\", \" Quatre-vingt\", \" Deux cents\",\"Cinquante et un\", \"C\", " + 3 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Laquelle de ces propositions est juste ?\", \" 23 > 45\", \" 777 < 385\", \" 879 > 999\", \"576 > 394\", \"D\", " + 3 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Chaque nombre que l'on additionne s'appelle...\", \" Un produit\", \"  Un article\", \"  Un terme\",\"Une somme\", \"C\", " + 3 + ");");
+
+
+            db.execSQL("INSERT INTO qcm VALUES(" + 4 + ", \"Questions de cours\", " + nv.fromNiveauToJson(Niveau.DIFFICILE) +", \"Maths\");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"En posant la soustraction '376 - 48', tu auras besoin d'ajouter une dizaine au chiffre 6 et au chiffre...\", \" 4\", \" 8\", \" 3\", \"7\",\"A\", " + 4 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Comment s'appelle le résultat d'une multiplication ?\", \"La somme\", \"  Le produit\", \" L'article\",\"Le multiple\", \"B\", " + 4 + ");");
+                db.execSQL("INSERT INTO ligneqcm VALUES(" + idLigne++ + ", \"Quel est l'autre nom de la règle qui te sert à tracer des lignes ?\", \" Le centimètrier\", \" Le double-mètre\", \" Le double-décimètre\", \"La lignette\",\"C\", " + 4 + ");");
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         }
     };
 }
+

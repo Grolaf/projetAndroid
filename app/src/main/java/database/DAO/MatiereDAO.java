@@ -9,13 +9,16 @@ import androidx.room.Update;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import model.Exercice;
 import model.Matiere;
+import model.Niveau;
 import model.Utilisateur;
 import model.referencesClass.MatiereAndCalcul;
 import model.referencesClass.MatiereAndExercice;
+import model.referencesClass.MatiereAndQCM;
 
 @Dao
 public abstract class MatiereDAO {
@@ -26,8 +29,25 @@ public abstract class MatiereDAO {
     @Query("SELECT * FROM matiere WHERE nom = :nom")
     public abstract Matiere getMatiereWithID(String nom);
 
+
+    public List<String> getNiveaux(String nomMatiere)
+    {
+        ArrayList<String> niveaux = new ArrayList<>();
+
+        niveaux.addAll(getNiveauxCalcul(nomMatiere));
+        niveaux.addAll(getNiveauxQCM(nomMatiere));
+
+        HashSet<String> hset = new HashSet<>(niveaux);
+        niveaux = new ArrayList<>(hset);
+
+        return niveaux;
+    }
+
     @Query("SELECT distinct(niveau) FROM matiere m, calcul c WHERE m.nom = :nomMatiere AND m.nom = c.nomMatiere")
-    public abstract List<String> getNiveaux(String nomMatiere);
+    public abstract List<String> getNiveauxCalcul(String nomMatiere);
+
+    @Query("SELECT distinct(niveau) FROM matiere m, qcm c WHERE m.nom = :nomMatiere AND m.nom = c.nomMatiere")
+    public abstract List<String> getNiveauxQCM(String nomMatiere);
 
     @Insert
     public abstract void insert(Matiere matiere);
@@ -54,6 +74,11 @@ public abstract class MatiereDAO {
             retour.exercices.addAll(calculs.calculs);
         }
 
+        MatiereAndQCM qcms = getQCMAndMatiere(nomMatiere);
+        if(qcms != null) {
+            retour.exercices.addAll(qcms.qcms);
+        }
+
         return retour;
     }
 
@@ -62,5 +87,9 @@ public abstract class MatiereDAO {
     @Transaction
     @Query("SELECT * FROM matiere WHERE nom = :nomMatiere")
     abstract MatiereAndCalcul getCalculAndMatiere(String nomMatiere);
+
+    @Transaction
+    @Query("SELECT * FROM matiere WHERE nom = :nomMatiere")
+    abstract MatiereAndQCM getQCMAndMatiere(String nomMatiere);
 
 }
