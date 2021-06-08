@@ -62,8 +62,8 @@ public class DatabaseClient {
 
             //Matieres
             db.execSQL("INSERT INTO matiere VALUES(\"Maths\", \"@drawable/math\");");
-            db.execSQL("INSERT INTO matiere VALUES(\"Français\", \"@drawable/math\");");
-            db.execSQL("INSERT INTO matiere VALUES(\"Histoire\", \"@drawable/math\");");
+            db.execSQL("INSERT INTO matiere VALUES(\"Français\", \"@drawable/francais\");");
+            db.execSQL("INSERT INTO matiere VALUES(\"Histoire\", \"@drawable/history\");");
             db.execSQL("INSERT INTO matiere VALUES(\"Culture G\", \"@drawable/math\");");
             db.execSQL("INSERT INTO matiere VALUES(\"Anglais\", \"@drawable/math\");");
 

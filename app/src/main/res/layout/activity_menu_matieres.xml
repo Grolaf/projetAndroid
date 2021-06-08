@@ -70,9 +70,11 @@
 
         <GridView
             android:id="@+id/gridMatieres"
-            android:layout_width="459dp"
-            android:layout_height="450dp"
-            android:layout_marginTop="172dp"
+            android:layout_width="395dp"
+            android:layout_height="519dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="20dp"
             android:numColumns="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,22 +93,22 @@
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@color/yellow"
+        android:background="#40247CE8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" >
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="53dp"
-            android:layout_height="56dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="52dp"
             android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/circle_matiere_button"
+            android:background="@drawable/homebtn2"
             android:backgroundTint="@null"
-            android:text="🏠"
+
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,38 +117,36 @@
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="53dp"
-            android:layout_height="56dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/circle_matiere_button"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/infobtn"
             android:backgroundTint="@null"
-            android:text="info"
+
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.703"
+            app:layout_constraintHorizontal_bias="0.452"
             app:layout_constraintStart_toEndOf="@+id/button3"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"></Button>
+            app:layout_constraintVertical_bias="1.0"></Button>
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="53dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="116dp"
-            android:layout_marginLeft="116dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/circle_matiere_button"
+            android:background="@drawable/profile2btn"
             android:backgroundTint="@null"
             android:textColor="@color/white"
-            android:text="user"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"></Button>
+            app:layout_constraintTop_toTopOf="parent"></Button>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

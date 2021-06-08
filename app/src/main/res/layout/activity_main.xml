@@ -44,17 +44,19 @@
             android:textColor="@color/white"
             android:textSize="24sp" />
 
+
         <TextView
             android:id="@+id/sp_tv1"
-            android:layout_width="411dp"
-            android:layout_height="55dp"
+            android:layout_width="268dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/splash_h2"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp" />
-
+            android:textSize="18sp"
+            android:gravity="center_horizontal" />
 
         <Button
             android:id="@+id/start_btn"

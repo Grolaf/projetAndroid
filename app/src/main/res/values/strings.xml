@@ -50,4 +50,6 @@
     <string name="listview_valider">Valider</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question_math">Résoud les calculs suivant</string>
+    <string name="math_question">Math</string>
 </resources>
