@@ -69,4 +69,51 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintCircleRadius="20dp"
+        android:layout_margin="10dp"
+
+        app:cardBackgroundColor="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@color/card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabBackground="@drawable/bas_connect">
+
+            <com.google.android.material.tabs.TabItem
+                android:onClick="retourMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:icon="@drawable/home" />
+
+            <com.google.android.material.tabs.TabItem
+                android:onClick="pageProfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+
+                android:icon="@drawable/profile" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:icon="@drawable/door" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

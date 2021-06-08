@@ -53,7 +53,7 @@ public class Matiere implements Parcelable {
     protected Matiere(Parcel in) {
         nom = in.readString();
         image = in.readString();
-        exercices = in.readHashMap(HashMap.class.getClassLoader());
+        exercices = new HashMap<>();
     }
 
     public static final Creator<Matiere> CREATOR = new Creator<Matiere>() {
@@ -188,7 +188,7 @@ public class Matiere implements Parcelable {
             ArrayList<Exercice> exercices = (ArrayList) matiereExercices.exercices;
 
             for (Exercice e : exercices) {
-                e.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
+                e.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
                 this.addExercice(e);
             }
         }
@@ -203,6 +203,5 @@ public class Matiere implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nom);
         dest.writeString(image);
-        dest.writeMap(exercices);
     }
 }

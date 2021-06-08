@@ -87,22 +87,25 @@ public class Calcul extends Exercice implements Parcelable {
     }
 
     @Override
-    public void getElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    public void fetchElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
     {
         // Récupération des vainqueurss
-        super.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
+        super.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
 
-        CalculAndLigneCalcul lignes = exerciceDAO.getCalculAndLigneCalcul(this.exerciceId);
+    }
+
+    public void fetchLignesFromDatabase(ExerciceDAO exerciceDao)
+    {
+        CalculAndLigneCalcul lignes = exerciceDao.getCalculAndLigneCalcul(this.exerciceId);
 
         if(lignes != null) {
             this.lignes = (ArrayList) lignes.lignes;
         }
-
     }
 
     protected Calcul(Parcel in) {
         super(in);
-        lignes = in.createTypedArrayList(LigneCalcul.CREATOR);
+        lignes = new ArrayList<>();
     }
 
     public static final Creator<Calcul> CREATOR = new Creator<Calcul>() {
@@ -119,11 +122,7 @@ public class Calcul extends Exercice implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(exerciceId);
-        dest.writeString(titre);
-        dest.writeString(nomMatiere);
-        dest.writeTypedList(vainqueurs);
-        dest.writeTypedList(lignes);
+        super.writeToParcel(dest, flags);
     }
 
 

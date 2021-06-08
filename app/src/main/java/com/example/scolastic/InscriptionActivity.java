@@ -57,7 +57,14 @@ public class InscriptionActivity extends AppCompatActivity {
             @Override
             protected Utilisateur doInBackground(Void... voids) {
 
-                Utilisateur utilisateur = new Utilisateur(prenom, nom, "@drawable/user");
+                Utilisateur utilisateur = mDb.getAppDatabase().utilisateurDAO().getUtilisateur(prenom, nom);
+
+                if(utilisateur != null)
+                {
+                    return null;
+                }
+
+                utilisateur = new Utilisateur(prenom, nom, "@drawable/user");
 
                 mDb.getAppDatabase()
                         .utilisateurDAO()
@@ -70,13 +77,20 @@ public class InscriptionActivity extends AppCompatActivity {
             protected void onPostExecute(Utilisateur utilisateur) {
                 super.onPostExecute(utilisateur);
 
-                // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
-                setResult(RESULT_OK);
-                Intent intent = new Intent(InscriptionActivity.this, MenuMatieresActivity.class);
-                intent.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
-                startActivity(intent);
-                finish();
-                Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
+                if(utilisateur == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Un utilisateur porte déjà ces identifiants...", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
+                    setResult(RESULT_OK);
+                    Intent intent = new Intent(InscriptionActivity.this, MenuMatieresActivity.class);
+                    intent.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
+                    startActivity(intent);
+                    finish();
+                    Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
+                }
             }
         }
 
@@ -86,7 +100,7 @@ public class InscriptionActivity extends AppCompatActivity {
 
     public void seConnecter(View v)
     {
-        Intent intent = new Intent(InscriptionActivity.this, PageProfilActivity.class);
+        Intent intent = new Intent(InscriptionActivity.this, ListElevesActivity.class);
         startActivity(intent);
         finish();
     }

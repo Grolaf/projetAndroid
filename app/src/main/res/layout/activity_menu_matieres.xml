@@ -96,6 +96,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -104,6 +105,7 @@
             app:tabBackground="@drawable/bas_connect">
 
             <com.google.android.material.tabs.TabItem
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -112,6 +114,7 @@
                 android:icon="@drawable/home" />
 
             <com.google.android.material.tabs.TabItem
+                android:onClick="pageProfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"

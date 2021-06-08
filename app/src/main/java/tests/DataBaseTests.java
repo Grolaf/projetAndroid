@@ -304,8 +304,8 @@ public class DataBaseTests {
         assert(francaisDB.getExercices(Niveau.DIFFICILE).size() == 1);
         assert(francaisDB.getExercices(Niveau.DIFFICILE).get(0).equals(b));
 
-        mathsDB.getExercices(Niveau.FACILE).get(0).getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
-        francaisDB.getExercices(Niveau.DIFFICILE).get(0).getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        mathsDB.getExercices(Niveau.FACILE).get(0).fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        francaisDB.getExercices(Niveau.DIFFICILE).get(0).fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
 
         assert(mathsDB.getExercices(Niveau.FACILE).get(0).getNomMatiere().equals("Maths"));
         assert(mathsDB.getExercices(Niveau.FACILE).get(0).getTitre().equals("Calcul1"));
@@ -343,7 +343,7 @@ public class DataBaseTests {
 
         ArrayList<Calcul> calculs = (ArrayList)exerciceDAO.getAllCalculs();
         Calcul aDb = calculs.get(0);
-        aDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        aDb.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
         aDb.addVainqueur(u1);
         UtilisateurExerciceCrossReference ref = new UtilisateurExerciceCrossReference(utilisateurDAO.getUtilisateurID(u1.getPrenom(), u1.getNom()), aDb.exerciceId);
         utilisateurExerciceCrossRefDAO.insert(ref);
@@ -351,7 +351,7 @@ public class DataBaseTests {
         utilisateurDAO.update(u1);
 
         Calcul bDb = calculs.get(1);
-        bDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        bDb.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
         bDb.addVainqueur(u2);
         ref = new UtilisateurExerciceCrossReference(utilisateurDAO.getUtilisateurID(u2.getPrenom(), u2.getNom()), bDb.exerciceId);
         utilisateurExerciceCrossRefDAO.insert(ref);
@@ -362,13 +362,13 @@ public class DataBaseTests {
 
         calculs = (ArrayList)exerciceDAO.getAllCalculs();
         aDb = calculs.get(0);
-        aDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        aDb.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
 
         assert(aDb.isWinner(u1));
         assert(!aDb.isWinner(u2));
 
         bDb = calculs.get(1);
-        bDb.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        bDb.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
 
         assert(bDb.isWinner(u2));
         assert(!bDb.isWinner(u1));
@@ -378,8 +378,8 @@ public class DataBaseTests {
         u1 = utilisateurDAO.getUtilisateur("test1", "test1");
         u2 = utilisateurDAO.getUtilisateur("test2", "test2");
 
-        u1.getElementsFromDataBase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
-        u2.getElementsFromDataBase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        u1.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
+        u2.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDao);
 
         assert(u1.getExercicesResolus().size() == 1);
         assert(u1.getExercicesResolus(Niveau.FACILE, maths).get(0).equals(a));

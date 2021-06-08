@@ -1,6 +1,7 @@
 package com.example.scolastic;
 
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import org.w3c.dom.Text;
 
@@ -100,6 +104,11 @@ public class MenuMatieresActivity extends AppCompatActivity {
         getMatieres();
     }
 
-
-
+    public void pageProfil(View view)
+    {
+        Intent it = new Intent(this, PageProfilActivity.class);
+        it.putExtra(PageProfilActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
+    }
 }
