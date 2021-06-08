@@ -16,7 +16,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>ListElevesActivity
+        <activity android:name=".ListElevesActivity" />
         <activity android:name=".InscriptionActivity" />
         <activity android:name=".MenuMatieresActivity" />
         <activity android:name=".MenuNiveauActivity" />

@@ -11,6 +11,9 @@ import java.util.List;
 
 import model.Calcul;
 import model.Exercice;
+import model.LigneCalcul;
+import model.Matiere;
+import model.Niveau;
 import model.referencesClass.CalculAndLigneCalcul;
 
 
@@ -20,7 +23,6 @@ public abstract class ExerciceDAO {
 
     @Query("SELECT * FROM calcul")
     public abstract List<Calcul> getAllCalculs();
-
 
     @Query("SELECT max(exerciceId) FROM calcul")
     public abstract int maxId();

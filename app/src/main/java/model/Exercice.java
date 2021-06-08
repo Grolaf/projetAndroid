@@ -2,6 +2,7 @@ package model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -71,8 +72,8 @@ public class Exercice implements Parcelable {
         exerciceId = in.readInt();
         titre = in.readString();
         nomMatiere = in.readString();
-        vainqueurs = in.createTypedArrayList(Utilisateur.CREATOR);
-        matiere = in.readParcelable(Matiere.class.getClassLoader());
+        niveau = Niveau.valueOf(in.readString());
+        vainqueurs = new ArrayList<>();
     }
 
     public static final Creator<Exercice> CREATOR = new Creator<Exercice>() {
@@ -170,15 +171,25 @@ public class Exercice implements Parcelable {
         return this.titre.equals(other.titre);
     }
 
-    public void getElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    public void fetchElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    {
+        fetchMatiereFromDatabase(matiereDAO);
+        fetchVainqueursFromDatabase(utilisateurExerciceCrossRefDAO);
+    }
+
+    public void fetchMatiereFromDatabase(MatiereDAO matiereDAO)
     {
         this.matiere = matiereDAO.getMatiereWithID(this.nomMatiere);
+    }
 
+    public void fetchVainqueursFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO)
+    {
         ExerciceAndUtilisateur utilisateurs = utilisateurExerciceCrossRefDAO.getExerciceWithUtilisateur(this.exerciceId);
         if(utilisateurs != null) {
             this.vainqueurs = (ArrayList) utilisateurs.utilisateurs;
         }
     }
+
 
     @Override
     public int describeContents() {
@@ -190,8 +201,7 @@ public class Exercice implements Parcelable {
         dest.writeInt(exerciceId);
         dest.writeString(titre);
         dest.writeString(nomMatiere);
-        dest.writeTypedList(vainqueurs);
-        dest.writeParcelable(matiere, PARCELABLE_WRITE_RETURN_VALUE);
+        dest.writeString(niveau.name());
     }
 }
 

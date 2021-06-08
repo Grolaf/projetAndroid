@@ -1,5 +1,6 @@
 package model;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,8 +9,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import database.DAO.ExerciceDAO;
 import database.DAO.MatiereDAO;
@@ -56,7 +59,7 @@ public class Utilisateur implements Parcelable {
         prenom = in.readString();
         nom = in.readString();
         avatar = in.readString();
-        exercicesResolus = in.readHashMap(HashMap.class.getClassLoader());
+        this.exercicesResolus = new HashMap<>();
     }
 
     public static final Creator<Utilisateur> CREATOR = new Creator<Utilisateur>() {
@@ -103,6 +106,19 @@ public class Utilisateur implements Parcelable {
             return null;
         }
         return this.exercicesResolus.get(m.getNom()).get(n);
+    }
+
+    public ArrayList<Exercice> getExercicesResolusArrayList()
+    {
+        ArrayList<Exercice> exercices = new ArrayList<>();
+        for(String s : this.exercicesResolus.keySet())
+        {
+            for(Niveau n : this.exercicesResolus.get(s).keySet())
+            {
+                exercices.addAll(this.exercicesResolus.get(s).get(n));
+            }
+        }
+        return exercices;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -161,15 +177,16 @@ public class Utilisateur implements Parcelable {
         return this.prenom.equals(other.prenom) && this.nom.equals(other.nom) && this.avatar.equals(other.avatar);
     }
 
-    public void getElementsFromDataBase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
+    public void fetchElementsFromDatabase(UtilisateurExerciceCrossRefDAO utilisateurExerciceCrossRefDAO, ExerciceDAO exerciceDAO, MatiereDAO matiereDAO)
     {
+        this.exercicesResolus = new HashMap<>();
         UtilisateurAndExercice exercices = utilisateurExerciceCrossRefDAO.getUtilisateurWithExercice(this.nom, this.prenom);
 
         if(exercices != null) {
             ArrayList<Exercice> exercicesResolus = (ArrayList) exercices.exercices;
 
             for (Exercice e : exercicesResolus) {
-                e.getElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
+                e.fetchElementsFromDatabase(utilisateurExerciceCrossRefDAO, exerciceDAO, matiereDAO);
                 addExerciceResolu(e);
             }
         }
@@ -186,7 +203,6 @@ public class Utilisateur implements Parcelable {
         dest.writeString(prenom);
         dest.writeString(nom);
         dest.writeString(avatar);
-        dest.writeMap(exercicesResolus);
     }
 }
 

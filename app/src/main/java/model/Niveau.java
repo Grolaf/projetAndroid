@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey;
 
 public enum Niveau implements Comparable<Niveau>{
 
-    FACILE("Facile", 1),
-    MOYEN("Moyen", 2),
-    DIFFICILE("Difficile", 3);
+    FACILE("FACILE", 1),
+    MOYEN("MOYEN", 2),
+    DIFFICILE("DIFFICILE", 3);
 
     private final int valeur;
     private final String nom;

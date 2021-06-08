@@ -79,7 +79,9 @@ public class MenuNiveauActivity extends AppCompatActivity {
                 matiere = matiereRetour;
                 // Mettre à jour l'adapter avec la liste de matieres
                 adapter.clear();
-                adapter.addAll(matiere.getNiveaux());
+
+                if(matiere.getNiveaux() != null)
+                    adapter.addAll(matiere.getNiveaux());
 
                 // Now, notify the adapter of the change in source
                 adapter.notifyDataSetChanged();
@@ -121,5 +123,18 @@ public class MenuNiveauActivity extends AppCompatActivity {
 
         // Mise à jour des matieres
         getMatiereAndNiveaux();
+    }
+
+    public void retourMenu(View view)
+    {
+        finish();
+    }
+
+    public void pageProfil(View view)
+    {
+        Intent it = new Intent(this, PageProfilActivity.class);
+        it.putExtra(PageProfilActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
     }
 }

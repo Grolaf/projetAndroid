@@ -24,6 +24,7 @@ import model.LigneCalcul;
 import model.Matiere;
 import model.Niveau;
 import model.Utilisateur;
+import model.referencesClass.UtilisateurExerciceCrossReference;
 import tests.ExercicesTests;
 
 public abstract class ExerciceActivity extends AppCompatActivity {
@@ -46,7 +47,26 @@ public abstract class ExerciceActivity extends AppCompatActivity {
     }
 
     protected void reussirExercice(Exercice e){
-        e.addVainqueur(utilisateur);
+
+        class ReussirExercice extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                utilisateur.fetchElementsFromDatabase(mDb.getAppDatabase().utilisateurExerciceCrossRefDAO(), mDb.getAppDatabase().exerciceDAO(), mDb.getAppDatabase().matiereDAO());
+                e.fetchElementsFromDatabase(mDb.getAppDatabase().utilisateurExerciceCrossRefDAO(), mDb.getAppDatabase().exerciceDAO(), mDb.getAppDatabase().matiereDAO());
+                utilisateur.addExerciceResolu(e);
+                UtilisateurExerciceCrossReference ref = new UtilisateurExerciceCrossReference(mDb.getAppDatabase().utilisateurDAO().getUtilisateurID(utilisateur.getPrenom(), utilisateur.getNom()),  e.exerciceId);
+                mDb.getAppDatabase().utilisateurExerciceCrossRefDAO().insert(ref);
+                mDb.getAppDatabase().exerciceDAO().update(e);
+                mDb.getAppDatabase().utilisateurDAO().update(utilisateur);
+
+                return null;
+            }
+
+        }
+
+        ReussirExercice reussir = new ReussirExercice();
+        reussir.execute();
     }
 
 }
