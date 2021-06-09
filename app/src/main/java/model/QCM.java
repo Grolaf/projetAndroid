@@ -73,7 +73,7 @@ public class QCM extends Exercice{
             if(it.hasNext())
             {
                 String rep = (String) it.next();
-                if(!rep.equals(l.getBonneReponse()))
+                if(!rep.equals("reponse"))
                 {
                     erreur++;
                 }

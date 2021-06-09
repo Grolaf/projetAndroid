@@ -76,8 +76,8 @@ public class ExerciceQCMActivity extends ExerciceActivity{
             RadioGroup group = (RadioGroup) view.findViewById(R.id.group);
             RadioButton bouton = (RadioButton) view.findViewById(group.getCheckedRadioButtonId());
 
-            reponses.add(bouton.getTag().toString());
-            // tu fais ce que tu veux avec ton texte
+            if(bouton != null)
+              reponses.add(bouton.getTag().toString());
         }
 
 
