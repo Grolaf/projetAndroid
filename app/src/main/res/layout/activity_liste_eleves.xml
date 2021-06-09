@@ -50,9 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="44dp"
-        android:background="@drawable/ic_gradient_bt"
+        android:background="@drawable/ic_btn_sp"
         android:text="@string/client_inscription"
-        app:backgroundTint="@color/main_text"
+        app:backgroundTint="@null"
+        android:textColor="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

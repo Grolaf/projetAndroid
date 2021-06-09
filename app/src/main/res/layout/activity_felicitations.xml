@@ -12,15 +12,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="432dp"
-        android:layout_height="181dp"
+        android:layout_width="507dp"
+        android:layout_height="215dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_slashmain_bw"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/pass_img"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"></ImageView>
 
@@ -30,7 +29,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="248dp"
         android:fontFamily="@font/roboto_medium"
-        android:rotationX="23"
         android:text="@string/felicitations"
         android:textColor="@color/white"
         android:textSize="40dp"
@@ -48,12 +46,14 @@
         android:text="@string/felicitation_texte"
         android:textColor="@color/white"
         android:textSize="20dp"
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -68,38 +68,40 @@
     <Button
         android:id="@+id/button"
 
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
+        android:layout_width="166dp"
+        android:layout_height="66dp"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="112dp"
-        app:backgroundTint="@null"
-        android:textColor="@color/background"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/ic_btn_sp"
         android:onClick="menu"
         android:text="@string/felicitation_btn1"
+        android:textColor="@color/background"
+        android:textSize="14dp"
+        app:backgroundTint="@null"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
+        android:layout_width="165dp"
+        android:layout_height="67dp"
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="112dp"
-        app:backgroundTint="@null"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/ic_btn_sp"
         android:onClick="scores"
         android:text="@string/felicitation_btn2"
         android:textColor="@color/background"
+        android:textSize="14dp"
+        app:backgroundTint="@null"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toEndOf="@+id/button" />
 
 

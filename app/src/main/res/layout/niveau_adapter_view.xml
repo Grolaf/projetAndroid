@@ -10,16 +10,17 @@
 
     <Button
         android:id="@+id/nomNiveau"
-        android:layout_width="wrap_content"
+        android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
+        android:background="@drawable/circle_matiere_button"
         android:fontFamily="@font/roboto_medium"
         android:onClick="choixNiveau"
         android:padding="10dp"
-        android:textColor="@color/main_text"
+        android:textColor="@color/white"
         android:textSize="24dp"
-        app:backgroundTint="#FFFFFF"
-        app:iconTint="#1976D2" />
+        app:backgroundTint="@null"
+        app:iconTint="@null" />
     
     <Space
         android:layout_width="match_parent"
