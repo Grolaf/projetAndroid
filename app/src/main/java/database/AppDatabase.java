@@ -11,7 +11,9 @@ import database.DAO.UtilisateurExerciceCrossRefDAO;
 import model.Calcul;
 import model.Exercice;
 import model.LigneCalcul;
+import model.LigneQCM;
 import model.Matiere;
+import model.QCM;
 import model.Utilisateur;
 import model.referencesClass.UtilisateurExerciceCrossReference;
 
@@ -22,6 +24,8 @@ import model.referencesClass.UtilisateurExerciceCrossReference;
         Calcul.class,
         UtilisateurExerciceCrossReference.class,
         Matiere.class,
+        QCM.class,
+        LigneQCM.class
         }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 

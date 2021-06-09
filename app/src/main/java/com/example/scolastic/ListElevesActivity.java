@@ -89,7 +89,7 @@ public class ListElevesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuMatieresActivity.class);
         intent.putExtra(MenuMatieresActivity.UTILISATEUR, choix);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Connecté en tant que " + choix.getPrenom() + " " + choix.getPrenom() ,  Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Connecté en tant que " + choix.getPrenom() + " " + choix.getNom() ,  Toast.LENGTH_LONG).show();
     }
 
     public void inscription(View view)
