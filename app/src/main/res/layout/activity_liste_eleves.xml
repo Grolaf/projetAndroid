@@ -12,14 +12,15 @@
     >
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="381dp"
         android:layout_height="47dp"
+        android:fontFamily="@font/righteous"
         android:gravity="center"
         android:text="@string/client_main_h2"
         android:textColor="@color/white"
         android:textSize="40dp"
         android:textStyle="bold"
-        android:fontFamily="@font/righteous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
@@ -33,29 +34,38 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-
-        <ListView
-            android:id="@+id/linearLayoutAdapter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </ListView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </LinearLayout>
 
     <Button
-        android:onClick="inscription"
+        android:id="@+id/button7"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="44dp"
         android:background="@drawable/ic_btn_sp"
+        android:onClick="inscription"
         android:text="@string/client_inscription"
-        app:backgroundTint="@null"
         android:textColor="@color/background"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/linearLayoutAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="@color/cardBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.362">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

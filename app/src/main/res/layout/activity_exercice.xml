@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/layoutMain"
-    android:background="@drawable/main_backgroud"
+    android:background="@drawable/background_forall"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,20 +32,20 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:layout_width="216dp"
-            android:layout_height="58dp"
+            android:layout_width="302dp"
+            android:layout_height="64dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
-            android:text="@string/question_math"
+            android:text="Clique sur valider apres avoir répondu au question suivante"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="25dp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.203"></TextView>
+            app:layout_constraintVertical_bias="0.092"></TextView>
 
         <ListView
             android:id="@+id/listView"

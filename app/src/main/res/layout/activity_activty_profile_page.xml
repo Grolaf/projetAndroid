@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Page de Profiles -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +9,7 @@
     android:background="@drawable/ic_main_bwm"
     android:orientation="vertical"
     tools:context=".activty_profile_page">
+
 
     <Button
         android:id="@+id/prof_back_btn"
@@ -32,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -43,7 +47,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
 
-            android:src="@drawable/profile"
+            android:src="@drawable/profile2btn"
             app:tint="@color/background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.514"
@@ -61,25 +65,26 @@
 
                 android:layout_width="253dp"
                 android:layout_height="39dp"
-
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="126dp"
-                android:layout_marginLeft="126dp"
-                android:layout_marginTop="108dp"
-                android:layout_marginEnd="-8dp"
-                android:layout_marginRight="-8dp"
-                android:layout_marginBottom="548dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="142dp"
+                android:layout_marginEnd="67dp"
+                android:layout_marginRight="67dp"
+                android:layout_marginBottom="474dp"
                 android:fontFamily="@font/righteous"
                 android:text="@string/profile_info"
                 android:textColor="@color/white"
-                android:textSize="26sp" />
+                android:textSize="26dp" />
 
         </RelativeLayout>
+
+        <!-- Bouton d'Action -->
 
         <Button
             android:layout_width="wrap_content"
@@ -95,6 +100,8 @@
             app:layout_constraintStart_toStartOf="parent"></Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Menu de Navigation -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomNavigationView"

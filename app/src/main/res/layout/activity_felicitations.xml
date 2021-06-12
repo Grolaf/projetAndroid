@@ -65,6 +65,7 @@
 
     </LinearLayout>
 
+    <!-- Bouton d'action -->
     <Button
         android:id="@+id/button"
 

@@ -9,7 +9,7 @@
 
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/matiere"
         android:layout_width="351dp"
         android:layout_height="92dp"
@@ -23,36 +23,53 @@
 
         <ImageView
             android:id="@+id/imageEleve"
-            android:layout_width="77dp"
-            android:layout_height="71dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_width="74dp"
+            android:layout_height="67dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="15dp"
             android:onClick="menu"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.523"
-            app:tint="#4DCFC3"
-            tools:ignore="MissingConstraints" />
+            app:tint="#4DCFC3" />
 
         <TextView
             android:id="@+id/nomEleve"
             android:layout_width="171dp"
             android:layout_height="20dp"
-            android:fontFamily="@font/roboto_medium"
+            android:layout_alignParentStart="true"
 
-            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="131dp"
+            android:layout_marginLeft="131dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="49dp"
+            android:layout_marginRight="49dp"
+            android:layout_marginBottom="41dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/french_text"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageEleve"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.152" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </LinearLayout>
 
