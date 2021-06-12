@@ -3,30 +3,25 @@ package com.example.scolastic;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import adapters.NiveauAdapter;
-import database.DAO.UtilisateurExerciceCrossRefDAO;
 import database.DatabaseClient;
 import exercices.ExerciceActivity;
 import exercices.ExerciceCalculActivity;
+import exercices.ExerciceQCMActivity;
 import model.Calcul;
 import model.Exercice;
 import model.Matiere;
 import model.Niveau;
+import model.QCM;
 import model.Utilisateur;
 
 public class MenuNiveauActivity extends AppCompatActivity {
@@ -104,6 +99,11 @@ public class MenuNiveauActivity extends AppCompatActivity {
         if(exerciceAFaire.getClass() == Calcul.class) {
             it = new Intent(this, ExerciceCalculActivity.class);
             Calcul exercice = (Calcul) exerciceAFaire;
+            it.putExtra(ExerciceActivity.EXERCICE_A_FAIRE, exercice);
+        }
+        else if(exerciceAFaire.getClass() == QCM.class) {
+            it = new Intent(this, ExerciceQCMActivity.class);
+            QCM exercice = (QCM) exerciceAFaire;
             it.putExtra(ExerciceActivity.EXERCICE_A_FAIRE, exercice);
         }
 

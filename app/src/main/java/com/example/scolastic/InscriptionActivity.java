@@ -64,7 +64,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     return null;
                 }
 
-                utilisateur = new Utilisateur(prenom, nom, "@drawable/user");
+                utilisateur = new Utilisateur(prenom, nom, "@drawable/profile");
 
                 mDb.getAppDatabase()
                         .utilisateurDAO()

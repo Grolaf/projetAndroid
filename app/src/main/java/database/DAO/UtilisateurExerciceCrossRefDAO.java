@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import model.Exercice;
 import model.referencesClass.CalculAndUtilisateur;
 import model.referencesClass.ExerciceAndUtilisateur;
+import model.referencesClass.QCMAndUtilisateur;
 import model.referencesClass.UtilisateurAndCalcul;
 import model.referencesClass.UtilisateurAndExercice;
+import model.referencesClass.UtilisateurAndQCM;
 import model.referencesClass.UtilisateurExerciceCrossReference;
 
 @Dao
@@ -45,12 +47,22 @@ public abstract class UtilisateurExerciceCrossRefDAO {
             retour.exercices.addAll(calculs.calculs);
         }
 
+        UtilisateurAndQCM qcms = getUtilisateurAndQCM(nom, prenom);
+        if(qcms != null)
+        {
+            retour.exercices.addAll(qcms.qcms);
+        }
+
         return retour;
     }
 
     @Transaction
     @Query("SELECT * FROM utilisateur WHERE nom = :nom AND prenom = :prenom")
     abstract UtilisateurAndCalcul getUtilisteurAndCalcul(String nom, String prenom);
+
+    @Transaction
+    @Query("SELECT * FROM utilisateur WHERE nom = :nom AND prenom = :prenom")
+    abstract UtilisateurAndQCM getUtilisateurAndQCM(String nom, String prenom);
 
 
     // Partie Exercices -> Utilisateurs //
@@ -68,10 +80,20 @@ public abstract class UtilisateurExerciceCrossRefDAO {
             retour.utilisateurs.addAll(calculsUtilisateurs.utilisateurs);
         }
 
+        QCMAndUtilisateur qcmAndUtilisateur = getQCMWithUtilisateur(exerciceId);
+
+        if(qcmAndUtilisateur != null)
+        {
+            retour.utilisateurs.addAll(qcmAndUtilisateur.utilisateurs);
+        }
+
         return retour;
     }
 
     @Query("SELECT * FROM calcul WHERE exerciceId = :exerciceId")
     abstract CalculAndUtilisateur getCalculWithUtilisateur(int exerciceId);
+
+    @Query("SELECT * FROM qcm WHERE exerciceId = :exerciceId")
+    abstract QCMAndUtilisateur getQCMWithUtilisateur(int exerciceId);
 
 }

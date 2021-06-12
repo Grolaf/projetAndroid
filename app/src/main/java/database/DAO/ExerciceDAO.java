@@ -14,7 +14,9 @@ import model.Exercice;
 import model.LigneCalcul;
 import model.Matiere;
 import model.Niveau;
+import model.QCM;
 import model.referencesClass.CalculAndLigneCalcul;
+import model.referencesClass.QCMAndLigneQCM;
 
 
 // Doit être modifié à chaque ajout d'une classe fille
@@ -23,6 +25,9 @@ public abstract class ExerciceDAO {
 
     @Query("SELECT * FROM calcul")
     public abstract List<Calcul> getAllCalculs();
+
+    @Query("SELECT * FROM qcm")
+    public abstract List<Calcul> getAllQCM();
 
     @Query("SELECT max(exerciceId) FROM calcul")
     public abstract int maxId();
@@ -34,6 +39,10 @@ public abstract class ExerciceDAO {
         {
             insert((Calcul) exercice);
         }
+        else if(exercice.getClass() == QCM.class)
+        {
+            insert((QCM) exercice);
+        }
     }
 
     @Insert
@@ -42,6 +51,10 @@ public abstract class ExerciceDAO {
         for(Exercice e : exercice) {
             if (e.getClass() == Calcul.class) {
                 insert((Calcul) e);
+            }
+            else if(e.getClass() == QCM.class)
+            {
+                insert((QCM) e);
             }
         }
 
@@ -55,6 +68,10 @@ public abstract class ExerciceDAO {
         {
             delete((Calcul) exercice);
         }
+        else if(exercice.getClass() == QCM.class)
+        {
+            delete((QCM) exercice);
+        }
     }
 
     @Update
@@ -63,6 +80,10 @@ public abstract class ExerciceDAO {
         if(exercice.getClass() == Calcul.class)
         {
             update((Calcul) exercice);
+        }
+        else if(exercice.getClass() == QCM.class)
+        {
+            update((QCM) exercice);
         }
     }
 
@@ -86,5 +107,22 @@ public abstract class ExerciceDAO {
     @Transaction
     @Query("SELECT * FROM calcul WHERE exerciceId = :id")
     public abstract CalculAndLigneCalcul getCalculAndLigneCalcul(int id);
+
+    // Pour la table QCM //
+    @Insert
+    abstract void insert(QCM qcm);
+
+    @Insert
+    abstract long[] insertAll(QCM... qcm);
+
+    @Delete
+    abstract void delete(QCM qcm);
+
+    @Update
+    abstract void update(QCM qcm);
+
+    @Transaction
+    @Query("SELECT * FROM qcm WHERE exerciceId = :id")
+    public abstract QCMAndLigneQCM getQCMAndLigneQCM(int id);
 
 }
