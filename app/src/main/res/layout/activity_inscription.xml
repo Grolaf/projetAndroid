@@ -16,8 +16,7 @@
         android:layout_width="171dp"
         android:layout_height="102dp"
         android:layout_marginTop="40dp"
-        android:transitionName="sp_image"
-        app:srcCompat="@drawable/logored"
+                app:srcCompat="@drawable/ic_launcher_logo"
         tools:ignore="ContentDescription" />
 
     <TextView

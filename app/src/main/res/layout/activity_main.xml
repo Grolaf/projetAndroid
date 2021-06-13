@@ -12,27 +12,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="730dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
         android:gravity="center"
         android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/sp_logo"
-        android:layout_width="198dp"
-        android:layout_height="350dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="107dp"
-        android:layout_marginLeft="107dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginRight="106dp"
-        android:gravity="center"
+        <ImageView
+            android:id="@+id/sp_logo"
+            android:layout_width="198dp"
+            android:layout_height="350dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="107dp"
+            android:layout_marginLeft="107dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="106dp"
+            android:layout_marginRight="106dp"
+            android:gravity="center"
 
-        android:src="@drawable/logored" />
+            android:src="@drawable/logosplash" />
 
         <TextView
             android:id="@+id/sp_tv"
@@ -52,11 +54,11 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
             android:text="@string/splash_h2"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:gravity="center_horizontal" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/start_btn"
@@ -64,12 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="90dp"
             android:background="@drawable/splash_btn_real"
+            android:elevation="100dp"
             android:fontFamily="@font/roboto_medium"
+            android:shadowColor="@color/white"
             android:text="@string/splash_btn"
             android:textColor="@color/background"
             android:textSize="16sp"
-            android:elevation="100dp"
-            android:shadowColor="@color/white"
 
             app:backgroundTint="@null"
 
