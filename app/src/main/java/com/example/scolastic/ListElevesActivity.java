@@ -7,8 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,10 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import adapters.MatieresAdapter;
 import adapters.UtilisateurAdapter;
 import database.DatabaseClient;
-import model.Matiere;
 import model.Utilisateur;
 
 public class ListElevesActivity extends AppCompatActivity {
@@ -36,7 +32,7 @@ public class ListElevesActivity extends AppCompatActivity {
         this.mDb = DatabaseClient.getInstance(getApplicationContext());
 
         // Récupérer les vues
-        ListView gL = (ListView) findViewById(R.id.linearLayoutAdapter);
+        ListView gL = (ListView) findViewById(R.id.listViewAdapter);
 
         // Lier l'adapter au gridView
         this.adapter = new UtilisateurAdapter(this, R.layout.utilisateur_adapter_view, new ArrayList<>());

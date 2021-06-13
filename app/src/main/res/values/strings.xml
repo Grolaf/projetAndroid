@@ -1,11 +1,14 @@
 <resources>
 
+    <!-- Information -->
     <string name="app_name">Scolastic</string>
 
+    <!-- Fenêtre de Demmarage -->
     <string name="splash_h6">Bienvenue à Scolastic </string>
     <string name="splash_h2">Appuyez sur COMMENCER pour continuer</string>
     <string name="splash_btn">COMMENCER</string>
 
+    <!-- Fenêtre de Connexion -->
     <string name="connect_h4">NOUVEAU ?</string>
     <string name="connect_h2">INSCRIT TOI !</string>
     <string name="connect_join">Rejoinre</string>
@@ -14,12 +17,21 @@
     <string name="connect_name">Nom</string>
     <string name="connect_inscription">Inscription :</string>
 
+    <!-- Fenêtre de Niveau -->
     <string name="level_top">Difficultés</string>
     <string name="level_hint">Choisis ton niveau !</string>
 
-
+    <!-- Fenêtre d'Inscription -->
     <string name="client_inscription">Inscription</string>
     <string name="client_main_h2">Espace Elèves</string>
+
+    <!-- Fenêtre Profile -->
+    <string name="tableau_scores">Tableau des scores</string>
+    <string name="joueur">Joueur</string>
+    <string name="score">Score</string>
+
+    <!-- Fenêtre Scores -->
+    <string name="client_menu">Menu</string>
 
 
     <string name="profile_top">Profile</string>
@@ -28,6 +40,7 @@
     <string name="profile_hours">Heures</string>
     <string name="profile_desincription">Se désincrire</string>
 
+    <!-- Fenêtre Principale -->
     <string name="main_main_h2">Page Principale</string>
     <string name="main_hint">Choisis ton activité !</string>
     <string name="main_french">Francais</string>
@@ -35,20 +48,23 @@
     <string name="main_top">Matiéres</string>
     <string name="main_history">Histoire</string>
 
-    <string name="splash_down">Studio Blue</string>
-
+    <!-- Fenêtre de Félicitation -->
     <string name="felicitations">Felicitations !</string>
     <string name="felicitation_texte">Et un exercice réussi de plus !</string>
     <string name="felicitation_btn1">Retour menu</string>
     <string name="felicitation_btn2">Tableau de scores</string>
 
+    <!-- Fenêtre d'Erreur -->
     <string name="error_corriger">Corriger</string>
     <string name="error_return">Revenir au menu</string>
     <string name="error_main">Il y a des erreurs...</string>
     <string name="error_mxm">Essaye encore !</string>
 
+    <!-- Bouton Liste Questions -->
     <string name="listview_valider">Valider</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <!-- Autres  -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="question_math">Résoud les calculs suivant</string>
     <string name="math_question">Math</string>

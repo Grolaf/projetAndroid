@@ -67,6 +67,7 @@
 
     </LinearLayout>
 
+    <!-- Bouton d'Action -->
     <Button
         android:layout_width="170dp"
         android:layout_height="wrap_content"

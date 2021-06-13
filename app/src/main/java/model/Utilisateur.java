@@ -108,6 +108,15 @@ public class Utilisateur implements Parcelable {
         return this.exercicesResolus.get(m.getNom()).get(n);
     }
 
+    public ArrayList<Exercice> getExercicesResolus(Niveau n, String matiere)
+    {
+        if(this.exercicesResolus.get(matiere) == null)
+        {
+            return null;
+        }
+        return this.exercicesResolus.get(matiere).get(n);
+    }
+
     public ArrayList<Exercice> getExercicesResolusArrayList()
     {
         ArrayList<Exercice> exercices = new ArrayList<>();
@@ -119,6 +128,18 @@ public class Utilisateur implements Parcelable {
             }
         }
         return exercices;
+    }
+
+    public int getScore()
+    {
+        int score = 0;
+
+        for(Exercice e : getExercicesResolusArrayList())
+        {
+            score += e.getNiveau().getValeur();
+        }
+
+        return score;
     }
 
     ///////////////////////////////////////////////////////////////////////////

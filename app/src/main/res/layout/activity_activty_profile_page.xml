@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Page de Profiles -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_main_bwm"
     android:orientation="vertical"
-    tools:context=".activty_profile_page">
+    tools:context=".PageProfilActivity">
 
     <Button
         android:id="@+id/prof_back_btn"
@@ -14,12 +16,12 @@
         android:layout_height="37dp"
         android:layout_gravity="end"
         android:layout_marginEnd="20dp"
-        android:onClick="seConnecter"
+        android:onClick="retour"
         android:background="@drawable/ic_arrow_back"
         android:layout_marginRight="20dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textProfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-35dp"
@@ -39,6 +41,7 @@
         android:layout_gravity="center">
 
         <ImageView
+            android:id="@+id/imageProfil"
             android:layout_width="139dp"
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
@@ -50,36 +53,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ScrollView
+            android:layout_width="412dp"
+            android:layout_height="344dp"
+            android:layout_marginTop="104dp"
             android:gravity="center"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-2dp">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/achievements"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                android:layout_width="253dp"
-                android:layout_height="39dp"
+                <TextView
+                    android:id="@+id/scoreProfilPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/righteous"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
 
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="126dp"
-                android:layout_marginLeft="126dp"
-                android:layout_marginTop="108dp"
-                android:layout_marginEnd="-8dp"
-                android:layout_marginRight="-8dp"
-                android:layout_marginBottom="548dp"
-                android:fontFamily="@font/righteous"
-                android:text="@string/profile_info"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
+            </LinearLayout>
+        </ScrollView>
 
-        </RelativeLayout>
+        <!-- Bouton d'Action -->
 
         <Button
             android:layout_width="wrap_content"
@@ -87,6 +89,7 @@
             android:layout_marginBottom="40dp"
             android:textColor="@color/background"
             android:text="@string/profile_desincription"
+            android:onClick="seDesinscrire"
             app:layout_constraintBottom_toBottomOf="parent"
             app:backgroundTint="@null"
             android:background="@drawable/ic_btn_sp"
@@ -95,6 +98,8 @@
             app:layout_constraintStart_toStartOf="parent"></Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Menu de Navigation -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomNavigationView"
@@ -120,7 +125,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/homebtn2"
             android:backgroundTint="@null"
-
+            android:onClick="menu"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +140,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/infobtn"
             android:backgroundTint="@null"
-
+            android:onClick="scores"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,6 +160,7 @@
             android:background="@drawable/profile2btn"
             android:backgroundTint="@null"
             android:textColor="@color/white"
+            android:onClick="pageProfil"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button5"

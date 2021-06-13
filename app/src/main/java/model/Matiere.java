@@ -12,6 +12,7 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 import database.DAO.ExerciceDAO;
@@ -97,19 +98,24 @@ public class Matiere implements Parcelable {
 
     public Exercice getRandomExercice(Niveau n, Utilisateur u)
     {
-        ArrayList<Exercice> exercicesDispo = this.exercices.get(n);
+        ArrayList<Exercice> exercicesDispo = new ArrayList<>(this.exercices.get(n));
 
-        for(Exercice e : exercicesDispo)
+        Exercice e;
+
+        for(int i = 0; i < exercicesDispo.size(); i++)
         {
+            e = exercicesDispo.get(i);
+
             if(e.isWinner(u))
             {
                 exercicesDispo.remove(e);
+                i--;
             }
         }
 
-        // Si l'utilisateur a terminé tous les exercices du niveau, on lui en remet un qu'il a déjà réussi
+        // Si l'utilisateur a terminé tous les exercices du niveau, on renvoie null et l'autre fonction sera appellée (pas d'appel direct pour pouvoir afficher le toast dans MenuNiveauActivity)
         if(exercicesDispo.size() == 0)
-            return getRandomExercice(n);
+            return null;
 
 
         Random random = new Random();
