@@ -35,13 +35,6 @@
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
-        <ListView
-            android:id="@+id/linearLayoutAdapter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </ListView>
-
     </LinearLayout>
 
     <Button
@@ -57,5 +50,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/listViewAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="479dp"
+        android:layout_marginTop="124dp"
+
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

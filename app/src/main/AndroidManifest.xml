@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TableauScoresActivity" />
         <activity android:name="exercices.ExerciceQCMActivity" />
         <activity android:name=".ListElevesActivity" />
         <activity android:name=".InscriptionActivity" />

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,6 +94,14 @@ public class MenuNiveauActivity extends AppCompatActivity {
         Niveau choix =  Niveau.valueOf(pressed.getText().toString().toUpperCase());
 
         Exercice exerciceAFaire = this.matiere.getRandomExercice(choix, this.utilisateur);
+        boolean exerciceReussi = false;
+
+        if(exerciceAFaire == null)
+        {
+            Toast.makeText(this, "Tu as déjà réussi tous les exercices de ce niveau. Tu ne gagnera donc pas de points pour cette fois-ci...", Toast.LENGTH_LONG).show();
+            exerciceAFaire = this.matiere.getRandomExercice(choix);
+            exerciceReussi = true;
+        }
 
         Intent it = new Intent();
 
@@ -107,6 +116,7 @@ public class MenuNiveauActivity extends AppCompatActivity {
             it.putExtra(ExerciceActivity.EXERCICE_A_FAIRE, exercice);
         }
 
+        it.putExtra(ExerciceActivity.EXERCICE_REUSSI, exerciceReussi);
         it.putExtra(ExerciceActivity.UTILISATEUR, this.utilisateur);
         startActivity(it);
 
@@ -125,8 +135,22 @@ public class MenuNiveauActivity extends AppCompatActivity {
         getMatiereAndNiveaux();
     }
 
-    public void retourMenu(View view)
+    public void menu(View view)
     {
+        Intent it = new Intent(this, MenuMatieresActivity.class);
+        it.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
+        finish();
+    }
+
+
+    public void scores(View v)
+    {
+        Intent it = new Intent(this, TableauScoresActivity.class);
+        it.putExtra(TableauScoresActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
         finish();
     }
 
@@ -134,7 +158,7 @@ public class MenuNiveauActivity extends AppCompatActivity {
     {
         Intent it = new Intent(this, PageProfilActivity.class);
         it.putExtra(PageProfilActivity.UTILISATEUR, utilisateur);
-        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(it);
+        finish();
     }
 }

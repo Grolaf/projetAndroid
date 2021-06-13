@@ -28,8 +28,8 @@ public class LigneQCM implements Parcelable {
         this.enonce = enonce;
         this.reponseA = "A. " +reponseA;
         this.reponseB = "B. " +reponseB;
-        this.reponseC = "C. " +reponseC;
-        this.reponseD = "D. " +reponseD;
+        this.reponseC = reponseC == null ? null : "C. " +reponseC;
+        this.reponseD = reponseD == null ? null : "D. " +reponseD;
         this.bonneReponse = bonneReponse;
     }
 

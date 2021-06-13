@@ -70,10 +70,10 @@
 
         <GridView
             android:id="@+id/gridMatieres"
-            android:layout_width="395dp"
-            android:layout_height="519dp"
+            android:layout_width="415dp"
+            android:layout_height="413dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="176dp"
             android:layout_marginRight="20dp"
             android:numColumns="2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/homebtn2"
             android:backgroundTint="@null"
-
+            android:onClick="menu"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +123,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/infobtn"
             android:backgroundTint="@null"
-
+            android:onClick="scores"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -143,6 +143,7 @@
             android:background="@drawable/profile2btn"
             android:backgroundTint="@null"
             android:textColor="@color/white"
+            android:onClick="pageProfil"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button5"

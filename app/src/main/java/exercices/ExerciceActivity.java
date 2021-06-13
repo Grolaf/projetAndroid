@@ -31,10 +31,12 @@ public abstract class ExerciceActivity extends AppCompatActivity {
 
     public static final String UTILISATEUR = "utilisateur";
     public static final String EXERCICE_A_FAIRE = "exercice_a_faire";
+    public static final String EXERCICE_REUSSI = "exercice_reussi";
 
     protected DatabaseClient mDb;
     protected ArrayAdapter adapter;
     protected Utilisateur utilisateur;
+    protected boolean exerciceReussi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,9 @@ public abstract class ExerciceActivity extends AppCompatActivity {
         mDb = DatabaseClient.getInstance(this);
 
         setContentView(R.layout.activity_exercice);
+
         utilisateur = getIntent().getParcelableExtra(UTILISATEUR);
+        exerciceReussi = getIntent().getBooleanExtra(EXERCICE_REUSSI, false);
     }
 
     protected void reussirExercice(Exercice e){
@@ -69,4 +73,22 @@ public abstract class ExerciceActivity extends AppCompatActivity {
         reussir.execute();
     }
 
+    protected void validerExercice(int erreurs, Exercice exercice) {
+        if (erreurs == 0) {
+            if(!exerciceReussi)
+                reussirExercice(exercice);
+            Intent it = new Intent(this, FelicitationsActivity.class);
+            it.putExtra(FelicitationsActivity.EXERCICE_REUSSI, exerciceReussi);
+            it.putExtra(FelicitationsActivity.UTILISATEUR, utilisateur);
+            startActivity(it);
+        } else {
+            Intent it = new Intent(this, ErreurActivity.class);
+            it.putExtra(ErreurActivity.NOMBRE_ERREURS, erreurs);
+            it.putExtra(ErreurActivity.UTILISATEUR, utilisateur);
+            startActivity(it);
+
+        }
+    }
+
 }
+

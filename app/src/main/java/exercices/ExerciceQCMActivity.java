@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
 import com.example.scolastic.R;
 import java.util.ArrayList;
 import adapters.LigneQCMAdapter;
@@ -23,6 +25,12 @@ public class ExerciceQCMActivity extends ExerciceActivity{
         super.onCreate(savedInstanceState);
 
         this.qcm = getIntent().getParcelableExtra(EXERCICE_A_FAIRE);
+
+        TextView nomMatiere = (TextView) findViewById(R.id.matiere);
+        nomMatiere.setText(this.qcm.getNomMatiere());
+
+        TextView titreExercice = (TextView) findViewById(R.id.titreExercice);
+        titreExercice.setText(this.qcm.getTitre());
 
         ListView lV = (ListView) findViewById(R.id.listView);
         this.adapter = new LigneQCMAdapter(this, R.layout.qcm_adapter_view, new ArrayList<>());
@@ -83,18 +91,8 @@ public class ExerciceQCMActivity extends ExerciceActivity{
 
         // Evaluation des erreurs et redirection
         int erreurs = this.qcm.resultat(reponses);
-        if(erreurs == 0)
-        {
-            reussirExercice(qcm);
-            Intent it = new Intent(this, FelicitationsActivity.class);
-            startActivity(it);
-        }
-        else
-        {
-            Intent it = new Intent(this, ErreurActivity.class);
-            it.putExtra(ErreurActivity.NOMBRE_ERREURS, erreurs);
-            startActivity(it);
 
-        }
+        // Evaluation par la classe mère
+        validerExercice(erreurs, qcm);
     }
 }

@@ -96,7 +96,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/homebtn2"
             android:backgroundTint="@null"
-
+            android:onClick="menu"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/infobtn"
             android:backgroundTint="@null"
-
+            android:onClick="scores"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,6 +131,7 @@
             android:background="@drawable/profile2btn"
             android:backgroundTint="@null"
             android:textColor="@color/white"
+            android:onClick="pageProfil"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button5"

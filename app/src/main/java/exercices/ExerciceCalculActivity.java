@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.scolastic.R;
 
@@ -31,6 +32,11 @@ public class ExerciceCalculActivity extends ExerciceActivity{
         super.onCreate(savedInstanceState);
 
         this.calcul = getIntent().getParcelableExtra(EXERCICE_A_FAIRE);
+        TextView nomMatiere = (TextView) findViewById(R.id.matiere);
+        nomMatiere.setText(this.calcul.getNomMatiere());
+
+        TextView titreExercice = (TextView) findViewById(R.id.titreExercice);
+        titreExercice.setText(this.calcul.getTitre());
 
         ListView lV = (ListView) findViewById(R.id.listView);
         this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, new ArrayList<>());
@@ -89,18 +95,8 @@ public class ExerciceCalculActivity extends ExerciceActivity{
         }
         // Evaluation des erreurs et redirection
         int erreurs = this.calcul.resultat(answers);
-        if(erreurs == 0)
-        {
-            reussirExercice(calcul);
-            Intent it = new Intent(this, FelicitationsActivity.class);
-            startActivity(it);
-        }
-        else
-        {
-            Intent it = new Intent(this, ErreurActivity.class);
-            it.putExtra(ErreurActivity.NOMBRE_ERREURS, erreurs);
-            startActivity(it);
 
-        }
+        // Evaluation par la classe mère
+        validerExercice(erreurs, calcul);
     }
 }

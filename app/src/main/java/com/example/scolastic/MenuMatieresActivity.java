@@ -103,12 +103,23 @@ public class MenuMatieresActivity extends AppCompatActivity {
         // Mise à jour des matieres
         getMatieres();
     }
+    public void menu(View view)
+    {
+    }
+
+    public void scores(View v)
+    {
+        Intent it = new Intent(this, TableauScoresActivity.class);
+        it.putExtra(TableauScoresActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
+        finish();
+    }
 
     public void pageProfil(View view)
     {
         Intent it = new Intent(this, PageProfilActivity.class);
         it.putExtra(PageProfilActivity.UTILISATEUR, utilisateur);
-        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(it);
     }
 }

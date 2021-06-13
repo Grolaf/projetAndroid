@@ -21,6 +21,10 @@
     <string name="client_inscription">Inscription</string>
     <string name="client_main_h2">Espace Elèves</string>
 
+    <string name="tableau_scores">Tableau des scores</string>
+    <string name="joueur">Joueur</string>
+    <string name="score">Score</string>
+
 
     <string name="profile_top">Profile</string>
     <string name="profile_info">Info utilisateur</string>
