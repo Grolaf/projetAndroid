@@ -137,10 +137,6 @@ public class MenuNiveauActivity extends AppCompatActivity {
 
     public void menu(View view)
     {
-        Intent it = new Intent(this, MenuMatieresActivity.class);
-        it.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
-        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(it);
         finish();
     }
 
