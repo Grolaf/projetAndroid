@@ -78,7 +78,7 @@ public class DatabaseClient {
             int idLigne = 1;
 
             // Niveau Facile
-            for(int i = 1; i <= 10; i++)
+            for(int i = 1; i <= 5; i++)
             {
                 db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.FACILE) +", \"Maths\");");
                 for(int j = 1; j <= 10; j++)
@@ -91,7 +91,7 @@ public class DatabaseClient {
             for(int i = 11; i <= 20; i++)
             {
                 db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.MOYEN) +", \"Maths\");");
-                for(int j = 1; j <= 10; j++)
+                for(int j = 1; j <= 5; j++)
                 {
                     switch(rand.nextInt(3) + 1)
                     {
@@ -113,7 +113,7 @@ public class DatabaseClient {
             for(int i = 21; i <= 30; i++)
             {
                 db.execSQL("INSERT INTO calcul VALUES(" + i + ", \"Calcul\", " + nv.fromNiveauToJson(Niveau.DIFFICILE) +", \"Maths\");");
-                for(int j = 1; j <= 10; j++)
+                for(int j = 1; j <= 5; j++)
                 {
                     switch(rand.nextInt(4) + 1)
                     {
