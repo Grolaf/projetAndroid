@@ -12,18 +12,6 @@
     >
 
 
-    <Button
-        android:id="@+id/action_menu_presenter"
-        android:layout_width="30dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/ic_menu_icon"
-        android:gravity="start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/textView"

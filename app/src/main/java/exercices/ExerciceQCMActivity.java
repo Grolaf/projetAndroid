@@ -35,6 +35,7 @@ public class ExerciceQCMActivity extends ExerciceActivity{
         ListView lV = (ListView) findViewById(R.id.listView);
         this.adapter = new LigneQCMAdapter(this, R.layout.qcm_adapter_view, new ArrayList<>());
         lV.setAdapter(adapter);
+        fetchLignes();
     }
 
     private void fetchLignes()
@@ -93,13 +94,5 @@ public class ExerciceQCMActivity extends ExerciceActivity{
 
         // Evaluation par la classe mère
         validerExercice(erreurs, qcm);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Mise à jour des matieres
-        fetchLignes();
     }
 }

@@ -16,14 +16,17 @@
         android:layout_height="215dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/pass_img"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="17dp"
 
+        android:src="@drawable/pass_img"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"></ImageView>
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="266dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
@@ -67,15 +70,14 @@
     </LinearLayout>
 
     <!-- Bouton d'action -->
+
     <Button
         android:id="@+id/button"
 
-        android:layout_width="166dp"
-        android:layout_height="66dp"
+        android:layout_width="138dp"
+        android:layout_height="61dp"
         android:layout_gravity="center"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/ic_btn_sp"
         android:onClick="menu"
         android:text="@string/felicitation_btn1"
@@ -84,16 +86,16 @@
         app:backgroundTint="@null"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="165dp"
         android:layout_height="67dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/ic_btn_sp"
         android:onClick="scores"
         android:text="@string/felicitation_btn2"
@@ -103,8 +105,9 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.59"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.777" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,7 @@ public class ExerciceCalculActivity extends ExerciceActivity{
         ListView lV = (ListView) findViewById(R.id.listView);
         this.adapter = new LigneCalculAdapter(this, R.layout.calcul_adapter_view, new ArrayList<>());
         lV.setAdapter(adapter);
+        fetchLignes();
     }
 
     private void fetchLignes()
@@ -74,14 +75,6 @@ public class ExerciceCalculActivity extends ExerciceActivity{
 
         FetchLignes fetch = new FetchLignes();
         fetch.execute();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Mise à jour des matieres
-        fetchLignes();
     }
 
 
