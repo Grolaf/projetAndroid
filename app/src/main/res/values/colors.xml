@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+    <!-- New Design -->
     <color name="background">#11228B</color>
     <color name="main_text">#2F42B2</color>
     <color name="text_in_white">#132875</color>
@@ -9,16 +9,17 @@
     <color name="Transparent">#00000000</color>
     <color name="header_color">#2133A0</color>
 
+    <!-- Matiere Couleurs -->
     <color name="math_text">#5ED57A</color>
     <color name="french_text">#72BEF4</color>
     <color name="history_text">#E3AE96</color>
     <color name="white_text">#1A0D0D</color>
 
-
+    <!-- Ancienne couleurs-->
     <color name="profile_color">#FEA0AB</color>
-
     <color name="yellow">#FFE600</color>
 
+    <!-- ICONS -->
     <color name="splash">#18507B</color>
     <color name="white">#fff</color>
     <color name="card">#2B2723</color>
