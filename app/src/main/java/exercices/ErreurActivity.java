@@ -49,5 +49,6 @@ public class ErreurActivity extends AppCompatActivity {
         it.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
         it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(it);
+        finish();
     }
 }

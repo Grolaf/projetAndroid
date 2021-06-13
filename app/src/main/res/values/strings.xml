@@ -30,6 +30,9 @@
     <string name="joueur">Joueur</string>
     <string name="score">Score</string>
 
+    <!-- Fenêtre Scores -->
+    <string name="client_menu">Menu</string>
+
 
     <string name="profile_top">Profile</string>
     <string name="profile_info">Info utilisateur</string>

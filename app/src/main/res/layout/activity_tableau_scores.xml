@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListElevesActivity"
+    tools:context=".TableauScoresActivity"
     android:orientation="vertical"
     android:background="@color/background"
 
@@ -59,7 +59,7 @@
     <ListView
         android:id="@+id/listViewAdapter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="392dp"
         android:layout_marginTop="50dp"
 
         android:orientation="vertical"
@@ -68,5 +68,20 @@
         tools:layout_editor_absoluteX="0dp">
 
     </ListView>
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ic_btn_sp"
+        android:text="@string/client_menu"
+        android:onClick="menu"
+        app:backgroundTint="@null"
+        android:textColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
 </LinearLayout>

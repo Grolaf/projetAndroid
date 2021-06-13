@@ -1,7 +1,9 @@
 package com.example.scolastic;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,6 +81,15 @@ public class TableauScoresActivity extends AppCompatActivity {
 
         // Mise à jour des matieres
         getUtilisateurs();
+    }
+
+    public void menu(View view)
+    {
+        Intent it = new Intent(this, MenuMatieresActivity.class);
+        it.putExtra(MenuMatieresActivity.UTILISATEUR, utilisateur);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(it);
+        finish();
     }
 
 
